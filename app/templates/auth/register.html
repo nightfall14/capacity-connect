@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="card auth-card"><div class="card-body p-4">
+  <h3 class="text-center mb-1"><i class="bi bi-mortarboard"></i> Capacity Connect</h3>
+  <p class="text-center text-muted mb-4">Register as {{ 'Trainer' if role == 'trainer' else 'Trainee' }}</p>
+  {% if role == 'trainer' %}<div class="alert alert-info small"><i class="bi bi-info-circle"></i> Trainer accounts require administrator approval before login.</div>{% endif %}
+  <form method="POST" class="needs-validation" novalidate>
+    <div class="mb-3"><label class="form-label">Full Name</label><input type="text" name="name" class="form-control" minlength="3" required value="{{ form.get('name','') }}"><div class="invalid-feedback">Name must be at least 3 characters.</div></div>
+    <div class="mb-3"><label class="form-label">Email address</label><input type="email" name="email" class="form-control" required value="{{ form.get('email','') }}"><div class="invalid-feedback">Please provide a valid email.</div></div>
+    <div class="mb-3"><label class="form-label">Phone</label><input type="text" name="phone" class="form-control" pattern="[0-9]{7,15}" value="{{ form.get('phone','') }}"><div class="invalid-feedback">Please provide a valid phone number.</div></div>
+    <div class="mb-3"><label class="form-label">Password</label><input type="password" id="pw" name="password" class="form-control" minlength="6" required><div class="invalid-feedback">Password must be at least 6 characters.</div></div>
+    <div class="mb-3"><label class="form-label">Confirm Password</label><input type="password" id="confirm_pw" name="confirm_password" class="form-control" minlength="6" required><div id="pwMismatch" class="text-danger small d-none">Passwords do not match.</div></div>
+    <button type="submit" class="btn btn-primary w-100">Register</button>
+  </form><hr><p class="text-center mb-0">Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
+</div></div>
+{% endblock %}
+{% block scripts %}<script>validatePasswordMatch('pw', 'confirm_pw', 'pwMismatch');</script>{% endblock %}

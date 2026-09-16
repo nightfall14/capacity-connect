@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ course.name }}{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-slate-50 -mx-3 px-3 py-8 md:-mx-5 md:px-5">
+  <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(280px,3fr)]">
+    <main>
+      <span class="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">MoES Technical Training</span>
+      <h1 class="mt-3 text-4xl font-bold tracking-tight text-slate-900">{{ course.name }}</h1>
+      <p class="mt-4 text-lg leading-8 text-slate-600">{{ course.description or 'A structured technical learning programme from Capacity Connect.' }}</p>
+      <section class="mt-10 rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+        <h2 class="text-2xl font-bold text-slate-900">About the Course</h2>
+        <p class="mt-3 leading-7 text-slate-600">{{ course.description or 'This course combines guided lectures, practical understanding checks, and peer-supported learning.' }}</p>
+      </section>
+      <section class="mt-6 rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+        <h2 class="text-2xl font-bold text-slate-900">Course Layout</h2>
+        <div class="mt-4 divide-y divide-slate-200">
+          {% for module in course.modules %}
+          <details class="group py-4" {% if loop.first %}open{% endif %}>
+            <summary class="cursor-pointer list-none font-semibold text-slate-800">{{ module.title }} <span class="float-right text-slate-400 group-open:rotate-180">⌄</span></summary>
+            <div class="mt-3 space-y-2 pl-4 text-sm text-slate-600">
+              {% for video in module.videos %}<div class="flex justify-between"><span>{{ video.title }}</span><span>{{ video.duration_minutes or '—' }} min</span></div>{% else %}<p>Content coming soon.</p>{% endfor %}
+            </div>
+          </details>
+          {% else %}<p class="py-4 text-slate-500">The syllabus is being prepared.</p>{% endfor %}
+        </div>
+      </section>
+    </main>
+    <aside class="lg:sticky lg:top-24 lg:self-start">
+      <div class="rounded-xl bg-white p-6 shadow-lg ring-1 ring-slate-200">
+        <div class="mb-5 h-32 overflow-hidden rounded-lg bg-slate-800"><img src="{{ course.thumbnail_url or url_for('static', filename='img/course-default.svg') }}" alt="" class="h-full w-full object-cover"></div>
+        <p class="text-sm text-slate-500">{{ course.duration or '8 Weeks' }} · Self-paced</p>
+        <h2 class="mt-4 text-lg font-bold text-slate-900">Trainer Profile</h2>
+        <p class="mt-2 font-semibold text-slate-800">{{ course.trainer.name if course.trainer else 'Capacity Connect Faculty' }}</p>
+        <p class="text-sm text-slate-500">{{ course.trainer.designation if course.trainer and course.trainer.designation else 'Technical Training Faculty' }}</p>
+        {% if enrolled %}
+        <a href="{{ url_for('courses.learn', course_id=course.id) }}" class="mt-6 block rounded-lg bg-blue-700 px-4 py-3 text-center font-bold text-white hover:bg-blue-800">GO TO COURSE</a>
+        {% else %}
+        <form method="post" action="{{ url_for('courses.join', course_id=course.id) }}"><button class="mt-6 w-full rounded-lg bg-blue-700 px-4 py-3 font-bold text-white hover:bg-blue-800">JOIN / ENROLL</button></form>
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+</div>
+{% endblock %}

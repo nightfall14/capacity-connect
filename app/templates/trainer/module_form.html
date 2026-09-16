@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}{% if module %}Edit Module{% else %}Create Module{% endif %} — {{ course.name }}{% endblock %}
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url_for('trainer.dashboard') }}">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="{{ url_for('trainer.course_detail', course_id=course.id) }}">{{ course.name }}</a></li>
+    <li class="breadcrumb-item active">{% if module %}Edit Module{% else %}New Module{% endif %}</li>
+  </ol>
+</nav>
+
+<h3 class="section-title">
+  <i class="bi bi-folder-plus"></i>
+  {% if module %}Edit Module{% else %}Create Module{% endif %}
+</h3>
+<p class="text-muted">Course: <strong>{{ course.name }}</strong></p>
+
+<form method="POST">
+  <div class="table-responsive-card mb-4">
+    <h5 class="mb-3">Module Details</h5>
+    <div class="mb-3">
+      <label class="form-label">Module Title <span class="text-danger">*</span></label>
+      <input type="text" name="title" class="form-control" required
+             value="{{ module.title if module else (form.title if form else '') }}"
+             placeholder="e.g. Week 2 — Data Manipulation with Pandas">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Module Description</label>
+      <textarea name="description" class="form-control" rows="3"
+                placeholder="Brief overview of this module's content…">{{ module.description if module else (form.description if form else '') }}</textarea>
+    </div>
+  </div>
+
+  <div class="table-responsive-card mb-4" id="videosSection">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0">Lecture Videos</h5>
+      <button type="button" class="btn btn-outline-primary btn-sm" id="addVideoBtn">
+        <i class="bi bi-plus-circle"></i> Add Video
+      </button>
+    </div>
+    <div id="videoRows">
+      <div class="row g-2 align-items-end video-row mb-2">
+        <div class="col-md-4">
+          <label class="form-label small">Video Title</label>
+          <input type="text" name="video_title" class="form-control form-control-sm"
+                 placeholder="e.g. Introduction to Pandas">
+        </div>
+        <div class="col-md-5">
+          <label class="form-label small">Video URL</label>
+          <input type="url" name="video_url" class="form-control form-control-sm"
+                 placeholder="https://youtube.com/watch?v=…">
+        </div>
+        <div class="col-md-2">
+          <label class="form-label small">Duration (min)</label>
+          <input type="number" name="video_duration" class="form-control form-control-sm"
+                 min="1" max="300" placeholder="45">
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="btn btn-outline-danger btn-sm remove-video-btn" style="display:none;">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+        <div class="col-12">
+          <label class="form-label small">Transcript (one <code>[MM:SS] spoken text</code> segment per line)</label>
+          <textarea name="video_transcript" class="form-control form-control-sm" rows="4" placeholder="[00:00] Welcome to the lecture.&#10;[01:15] We now compare lists and tuples."></textarea>
+          <div class="form-text">Malformed lines are skipped when this lecture is saved.</div>
+        </div>
+      </div>
+    </div>
+    {% if module and module.videos %}
+    <div class="mb-3 border-top pt-3">
+      <h6>Existing Lecture Videos</h6>
+      {% for video in module.videos %}
+      <p class="mb-1 small text-muted">{{ video.order }}. {{ video.title }} ({{ video.duration_minutes or '—' }} min)</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <p class="text-muted small mb-0">Leave new video rows blank to skip adding lectures.</p>
+  </div>
+
+  <div class="mt-2">
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-save"></i> {% if module %}Update Module{% else %}Create Module{% endif %}
+    </button>
+    <a href="{{ url_for('trainer.course_detail', course_id=course.id) }}"
+       class="btn btn-outline-secondary ms-2">Cancel</a>
+  </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+  const addBtn = document.getElementById('addVideoBtn');
+  const container = document.getElementById('videoRows');
+  if (!addBtn || !container) return;
+
+  function updateRemoveButtons() {
+    const rows = container.querySelectorAll('.video-row');
+    rows.forEach(function (row, i) {
+      const btn = row.querySelector('.remove-video-btn');
+      if (btn) btn.style.display = rows.length > 1 ? '' : 'none';
+    });
+  }
+
+  addBtn.addEventListener('click', function () {
+    const first = container.querySelector('.video-row');
+    const clone = first.cloneNode(true);
+    clone.querySelectorAll('input, textarea').forEach(function (i) { i.value = ''; });
+    const removeBtn = clone.querySelector('.remove-video-btn');
+    if (removeBtn) {
+      removeBtn.style.display = '';
+      removeBtn.addEventListener('click', function () {
+        clone.remove(); updateRemoveButtons();
+      });
+    }
+    container.appendChild(clone);
+    updateRemoveButtons();
+  });
+
+  container.querySelectorAll('.remove-video-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.closest('.video-row').remove(); updateRemoveButtons();
+    });
+  });
+  updateRemoveButtons();
+})();
+</script>
+{% endblock %}

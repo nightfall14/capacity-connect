@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Trainee Dashboard{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gray-50 -mx-3 px-3 py-10 md:-mx-5 md:px-5">
+  <div class="mx-auto max-w-6xl">
+    <p class="text-sm font-semibold uppercase tracking-widest text-blue-600">Trainee Learning Centre</p>
+    <h1 class="mt-2 text-3xl font-bold text-slate-900">Dashboard</h1>
+    <section class="mt-8">
+      <div class="flex items-center justify-between"><h2 class="text-2xl font-bold text-slate-900">Continue Learning</h2><a href="{{ url_for('learner.my_courses') }}" class="text-sm font-semibold text-blue-600">View My Courses</a></div>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        {% for enrollment in enrollments %}
+        <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-wide text-blue-600">{{ enrollment.course.category or 'MoES Technical Training' }}</p>
+          <h3 class="mt-2 text-xl font-bold text-slate-900">{{ enrollment.course.title }}</h3>
+          <p class="mt-1 text-sm text-slate-600">Trainer: {{ enrollment.course.trainer.name if enrollment.course.trainer else 'Capacity Connect Faculty' }}</p>
+          <div class="mt-5 h-3 rounded-full bg-slate-200"><div class="h-3 rounded-full bg-blue-600" style="width: {{ enrollment.progress_percentage|default(0) }}%"></div></div>
+          <div class="mt-2 flex justify-between text-sm text-slate-500"><span>{{ enrollment.progress_percentage|default(0) }}% complete</span><a href="{{ url_for('courses.learn', course_id=enrollment.course_id) }}" class="font-semibold text-blue-600">Continue</a></div>
+        </article>
+        {% else %}<p class="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-slate-500">You are not enrolled in any courses yet.</p>{% endfor %}
+      </div>
+    </section>
+    <section class="mt-12">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><h2 class="text-2xl font-bold text-slate-900">Browse Catalog</h2><p class="mt-1 text-slate-600">Find another programme to build your skills.</p></div><form method="get" action="{{ url_for('learner.dashboard') }}" class="flex gap-2"><input name="q" value="{{ query }}" class="rounded-lg border border-slate-300 px-4 py-2" placeholder="Search courses"><button class="rounded-lg bg-slate-900 px-4 py-2 font-semibold text-white">Search</button></form></div>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">{% for course in courses %}<a href="{{ url_for('courses.summary', course_id=course.id) }}" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"><span class="text-xs font-semibold text-blue-600">{{ course.category or 'MoES Technical Training' }}</span><h3 class="mt-2 font-bold text-slate-900">{{ course.title }}</h3><p class="mt-2 text-sm text-slate-600">{{ course.duration or 'Self-paced' }} · {{ course.trainer.name if course.trainer else 'Capacity Connect Faculty' }}</p></a>{% else %}<p class="text-slate-500">No courses match your search.</p>{% endfor %}</div>
+    </section>
+  </div>
+</div>
+{% endblock %}

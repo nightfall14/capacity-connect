@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Manage Courses{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3"><h3 class="section-title mb-0">Manage Courses</h3><a href="{{ url_for('admin.create_course') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Create Course</a></div>
+<form method="GET" class="row g-2 mb-3"><div class="col-md-4"><input type="text" name="q" class="form-control" placeholder="Search by name, location or ID" value="{{ q }}"></div><div class="col-md-2"><button type="submit" class="btn btn-outline-primary w-100">Search</button></div></form>
+<div class="table-responsive-card"><div class="table-responsive"><table class="table table-hover align-middle">
+<thead><tr><th>ID</th><th>Name</th><th>Location</th><th>Difficulty</th><th>Slots</th><th>Assigned Trainer</th><th>Status</th><th>Dates</th><th>Actions</th></tr></thead>
+<tbody>{% for course in courses %}<tr><td>#{{ course.id }}</td><td>{{ course.name }}</td><td>{{ course.location }}</td><td><span class="badge badge-difficulty-{{ course.difficulty }}">{{ course.difficulty }}</span></td><td>{{ course.available_slots }} / {{ course.total_slots }}</td><td>{{ course.assigned_trainer.name if course.assigned_trainer else '—' }}</td><td><span class="badge badge-status-{{ course.status|replace(' ', '-') }}">{{ course.status }}</span></td><td class="small">{{ course.start_date }}<br>to {{ course.end_date }}</td><td><div class="d-flex flex-column gap-1"><a href="{{ url_for('admin.edit_course', course_id=course.id) }}" class="btn btn-sm btn-outline-secondary">Edit</a><a href="{{ url_for('admin.assign_trainer', course_id=course.id) }}" class="btn btn-sm btn-outline-primary">Assign Trainer</a><form method="POST" action="{{ url_for('admin.delete_course', course_id=course.id) }}" data-confirm="Delete this course permanently?"><button type="submit" class="btn btn-sm btn-outline-danger w-100">Delete</button></form></div></td></tr>{% else %}<tr><td colspan="9" class="text-center text-muted">No courses found.</td></tr>{% endfor %}</tbody>
+</table></div></div>
+{% endblock %}

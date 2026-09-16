@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Confusion Heatmap{% endblock %}
+{% block content %}
+<div class="mb-6">
+  <a href="{{ url_for('trainer.dashboard') }}" class="text-sm font-semibold text-blue-600">&larr; Dashboard</a>
+  <h1 class="mt-3 text-3xl font-bold text-slate-900">{{ video.title }} — Cohort Heatmap</h1>
+</div>
+<div class="overflow-hidden rounded-xl bg-black shadow-sm">
+  <video id="trainer-lecture-video" data-lecture-duration-video data-video-id="{{ video.id }}" class="aspect-video w-full" controls preload="metadata">
+    <source src="{{ video.video_url }}" type="video/mp4">
+  </video>
+</div>
+<section class="mt-1 w-full overflow-x-auto pb-1" aria-label="Viewer confusion across the lecture timeline">
+  <div class="min-w-[720px]">
+    <div id="confusion-heatmap-strip" data-lecture-id="{{ video.id }}" class="flex h-4 w-full overflow-hidden rounded-sm bg-slate-200" aria-label="Viewer confusion heatmap"></div>
+    <div id="confusion-heatmap-ticks" class="relative mt-1 h-5 w-full font-mono text-[10px] text-slate-500" aria-hidden="true"></div>
+  </div>
+</section>
+<div class="mt-6 grid gap-4 md:grid-cols-2">
+  {% for insight in insights %}<div class="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{{ insight }}</div>
+  {% else %}<p class="text-slate-500">No confusion spikes detected yet.</p>{% endfor %}
+</div>
+<script src="{{ url_for('static', filename='js/confusion_heatmap.js') }}"></script>
+<script src="{{ url_for('static', filename='js/video_duration.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}My Bookings{% endblock %}
+{% block content %}
+<h3 class="section-title">My Bookings</h3>
+<div class="row g-4 mb-4">
+  {% for status in ['Registered', 'In Progress', 'Completed'] %}
+  <div class="col-md-4">
+    <div class="table-responsive-card h-100">
+      <h5 class="mb-3">{{ status }} Courses</h5>
+      {% set rows = grouped[status] %}
+      {% if rows %}
+      <div class="d-grid gap-2">
+        {% for booking in rows %}
+        <div class="border rounded p-2">
+          <div class="fw-semibold">{{ booking.course.name }}</div>
+          <div class="small text-muted">{{ booking.course.location }}</div>
+          <div class="mt-2">
+            <span class="badge badge-booking-{{ booking.status }}">{{ booking.status }}</span>
+            {% if booking.status == 'Enrolled' and booking.course.status == 'In Progress' %}
+            <form method="POST" action="{{ url_for('trainee.complete_booking', booking_id=booking.id) }}" class="d-inline" data-confirm="Mark this course as completed?">
+              <button type="submit" class="btn btn-sm btn-outline-primary ms-2">Mark Completed</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-muted small mb-0">No courses here.</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="table-responsive-card"><div class="table-responsive"><table class="table table-hover align-middle"><thead><tr><th>Booking ID</th><th>Course</th><th>Location</th><th>Enrolled On</th><th>Status</th><th>Actions</th></tr></thead><tbody>{% for booking in bookings %}<tr><td>#{{ booking.id }}</td><td>{{ booking.course.name }}</td><td>{{ booking.course.location }}</td><td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M') }}</td><td><span class="badge badge-booking-{{ booking.status }}">{{ booking.status }}</span></td><td>{% if booking.status == 'Enrolled' %}<div class="d-flex gap-2"><form method="POST" action="{{ url_for('trainee.cancel_booking', booking_id=booking.id) }}" data-confirm="Cancel this enrollment?"><button type="submit" class="btn btn-sm btn-outline-danger">Cancel</button></form>{% if booking.course.status == 'In Progress' %}<form method="POST" action="{{ url_for('trainee.complete_booking', booking_id=booking.id) }}" data-confirm="Mark this course as completed?"><button type="submit" class="btn btn-sm btn-outline-primary">Complete</button></form>{% endif %}</div>{% else %}&mdash;{% endif %}</td></tr>{% else %}<tr><td colspan="6" class="text-center text-muted">You haven't enrolled in any courses yet.</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Course History{% endblock %}
+{% block content %}
+<h3 class="section-title">My Course History</h3><div class="table-responsive-card"><div class="table-responsive"><table class="table table-hover align-middle"><thead><tr><th>Course</th><th>Location</th><th>Difficulty</th><th>Dates</th><th>Booking Date</th><th>Status</th></tr></thead><tbody>{% for booking in bookings %}<tr><td>{{ booking.course.name }}</td><td>{{ booking.course.location }}</td><td><span class="badge badge-difficulty-{{ booking.course.difficulty }}">{{ booking.course.difficulty }}</span></td><td class="small">{{ booking.course.start_date }} &rarr; {{ booking.course.end_date }}</td><td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M') }}</td><td><span class="badge badge-booking-{{ booking.status }}">{{ booking.status }}</span></td></tr>{% else %}<tr><td colspan="6" class="text-center text-muted">No course history available.</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}

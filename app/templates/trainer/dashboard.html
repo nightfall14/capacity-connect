@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Trainer Dashboard{% endblock %}
+{% block content %}
+<div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <p class="text-sm font-semibold uppercase tracking-wider text-blue-600">Trainer workspace</p>
+    <h1 class="mt-1 text-3xl font-bold tracking-tight text-slate-900">Dashboard</h1>
+    <p class="mt-2 text-slate-600">Monitor your learning content, trainees, and curriculum signals.</p>
+  </div>
+  <a href="{{ url_for('trainer.create_course') }}"
+     class="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+    Create Course
+  </a>
+  <a href="{{ url_for('trainer.readiness') }}"
+     class="rounded-lg border border-indigo-300 px-4 py-2.5 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-50">
+    View Learner Readiness
+  </a>
+</div>
+
+<section class="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+  {% for key, label, caption, color in [
+    ('active_courses', 'Active Courses', 'Courses owned by you', 'blue'),
+    ('total_trainees', 'Total Trainees', 'Across your courses', 'indigo'),
+    ('unresolved_doubts', 'Unresolved Doubts', 'Questions awaiting response', 'amber'),
+    ('curriculum_alerts', 'Curriculum Alerts', 'High-confusion zones', 'rose')
+  ] %}
+  <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-medium text-slate-500">{{ label }}</span>
+      <span class="h-2.5 w-2.5 rounded-full bg-{{ color }}-500"></span>
+    </div>
+    <div class="mt-3 text-3xl font-bold text-slate-900">{{ stats[key] }}</div>
+    <p class="mt-1 text-xs text-slate-500">{{ caption }}</p>
+  </article>
+  {% endfor %}
+</section>
+
+<section>
+  <div class="mb-4 flex items-center justify-between">
+    <div>
+      <h2 class="text-xl font-bold text-slate-900">My Courses</h2>
+      <p class="text-sm text-slate-500">Manage syllabus content and inspect learner telemetry.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+    {% for course in courses %}
+    <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">
+            {{ course.category or 'MoES Technical Training' }}
+          </p>
+          <h3 class="mt-1 text-xl font-bold text-slate-900">{{ course.title }}</h3>
+        </div>
+        <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
+          {{ course.status }}
+        </span>
+      </div>
+      <p class="mt-4 line-clamp-2 text-sm text-slate-600">
+        {{ course.description or 'Build structured learning content for your trainees.' }}
+      </p>
+      <div class="mt-5 flex items-center gap-2 text-sm text-slate-600">
+        <span class="rounded-md bg-blue-50 px-2 py-1 font-semibold text-blue-700">
+          {{ course.active_enrollments_count() }}
+        </span>
+        enrolled trainees
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="{{ url_for('trainer.course_detail', course_id=course.id) }}"
+           class="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white transition hover:bg-slate-700">
+          Manage Syllabus &amp; Content
+        </a>
+        <a href="{{ url_for('trainer.telemetry', course_id=course.id) }}"
+           class="rounded-lg border border-amber-300 px-3 py-2 text-sm font-semibold text-amber-700 transition hover:bg-amber-50">
+          View Telemetry &amp; Heatmaps
+        </a>
+      </div>
+    </article>
+    {% else %}
+    <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center lg:col-span-2">
+      <h3 class="font-semibold text-slate-900">No courses yet</h3>
+      <p class="mt-1 text-sm text-slate-500">Create your first LMS course to start building a syllabus.</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

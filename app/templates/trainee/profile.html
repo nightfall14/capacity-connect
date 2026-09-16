@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<h3 class="section-title"><i class="bi bi-person-circle"></i> My Profile</h3>
+
+<form method="POST" action="{{ url_for('trainee.profile') }}">
+  <div class="row g-4">
+
+    {# ── Personal Info ── #}
+    <div class="col-md-6">
+      <div class="table-responsive-card h-100">
+        <h5 class="mb-3">Personal Information</h5>
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input type="text" name="name" class="form-control"
+                 value="{{ account.name }}" required minlength="3">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" value="{{ account.email }}" disabled>
+          <div class="form-text">Email cannot be changed.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone</label>
+          <input type="text" name="phone" class="form-control"
+                 value="{{ account.phone or '' }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Designation / Role</label>
+          <input type="text" name="designation" class="form-control"
+                 value="{{ account.designation or '' }}"
+                 placeholder="e.g. Junior Developer">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Department</label>
+          <input type="text" name="department" class="form-control"
+                 value="{{ account.department or '' }}"
+                 placeholder="e.g. Engineering">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Bio</label>
+          <textarea name="bio" class="form-control" rows="3"
+                    placeholder="Tell others about yourself…">{{ account.bio or '' }}</textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">New Password
+            <span class="text-muted small">(leave blank to keep current)</span>
+          </label>
+          <input type="password" name="password" class="form-control" autocomplete="new-password">
+        </div>
+      </div>
+    </div>
+
+    {# ── Competency Profile ── #}
+    <div class="col-md-6">
+      <div class="table-responsive-card h-100">
+        <h5 class="mb-3">Skills &amp; Qualifications</h5>
+        <div class="mb-3">
+          <label class="form-label">Skills
+            <span class="text-muted small">(comma-separated)</span>
+          </label>
+          <input type="text" name="skills" class="form-control"
+                 value="{{ cp.skills if cp else '' }}"
+                 placeholder="Python, SQL, Excel, Power BI">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Qualifications</label>
+          <textarea name="qualifications" class="form-control" rows="2"
+                    placeholder="B.Tech Computer Science">{{ cp.qualifications if cp else '' }}</textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Certifications
+            <span class="text-muted small">(comma-separated)</span>
+          </label>
+          <input type="text" name="certifications" class="form-control"
+                 value="{{ cp.certifications if cp else '' }}"
+                 placeholder="AWS Cloud Practitioner, Google Data Analytics">
+        </div>
+        <hr>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-linkedin"></i> LinkedIn URL</label>
+          <input type="url" name="linkedin_url" class="form-control"
+                 value="{{ cp.linkedin_url if cp else '' }}"
+                 placeholder="https://linkedin.com/in/yourprofile">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-save"></i> Save Profile
+    </button>
+    <a href="{{ url_for('trainee.dashboard') }}" class="btn btn-outline-secondary ms-2">Cancel</a>
+  </div>
+</form>
+
+{# ── Skills Display ── #}
+{% if cp and cp.skills_list() %}
+<div class="table-responsive-card mt-4">
+  <h5 class="mb-3">Your Skills</h5>
+  {% for skill in cp.skills_list() %}
+  <span class="badge bg-primary me-1 mb-1">{{ skill }}</span>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if cp and cp.certs_list() %}
+<div class="table-responsive-card mt-3">
+  <h5 class="mb-3"><i class="bi bi-award"></i> Certifications</h5>
+  <ul class="list-unstyled mb-0">
+    {% for cert in cp.certs_list() %}
+    <li><i class="bi bi-patch-check-fill text-success me-2"></i>{{ cert }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+{% endblock %}

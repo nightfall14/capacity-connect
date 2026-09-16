@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }} — Learning{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gray-50 -mx-3 flex flex-col md:-mx-5 lg:flex-row">
+  <aside class="w-full overflow-y-auto border-r border-slate-200 bg-white lg:min-h-[calc(100vh-5rem)] lg:w-1/4">
+    <div class="border-b border-slate-200 bg-slate-900 p-6 text-white">
+      <p class="text-xs font-semibold uppercase tracking-widest text-blue-300">Course Outline</p>
+      <h1 class="mt-2 text-lg font-bold">{{ course.title }}</h1>
+    </div>
+    <div class="p-4 space-y-3">
+      {% for module in course.modules %}
+      <div class="overflow-hidden rounded-lg border border-slate-200">
+        <button type="button" class="outline-toggle flex w-full items-center justify-between px-4 py-4 text-left font-semibold text-slate-800" aria-expanded="{{ 'true' if loop.first else 'false' }}">
+          Week {{ module.order }} — {{ module.title }}<span class="outline-icon text-blue-600">{{ '−' if loop.first else '+' }}</span>
+        </button>
+        <div class="outline-content border-t border-slate-100 {% if not loop.first %}hidden{% endif %}">
+          {% for video in module.videos %}
+          <a href="{{ url_for('courses.learn', course_id=course.id, lecture_id=video.id) }}" class="block px-4 py-3 text-sm {% if lecture and video.id == lecture.id %}bg-slate-100 font-semibold text-blue-700{% else %}text-slate-600 hover:bg-gray-50{% endif %}">
+            <span class="block">{{ video.title }}</span><span class="text-xs text-slate-400">Video</span>
+          </a>
+          {% endfor %}
+          {% for item in module.items %}
+          <button type="button" data-file-url="{{ item.content_url }}" data-file-type="{{ item.type }}" data-file-title="{{ item.title }}" class="file-preview-trigger block w-full px-4 py-3 text-left text-sm {% if active_item and item.id == active_item.id %}bg-slate-100 font-semibold text-blue-700{% else %}text-slate-600 hover:bg-gray-50{% endif %}">
+            <span class="block">{{ item.title }}</span><span class="text-xs uppercase text-slate-400">{{ item.type }}</span>
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+      {% else %}<p class="p-3 text-sm text-slate-500">No modules are available yet.</p>{% endfor %}
+    </div>
+  </aside>
+  <main class="flex w-full flex-col p-4 md:p-8 lg:w-3/4">
+    {% if active_item and active_item.type in ['pdf', 'ppt'] %}
+    <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-lg">
+      <h2 class="text-xl font-bold text-slate-900">{{ active_item.title }}</h2>
+      <iframe src="{% if active_item.type == 'ppt' %}https://docs.google.com/gview?embedded=true&amp;url={{ request.base_url.rstrip('/') }}{{ active_item.content_url }}{% else %}{{ active_item.content_url }}{% endif %}" class="mt-4 h-[65vh] w-full rounded-lg border border-slate-200" title="{{ active_item.title }}"></iframe>
+      <a href="{{ active_item.content_url }}" download class="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white">Download {{ active_item.type|upper }}</a>
+    </div>
+    {% elif lecture or course.video_url %}
+    <div class="rounded-xl bg-slate-900 p-3 shadow-lg"><div class="aspect-video rounded-lg bg-black"><video id="lecture-video" data-lecture-duration-video data-video-id="{{ lecture.id if lecture else '' }}" class="h-full w-full rounded-lg" controls><source src="{{ lecture.video_url if lecture else course.video_url }}" type="video/mp4"></video></div></div>
+    <div class="relative mt-3 w-full select-none">
+      <div id="heatmap-bar" data-video-id="{{ lecture.id if lecture else '' }}" class="flex h-4 w-full items-center overflow-hidden rounded-md bg-slate-200 shadow-inner"></div>
+      <div id="heatmap-timeline-scale" class="relative mt-2 h-6 w-full border-t-2 border-gray-200 font-mono text-xs text-slate-500"></div>
+    </div>
+    <p class="mt-4 text-sm text-slate-600">Now playing: <strong>{{ lecture.title if lecture else course.title }}</strong></p>
+    {% else %}<div class="rounded-xl bg-white p-10 text-center text-slate-500">This course has no learning resources yet.</div>{% endif %}
+    <div id="file-preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75">
+      <div class="relative flex h-[90vh] w-11/12 max-w-5xl flex-col rounded-lg bg-white">
+        <div class="flex items-center justify-between border-b p-4"><h3 id="file-preview-title" class="text-lg font-bold">Document Preview</h3><div class="flex gap-4"><a id="file-download-btn" href="#" download class="rounded bg-blue-600 px-4 py-1.5 text-white">Download</a><button type="button" id="file-preview-close" class="text-gray-500">Close X</button></div></div>
+        <div class="h-full w-full flex-grow p-2"><iframe id="file-preview-iframe" class="h-full w-full border-0" title="Document preview"></iframe></div>
+      </div>
+    </div>
+    <section class="mt-6 rounded-xl border border-slate-200 bg-white shadow-sm">
+      <nav class="flex flex-wrap border-b border-slate-200">{% for key, label in [('transcript', 'Transcript & Notes'), ('doubts', 'Ask Doubts (AI Q&A)'), ('peer', 'Peer Rescue'), ('quiz', 'Checkpoint Quiz')] %}<button type="button" class="workspace-tab border-b-2 px-4 py-4 text-sm font-semibold {% if loop.first %}border-blue-600 text-blue-600{% else %}border-transparent text-slate-500{% endif %}" data-tab="{{ key }}">{{ label }}</button>{% endfor %}</nav>
+      <div class="p-6"><div class="workspace-panel" data-panel="transcript"><h2 class="font-bold">Transcript &amp; Notes</h2><div id="transcript-segments" class="mt-3 h-[400px] space-y-2 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-4">{% if grouped_transcript %}{% for segment in grouped_transcript %}<div role="button" tabindex="0" data-transcript-start="{{ segment.start }}" data-transcript-end="{{ segment.end }}" onclick="seekVideo({{ segment.start }})" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); seekVideo({{ segment.start }}); }" class="block w-full cursor-pointer rounded border-b border-gray-100 p-2 transition-colors hover:bg-blue-50 last:border-0"><span class="mr-4 inline-block w-24 shrink-0 text-sm font-bold text-blue-600">[{{ '%02d:%02d'|format((segment.start|int // 60), (segment.start|int % 60)) }}]</span><span class="text-sm text-gray-700">{{ segment.text }}</span></div>{% endfor %}{% else %}<p data-transcript-empty class="text-slate-500">Transcript has not been published yet for this lecture.</p>{% endif %}</div></div><div class="workspace-panel hidden" data-panel="doubts"><h2 class="font-bold">Lecture Q&amp;A</h2><p class="mt-2 text-slate-600">Ask about this lecture and jump to the matching transcript section.</p><form id="lecture-qa-form" class="mt-4 flex gap-2"><input name="question" class="min-w-0 flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm" placeholder="e.g. When should I use a tuple?" required><button class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white" type="submit">Ask</button></form><div id="lecture-qa-result" class="mt-3 rounded-lg bg-slate-50 p-3 text-sm text-slate-600" aria-live="polite"></div></div><div class="workspace-panel hidden" data-panel="peer"><h2 class="font-bold">Peer Rescue (AI Q&amp;A)</h2><p class="mt-2 text-slate-600">Ask a question about the current lecture.</p><button type="button" onclick="requestPeerRescue({{ course.id }})" class="mt-4 rounded bg-indigo-600 px-4 py-2 text-white shadow hover:bg-indigo-700">Peer Rescue</button></div><div class="workspace-panel hidden" data-panel="quiz"><h2 class="font-bold">Checkpoint Quiz</h2><p class="mt-2 text-slate-600">Knowledge checks will appear here.</p></div></div>
+    </section>
+  </main>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>window.currentUserId={{ session.account_id|default(0)|tojson }};window.currentCourseId={{ course.id|tojson }};window.currentVideoId={{ lecture.id if lecture else 0 }};window.courseVideoUrl={{ (lecture.video_url if lecture else course.video_url)|default("")|tojson }};window.transcriptSegments={{ transcript|safe }};</script>
+{% if lecture or course.video_url %}<script src="{{ url_for('static', filename='js/video_duration.js') }}"></script><script src="{{ url_for('static', filename='js/confusion_events.js') }}"></script><script src="{{ url_for('static', filename='js/video_adapter.js') }}"></script>{% endif %}
+{% if lecture %}<script src="{{ url_for('static', filename='js/heatmap.js') }}"></script>{% endif %}
+{% if lecture %}<script src="{{ url_for('static', filename='js/lecture_qa.js') }}"></script>{% endif %}
+<script>
+document.querySelectorAll(".outline-toggle").forEach(function(b){b.addEventListener("click",function(){var c=b.nextElementSibling,x=c.classList.toggle("hidden");b.setAttribute("aria-expanded",String(!x));b.querySelector(".outline-icon").textContent=x?"+":"−";});});
+document.querySelectorAll(".workspace-tab").forEach(function(t){t.addEventListener("click",function(){document.querySelectorAll(".workspace-tab").forEach(function(x){x.classList.remove("border-blue-600","text-blue-600");x.classList.add("border-transparent","text-slate-500");});document.querySelectorAll(".workspace-panel").forEach(function(p){p.classList.toggle("hidden",p.dataset.panel!==t.dataset.tab);});t.classList.add("border-blue-600","text-blue-600");t.classList.remove("border-transparent","text-slate-500");});});
+document.getElementById("file-preview-close")?.addEventListener("click", closeFilePreview);
+function closeFilePreview(){const modal=document.getElementById("file-preview-modal");if(!modal)return;modal.classList.add("hidden");modal.classList.remove("flex");document.getElementById("file-preview-iframe").src="";}
+document.querySelectorAll(".file-preview-trigger").forEach(function(button){button.addEventListener("click",function(){openFilePreview(button.dataset.fileUrl,button.dataset.fileType,button.dataset.fileTitle);});});
+function openFilePreview(fileUrl,fileType,title){const modal=document.getElementById("file-preview-modal"),iframe=document.getElementById("file-preview-iframe");if(!modal||!iframe)return;document.getElementById("file-preview-title").textContent=title;document.getElementById("file-download-btn").href=fileUrl;const absoluteUrl=new URL(fileUrl,window.location.origin).href;iframe.src=fileType==="pdf"?absoluteUrl:"https://docs.google.com/gview?url="+encodeURIComponent(absoluteUrl)+"&embedded=true";modal.classList.remove("hidden");modal.classList.add("flex");}
+function seekVideo(timeInSeconds){const seconds=Math.max(0,Number(timeInSeconds)||0);const video=document.getElementById("lecture-video");if(video){video.currentTime=seconds;video.play().catch(function(){});return;}const player=window.youtubePlayer;if(player&&typeof player.seekTo==="function"){player.seekTo(seconds,true);if(typeof player.playVideo==="function")player.playVideo();}}
+</script>
+{% endblock %}

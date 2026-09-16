@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Create Course{% endblock %}
+{% block content %}
+<h3 class="section-title">Create Course</h3>
+<form method="post" class="card card-body" style="max-width: 720px;">
+  <div class="mb-3">
+    <label class="form-label" for="course-name">Course name</label>
+    <input id="course-name" name="name" class="form-control" required minlength="3"
+           value="{{ form.get('name', '') }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="course-video-url">Course video URL</label>
+    <input id="course-video-url" name="video_url" type="url" class="form-control"
+           placeholder="YouTube or direct MP4/Azure URL"
+           value="{{ form.get('video_url', '') }}">
+  </div>
+  <div class="form-check mb-3">
+    <input id="generate-transcript" name="generate_transcript" value="1"
+           type="checkbox" class="form-check-input">
+    <label class="form-check-label" for="generate-transcript">
+      Generate AI transcript with Whisper now
+    </label>
+    <div class="form-text">Leave unchecked to generate it later from the trainer dashboard.</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="course-description">Description</label>
+    <textarea id="course-description" name="description" class="form-control"
+              rows="5">{{ form.get('description', '') }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Create and Publish</button>
+</form>
+{% endblock %}

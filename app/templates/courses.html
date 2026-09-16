@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Course Catalog{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-slate-50 -mx-3 px-3 py-8 md:-mx-5 md:px-5">
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-8">
+      <p class="text-sm font-semibold uppercase tracking-widest text-blue-700">MoES Technical Training</p>
+      <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">Course Catalog</h1>
+      <p class="mt-2 max-w-2xl text-slate-600">Explore structured, trainer-led learning programmes and build practical capability at your own pace.</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for course in courses %}
+      <article class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="h-40 bg-slate-800">
+          <img src="{{ course.thumbnail_url or url_for('static', filename='img/course-default.svg') }}" alt="" class="h-full w-full object-cover opacity-90 transition group-hover:opacity-100">
+        </div>
+        <div class="p-5">
+          <span class="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">MoES Technical Training</span>
+          <h2 class="mt-3 line-clamp-2 text-lg font-bold text-slate-900">{{ course.title }}</h2>
+          <p class="mt-1 text-sm text-slate-600">Trainer: {{ course.trainer.name if course.trainer else 'Capacity Connect Faculty' }}</p>
+          <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 text-sm text-slate-500">
+            <span>{{ course.duration or '8 Weeks' }}</span>
+            <span>Starts {{ course.start_date.strftime('%d %b %Y') if course.start_date else 'On demand' }}</span>
+          </div>
+          {% if course.id in enrolled_ids %}
+          <a href="{{ url_for('courses.learn', course_id=course.id) }}" class="mt-4 block rounded-lg bg-slate-800 px-4 py-2 text-center text-sm font-semibold text-white">Continue Learning</a>
+          {% else %}
+          <form method="post" action="{{ url_for('courses.enroll', course_id=course.id) }}" class="mt-4">
+            <button type="submit" class="w-full rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800">Enroll</button>
+          </form>
+          {% endif %}
+        </div>
+      </article>
+      {% else %}
+      <div class="col-span-full rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">No courses are available at the moment.</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

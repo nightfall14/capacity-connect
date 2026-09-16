@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Telemetry — {{ course.title }}{% endblock %}
+{% block content %}
+<div class="mb-8">
+  <a href="{{ url_for('trainer.dashboard') }}" class="text-sm font-semibold text-blue-600 hover:text-blue-800">&larr; Back to Dashboard</a>
+  <h1 class="mt-3 text-3xl font-bold text-slate-900">{{ course.title }}</h1>
+  <p class="mt-1 text-slate-600">Telemetry and confusion heatmaps for this course.</p>
+</div>
+<div class="space-y-5">
+  {% for item in heatmaps %}
+  <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div class="flex items-center justify-between gap-4">
+      <h2 class="font-bold text-slate-900">{{ item.video.title }}</h2>
+      <a href="{{ url_for('trainer.confusion', video_id=item.video.id) }}" class="text-sm font-semibold text-blue-600 hover:text-blue-800">Detailed view</a>
+    </div>
+    <div class="mt-4 flex h-5 overflow-hidden rounded bg-slate-100">
+      {% for bucket in item.buckets %}
+      <span class="flex-1 {% if bucket.score > 3 %}bg-red-500{% elif bucket.score > 0 %}bg-amber-400{% else %}bg-emerald-400{% endif %}" title="{{ bucket.start_seconds }}s: {{ bucket.score }} interactions"></span>
+      {% endfor %}
+    </div>
+    <div class="mt-2 flex justify-between text-xs text-slate-500"><span>Low confusion</span><span>High confusion</span></div>
+  </article>
+  {% else %}
+  <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">Add lecture videos to begin collecting telemetry.</div>
+  {% endfor %}
+</div>
+{% endblock %}

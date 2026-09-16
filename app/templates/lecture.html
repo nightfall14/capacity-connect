@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }} — Learning{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-slate-100 -mx-3 px-3 py-4 md:-mx-5 md:px-5">
+  <div class="mx-auto flex max-w-[1500px] flex-col gap-4 lg:flex-row">
+    <aside class="w-full shrink-0 rounded-xl bg-slate-900 text-slate-100 shadow-lg lg:sticky lg:top-20 lg:h-[calc(100vh-6rem)] lg:w-1/4 lg:overflow-y-auto">
+      <div class="border-b border-slate-700 p-5"><p class="text-xs font-semibold uppercase tracking-widest text-blue-300">Course syllabus</p><h1 class="mt-2 text-lg font-bold">{{ course.title }}</h1><p class="mt-2 text-xs text-slate-400">Trainer: {{ course.trainer.name if course.trainer else 'Capacity Connect Faculty' }}</p></div>
+      <div class="p-3">
+        {% for module in course.modules %}
+        <div class="mb-2 overflow-hidden rounded-lg border border-slate-700">
+          <button type="button" class="week-toggle flex w-full items-center justify-between px-4 py-3 text-left font-semibold hover:bg-slate-800" aria-expanded="{{ 'true' if loop.first else 'false' }}">
+            <span>Week {{ module.order }} · {{ module.title }}</span><span class="toggle-icon">+</span>
+          </button>
+          <div class="week-content {% if not loop.first %}hidden{% endif %} border-t border-slate-700">
+            {% for video in module.videos %}
+            <a href="{{ url_for('courses.learn', course_id=course.id, lecture_id=video.id) }}" class="block border-l-4 px-4 py-3 text-sm {% if lecture and lecture.id == video.id %}border-blue-400 bg-slate-700 text-white{% else %}border-transparent text-slate-300 hover:bg-slate-800{% endif %}">
+              <span class="block">{{ video.title }}</span><span class="mt-1 block text-xs text-slate-400">{{ video.duration_minutes or '—' }} min · Lecture</span>
+            </a>
+            {% endfor %}
+            <div class="px-4 py-3 text-xs text-slate-400">Quiz and knowledge checks</div>
+          </div>
+        </div>
+        {% else %}<p class="p-3 text-sm text-slate-400">No syllabus content yet.</p>{% endfor %}
+      </div>
+    </aside>
+    <main class="min-w-0 flex-1">
+      {% if lecture %}
+      <section class="rounded-xl bg-white p-4 shadow-lg md:p-6">
+        <div class="mb-4"><p class="text-sm font-semibold text-blue-700">Week {{ lecture.module.order }} · {{ lecture.module.title }}</p><h2 class="mt-1 text-2xl font-bold text-slate-900">{{ lecture.title }}</h2><p class="mt-1 text-sm text-slate-500">{{ course.title }} · {{ course.trainer.name if course.trainer else 'Capacity Connect Faculty' }}</p></div>
+        <video id="lecture-video" data-lecture-duration-video class="aspect-video w-full rounded-lg bg-black" controls preload="metadata" data-video-id="{{ lecture.id }}" data-user-id="{{ session.account_id }}" data-course-id="{{ course.id }}" data-telemetry-url="/api/telemetry" data-checkpoints="25,50,75,100" data-fallback-url="https://capacityconnect.blob.core.windows.net/videos/lecture1.mp4">
+          <source src="{{ course.video_url or lecture.video_url }}" type="video/mp4"><source src="{{ url_for('static', filename='videos/lecture1.mp4') }}" type="video/mp4">
+        </video>
+        <div id="heatmap-bar" data-video-id="{{ lecture.id }}" class="mt-2 flex h-3 overflow-hidden rounded bg-slate-200" aria-label="Confusion heatmap"></div>
+        <div id="heatmap-timeline-scale" class="relative mt-2 h-5 border-t border-slate-200 font-mono text-xs text-slate-500"></div>
+      </section>
+      <section class="mt-4 rounded-xl bg-white shadow-lg">
+        <nav class="flex overflow-x-auto border-b border-slate-200" aria-label="Learning tabs">
+          <button class="learning-tab border-b-2 border-blue-700 px-5 py-4 text-sm font-semibold text-blue-700" data-tab="about">About the Video / Transcript</button>
+          <button class="learning-tab border-b-2 border-transparent px-5 py-4 text-sm font-semibold text-slate-500" data-tab="qa">Ask a Question</button>
+          <button class="learning-tab border-b-2 border-transparent px-5 py-4 text-sm font-semibold text-slate-500" data-tab="peer">Peer Rescue</button>
+        </nav>
+        <div class="p-6">
+          <div data-panel="about"><h3 class="font-bold text-slate-900">About this video</h3><p class="mt-2 leading-7 text-slate-600">{{ lecture.description or 'This lecture is part of the structured course syllabus.' }}</p><p class="mt-4 rounded-lg bg-slate-50 p-4 text-sm text-slate-600">Transcript alignment is available through the intelligent Q&amp;A assistant.</p></div>
+          <div data-panel="qa" class="hidden"><h3 class="font-bold text-slate-900">Intelligent Q&amp;A</h3><textarea id="qa-question" class="mt-3 w-full rounded-lg border border-slate-300 p-3" rows="3" placeholder="Ask about this lecture"></textarea><label class="mt-3 block text-sm text-slate-600"><input id="qa-anonymous" type="checkbox" class="mr-2">Ask Anonymously</label><button id="qa-submit" class="mt-4 rounded-lg bg-blue-700 px-4 py-2 font-semibold text-white">Ask Question</button><div id="qa-answer" class="mt-4 text-sm text-slate-600"></div></div>
+          <div data-panel="peer" class="hidden"><h3 class="font-bold text-slate-900">I'm Stuck</h3><p class="mt-2 text-slate-600">Ask a fellow trainee for help with this module in the live peer space.</p><a href="/chat" class="mt-4 inline-block rounded-lg bg-slate-800 px-4 py-2 font-semibold text-white">I'm Stuck — Find Peer Help</a></div>
+        </div>
+      </section>
+      {% else %}<section class="rounded-xl bg-white p-10 text-center shadow-lg"><h2 class="text-xl font-bold text-slate-900">This course has no lectures yet.</h2><p class="mt-2 text-slate-500">Your trainer is preparing the course content.</p></section>{% endif %}
+    </main>
+  </div>
+</div>
+<div id="checkpoint-modal" class="card card-body d-none mt-3"><h5>Quick knowledge check</h5><p>Which practice best closes the understanding loop?</p><label><input type="radio" name="checkpoint-answer" value="loop"> Explain, observe feedback, and adapt.</label><label><input type="radio" name="checkpoint-answer" value="skip"> Skip directly to the next topic.</label><div id="checkpoint-feedback" class="small text-muted my-2"></div><button class="btn btn-success" onclick="window.capacityConnect.submitCheckpoint()">Submit answer</button></div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/video_duration.js') }}"></script>
+<script src="{{ url_for('static', filename='js/confusion_events.js') }}"></script>
+<script src="{{ url_for('static', filename='js/heatmap.js') }}"></script>
+<script>
+(function () {
+  document.querySelectorAll(".week-toggle").forEach(function (button) { button.addEventListener("click", function () { const content = button.nextElementSibling; const open = content.classList.toggle("hidden"); button.setAttribute("aria-expanded", String(!open)); button.querySelector(".toggle-icon").textContent = open ? "+" : "−"; }); });
+  const tabs = document.querySelectorAll(".learning-tab"); const panels = document.querySelectorAll("[data-panel]");
+  tabs.forEach(function (tab) { tab.addEventListener("click", function () { tabs.forEach(t => t.classList.remove("border-blue-700", "text-blue-700")); tabs.forEach(t => t.classList.add("border-transparent", "text-slate-500")); panels.forEach(p => p.classList.toggle("hidden", p.dataset.panel !== tab.dataset.tab)); tab.classList.add("border-blue-700", "text-blue-700"); tab.classList.remove("border-transparent", "text-slate-500"); }); });
+  const video = document.getElementById("lecture-video"); if (!video) return;
+  const submit = document.getElementById("qa-submit"); if (submit) submit.onclick = function () { const text = document.getElementById("qa-question").value.trim(); if (!text) return; fetch("/api/lecture/{{ lecture.id if lecture else 0 }}/ask", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({question:text, anonymous:document.getElementById("qa-anonymous").checked, timestamp:video.currentTime})}).then(r => r.ok ? r.json() : Promise.reject()).then(data => { const output = document.getElementById("qa-answer"); output.textContent = data.answer + " "; const jump = document.createElement("button"); jump.className = "font-semibold text-blue-700 underline"; jump.textContent = data.jump_label; jump.onclick = () => window.capacityConnect.jumpTo(data.target_seconds); output.appendChild(jump); }).catch(() => { document.getElementById("qa-answer").textContent = "Unable to answer right now."; }); };
+})();
+</script>
+{% endblock %}

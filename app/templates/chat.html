@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3 class="section-title mb-0">Community Chat</h3>
+  <span class="small text-muted"><i class="bi bi-shield-check"></i> Registered trainees and trainers</span>
+</div>
+<div id="chatApp" class="row g-3" data-account-id="{{ account.id }}">
+  <div class="col-md-4 col-lg-3">
+    <div class="table-responsive-card chat-sidebar">
+      <button type="button" class="btn btn-primary w-100 mb-2 chat-room-button active" data-room-type="global">
+        <i class="bi bi-globe2"></i> Global Room <span id="globalUnread" class="badge bg-danger float-end{% if not unread.global %} d-none{% endif %}">{{ unread.global }}</span>
+      </button>
+      <h6 class="text-muted mt-3">Private chats</h6>
+      <div id="participantList">
+        {% for participant in participants %}
+        <button type="button" class="btn btn-light w-100 text-start mb-1 chat-room-button" data-room-type="private" data-recipient-id="{{ participant.id }}" data-recipient-name="{{ participant.name }}">
+          <span class="presence-dot {% if participant.id in online_ids %}online{% endif %}"></span>
+          {{ participant.name }}
+          <span class="badge bg-danger float-end d-none" data-unread-for="{{ participant.id }}"></span>
+        </button>
+        {% else %}
+        <p class="small text-muted">No other approved participants are available.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 col-lg-9">
+    <div class="table-responsive-card chat-panel">
+      <div class="chat-header d-flex justify-content-between align-items-center">
+        <div><h5 id="chatTitle" class="mb-0">Global Room</h5><span id="chatPresence" class="small text-muted">Everyone can participate</span></div>
+        <span id="socketStatus" class="small text-muted">Connecting…</span>
+      </div>
+      <div id="messageList" class="chat-messages" aria-live="polite"></div>
+      <div id="chatError" class="alert alert-danger d-none mt-2 mb-2"></div>
+      <label class="small text-muted mt-2"><input id="anonymousToggle" type="checkbox" class="form-check-input me-1"> Post global message anonymously</label>
+      <form id="chatForm" class="d-flex gap-2 mt-2">
+        <input id="chatInput" class="form-control" maxlength="2000" autocomplete="off" placeholder="Write a message…" required>
+        <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i><span class="visually-hidden">Send</span></button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  const app = document.getElementById('chatApp');
+  if (!app) return;
+  const socket = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/chat/ws');
+  const accountId = Number(app.dataset.accountId);
+  const messages = document.getElementById('messageList');
+  const input = document.getElementById('chatInput');
+  const form = document.getElementById('chatForm');
+  const status = document.getElementById('socketStatus');
+  const title = document.getElementById('chatTitle');
+  const presence = document.getElementById('chatPresence');
+  const error = document.getElementById('chatError');
+  const anonymousToggle = document.getElementById('anonymousToggle');
+  const defaultRecipientId = Number(new URLSearchParams(window.location.search).get('recipient_id')) || null;
+  let currentRoom = { room_type: 'global' };
+  let unreadBySender = {{ unread.private|tojson }};
+
+  function updateBadge(total) {
+    const badge = document.getElementById('chatUnreadBadge');
+    if (!badge) return;
+    badge.textContent = total || '';
+    badge.classList.toggle('d-none', !total);
+  }
+  function updatePrivateUnread() {
+    Object.keys(unreadBySender).forEach(id => {
+      const badge = document.querySelector('[data-unread-for="' + id + '"]');
+      if (badge) {
+        badge.textContent = unreadBySender[id];
+        badge.classList.toggle('d-none', !unreadBySender[id]);
+      }
+    });
+  }
+  function showError(message) {
+    error.textContent = message;
+    error.classList.remove('d-none');
+    setTimeout(() => error.classList.add('d-none'), 3500);
+  }
+  function renderMessage(message) {
+    const row = document.createElement('div');
+    row.className = 'chat-message ' + (message.sender_id === accountId ? 'own' : '');
+    const meta = document.createElement('div');
+    meta.className = 'small text-muted';
+    meta.textContent = (message.sender_id === accountId ? 'You' : message.sender_name) + ' · ' + new Date(message.created_at).toLocaleString();
+    const body = document.createElement('div');
+    body.className = 'chat-message-body';
+    body.textContent = message.body;
+    row.append(meta, body);
+    messages.appendChild(row);
+  }
+  function loadRoom() {
+    if (socket.readyState !== WebSocket.OPEN) return;
+    messages.innerHTML = '';
+    socket.send(JSON.stringify(Object.assign({type: 'request_history'}, currentRoom)));
+    socket.send(JSON.stringify(Object.assign({type: 'mark_read'}, currentRoom)));
+  }
+  function setRoom(button) {
+    document.querySelectorAll('.chat-room-button').forEach(el => el.classList.remove('active'));
+    button.classList.add('active');
+    currentRoom = { room_type: button.dataset.roomType };
+    if (currentRoom.room_type === 'private') {
+      currentRoom.recipient_id = Number(button.dataset.recipientId);
+      title.textContent = button.dataset.recipientName;
+      presence.textContent = button.querySelector('.presence-dot').classList.contains('online') ? 'Online' : 'Offline';
+    } else {
+      title.textContent = 'Global Room';
+      presence.textContent = 'Everyone can participate';
+    }
+    loadRoom();
+  }
+  document.querySelectorAll('.chat-room-button').forEach(button => button.addEventListener('click', () => setRoom(button)));
+  if (defaultRecipientId) {
+    const targetButton = document.querySelector('[data-room-type="private"][data-recipient-id="' + defaultRecipientId + '"]');
+    if (targetButton) {
+      setRoom(targetButton);
+    }
+  }
+  socket.addEventListener('open', () => {
+    status.textContent = 'Connected';
+    if (defaultRecipientId) {
+      const targetButton = document.querySelector('[data-room-type="private"][data-recipient-id="' + defaultRecipientId + '"]');
+      if (targetButton) setRoom(targetButton);
+      return;
+    }
+    loadRoom();
+  });
+  socket.addEventListener('close', () => { status.textContent = 'Offline'; });
+  socket.addEventListener('message', event => {
+    const message = JSON.parse(event.data);
+    const data = message.data || {};
+    if (message.type === 'chat_ready') { unreadBySender = data.unread.private || {}; updateBadge(data.unread.total); updatePrivateUnread(); return; }
+    if (message.type === 'history') {
+    if (data.room_type !== currentRoom.room_type || (data.recipient_id && data.recipient_id !== currentRoom.recipient_id)) return;
+    data.messages.forEach(renderMessage);
+    messages.scrollTop = messages.scrollHeight;
+    return;
+    }
+    if (message.type === 'new_message') {
+    const incoming = data;
+    const samePrivate = currentRoom.room_type === 'private' &&
+      ((incoming.sender_id === currentRoom.recipient_id && incoming.recipient_id === accountId) ||
+       (incoming.sender_id === accountId && incoming.recipient_id === currentRoom.recipient_id));
+    if ((currentRoom.room_type === 'global' && incoming.room_type === 'global') || samePrivate) {
+      renderMessage(incoming);
+      messages.scrollTop = messages.scrollHeight;
+      if (incoming.recipient_id === accountId || incoming.room_type === 'global')
+        socket.send(JSON.stringify(Object.assign({type: 'mark_read'}, currentRoom)));
+    }
+    return;
+    }
+    if (message.type === 'unread_update') {
+    unreadBySender = data.private || unreadBySender;
+    updateBadge(data.total);
+    const global = document.getElementById('globalUnread');
+    if (global) { global.textContent = data.global || ''; global.classList.toggle('d-none', !data.global); }
+    updatePrivateUnread();
+    return;
+    }
+    if (message.type === 'presence_update') {
+    const dot = document.querySelector('[data-recipient-id="' + data.account_id + '"] .presence-dot');
+    if (dot) dot.classList.toggle('online', data.online);
+    if (currentRoom.recipient_id === data.account_id) presence.textContent = data.online ? 'Online' : 'Offline';
+    return;
+    }
+    if (message.type === 'chat_error') showError(data.message);
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const body = input.value.trim();
+    if (!body) return;
+    socket.send(JSON.stringify(Object.assign({type: 'send_message'}, currentRoom, {
+      body, anonymous: currentRoom.room_type === 'global' && anonymousToggle.checked
+    })));
+    input.value = '';
+  });
+})();
+</script>
+{% endblock %}

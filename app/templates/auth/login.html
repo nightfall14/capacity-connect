@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="card auth-card"><div class="card-body p-4">
+  <h3 class="text-center mb-1"><i class="bi bi-mortarboard"></i> Capacity Connect</h3>
+  <p class="text-center text-muted mb-4">Login to your account</p>
+  <form method="POST" class="needs-validation" novalidate>
+    <div class="mb-3"><label class="form-label">Email address</label>
+      <input type="email" name="email" class="form-control" required>
+      <div class="invalid-feedback">Please provide a valid email.</div></div>
+    <div class="mb-3"><label class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" required minlength="6">
+      <div class="invalid-feedback">Password is required.</div></div>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+  </form>
+  <hr>
+  <p class="text-center mb-1">New trainee? <a href="{{ url_for('auth.register', role='trainee') }}">Register here</a></p>
+  <p class="text-center mb-1">Trainer? <a href="{{ url_for('auth.register', role='trainer') }}">Register here</a></p>
+  <p class="text-center text-muted small mt-3">Admin login: admin@capacityconnect.com / Admin@123</p>
+</div></div>
+{% endblock %}

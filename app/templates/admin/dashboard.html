@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Administrator Dashboard{% endblock %}
+{% block content %}
+<h3 class="section-title">Administrator Dashboard</h3>
+<div class="row g-3 mb-4">
+  {% for key, label in [('total_courses','Total Courses'),('total_trainees','Total Trainees'),('total_trainers','Total Trainers'),('total_bookings','Total Bookings')] %}
+  <div class="col-6 col-md-3"><div class="stat-card bg-white"><div class="stat-number">{{ stats[key] }}</div><div class="text-muted">{{ label }}</div></div></div>
+  {% endfor %}
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-6 col-md-3"><div class="stat-card bg-white"><div class="stat-number text-warning">{{ stats.pending_trainers }}</div><div class="text-muted">Trainer Approvals Pending</div></div></div>
+  <div class="col-6 col-md-3"><div class="stat-card bg-white"><div class="stat-number text-success">{{ stats.in_progress_courses }}</div><div class="text-muted">Courses In Progress</div></div></div>
+  <div class="col-6 col-md-3"><div class="stat-card bg-white"><div class="stat-number">{{ stats.active_bookings }}</div><div class="text-muted">Active Bookings</div></div></div>
+  <div class="col-6 col-md-3"><div class="stat-card bg-white d-flex flex-column justify-content-center"><a href="{{ url_for('admin.create_course') }}" class="btn btn-primary btn-sm"><i class="bi bi-plus-circle"></i> Create Course</a></div></div>
+</div>
+{% if stats.pending_trainers > 0 %}<div class="alert alert-warning"><i class="bi bi-exclamation-triangle"></i> You have {{ stats.pending_trainers }} trainer registration(s) awaiting approval. <a href="{{ url_for('admin.trainers_list') }}" class="alert-link">Review now</a>.</div>{% endif %}
+<div class="table-responsive-card"><h5 class="mb-3">Recent Bookings</h5><div class="table-responsive"><table class="table table-hover align-middle">
+  <thead><tr><th>ID</th><th>Trainee</th><th>Course</th><th>Date</th><th>Status</th></tr></thead>
+  <tbody>{% for booking in recent_bookings %}<tr><td>#{{ booking.id }}</td><td>{{ booking.trainee.name }}</td><td>{{ booking.course.name }}</td><td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M') }}</td><td><span class="badge badge-booking-{{ booking.status }}">{{ booking.status }}</span></td></tr>{% else %}<tr><td colspan="5" class="text-center text-muted">No bookings yet.</td></tr>{% endfor %}</tbody>
+</table></div><a href="{{ url_for('admin.bookings_list') }}" class="btn btn-outline-primary btn-sm">View All Bookings</a></div>
+{% endblock %}
