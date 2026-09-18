@@ -1,0 +1,5267 @@
+[
+  {
+    "start": 0.0,
+    "end": 6.08,
+    "text": "In this Python tutorial, you're going to learn everything you need to know to start programming"
+  },
+  {
+    "start": 6.08,
+    "end": 7.16,
+    "text": "in Python."
+  },
+  {
+    "start": 7.16,
+    "end": 11.6,
+    "text": "If you want to learn Python programming for data science, machine learning, or web development,"
+  },
+  {
+    "start": 11.6,
+    "end": 14.6,
+    "text": "this Python tutorial is the perfect place to learn Python."
+  },
+  {
+    "start": 14.6,
+    "end": 18.4,
+    "text": "You don't need any prior knowledge in Python or programming in general, I'm going to teach"
+  },
+  {
+    "start": 18.4,
+    "end": 19.92,
+    "text": "you everything from scratch."
+  },
+  {
+    "start": 19.92,
+    "end": 23.96,
+    "text": "I'm Moch Hamidani, and I've taught millions of people how to code through this channel."
+  },
+  {
+    "start": 23.96,
+    "end": 27.6,
+    "text": "If you're new here, make sure to subscribe as I upload new videos every week."
+  },
+  {
+    "start": 27.6,
+    "end": 29.12,
+    "text": "Now, let's jump in and get started."
+  },
+  {
+    "start": 30.24,
+    "end": 33.92,
+    "text": "Before we get started, let me give you some ideas about what you can do with Python."
+  },
+  {
+    "start": 33.92,
+    "end": 35.88,
+    "text": "That's a very common question."
+  },
+  {
+    "start": 35.88,
+    "end": 39.76,
+    "text": "Python is a multi-purpose programming language, so you can use it for a variety of different"
+  },
+  {
+    "start": 39.76,
+    "end": 40.76,
+    "text": "tasks."
+  },
+  {
+    "start": 40.76,
+    "end": 42.96,
+    "text": "You can use Python for machine learning and AI."
+  },
+  {
+    "start": 42.96,
+    "end": 46.96,
+    "text": "In fact, Python is the number one language for machine learning and data science projects."
+  },
+  {
+    "start": 46.96,
+    "end": 49.84,
+    "text": "Python is also very popular in web development."
+  },
+  {
+    "start": 49.84,
+    "end": 53.64,
+    "text": "Using Python and a framework called Django, you can build amazing websites."
+  },
+  {
+    "start": 53.64,
+    "end": 56.68,
+    "text": "Here are five websites powered with Python and Django."
+  },
+  {
+    "start": 56.68,
+    "end": 61.08,
+    "text": "YouTube, Instagram, Spotify, Dropbox, and Pinterest."
+  },
+  {
+    "start": 61.08,
+    "end": 63.08,
+    "text": "You can also use Python in automation."
+  },
+  {
+    "start": 63.08,
+    "end": 67.84,
+    "text": "With Python, you can save your time and increase your productivity by automating repetitive"
+  },
+  {
+    "start": 67.84,
+    "end": 68.84,
+    "text": "tasks."
+  },
+  {
+    "start": 68.84,
+    "end": 70.4,
+    "text": "So, why are you learning Python?"
+  },
+  {
+    "start": 70.4,
+    "end": 73.92,
+    "text": "Are you learning it for automation, for data science, or web development?"
+  },
+  {
+    "start": 73.92,
+    "end": 76.92,
+    "text": "Let me know in the comments section below."
+  },
+  {
+    "start": 76.92,
+    "end": 84.32,
+    "text": "All right, the first thing I want you to do is to head over to python.org to download"
+  },
+  {
+    "start": 84.32,
+    "end": 86.32,
+    "text": "the latest version of Python."
+  },
+  {
+    "start": 86.32,
+    "end": 90.48,
+    "text": "So you go to downloads and select the latest version of Python."
+  },
+  {
+    "start": 90.48,
+    "end": 96.32,
+    "text": "Here in your downloads folder, you should see this package."
+  },
+  {
+    "start": 96.32,
+    "end": 98.08,
+    "text": "Simply double-click it."
+  },
+  {
+    "start": 98.08,
+    "end": 100.44,
+    "text": "You're going to see this Python installer."
+  },
+  {
+    "start": 100.44,
+    "end": 103.68,
+    "text": "If you're on Windows, you will see this checkbox over here."
+  },
+  {
+    "start": 103.68,
+    "end": 105.4,
+    "text": "Add Python to path."
+  },
+  {
+    "start": 105.4,
+    "end": 106.48,
+    "text": "Make sure to check it."
+  },
+  {
+    "start": 106.48,
+    "end": 107.48,
+    "text": "It's really important."
+  },
+  {
+    "start": 107.48,
+    "end": 111.36,
+    "text": "Otherwise, you're not going to be able to follow this tutorial."
+  },
+  {
+    "start": 111.36,
+    "end": 112.96,
+    "text": "Simply click on continue."
+  },
+  {
+    "start": 112.96,
+    "end": 115.32,
+    "text": "Again, one more time."
+  },
+  {
+    "start": 115.32,
+    "end": 120.52,
+    "text": "Agree with the terms and install the latest version of Python."
+  },
+  {
+    "start": 120.52,
+    "end": 124.04,
+    "text": "Now here you need to enter the username password of your computer."
+  },
+  {
+    "start": 124.04,
+    "end": 129.28,
+    "text": "So let's do that real quick."
+  },
+  {
+    "start": 129.28,
+    "end": 130.96,
+    "text": "Next you need to install a code editor."
+  },
+  {
+    "start": 130.96,
+    "end": 134.4,
+    "text": "We use a code editor to write our code and execute it."
+  },
+  {
+    "start": 134.4,
+    "end": 137.84,
+    "text": "The most popular code editor for Python is PyTherm."
+  },
+  {
+    "start": 137.84,
+    "end": 141.48,
+    "text": "You can get it from jetbrands.com slash PyTherm."
+  },
+  {
+    "start": 141.48,
+    "end": 143.48,
+    "text": "You can get it from the website."
+  },
+  {
+    "start": 143.48,
+    "end": 146.12,
+    "text": "Click on download."
+  },
+  {
+    "start": 146.12,
+    "end": 147.48,
+    "text": "You should see two different editions."
+  },
+  {
+    "start": 147.48,
+    "end": 150.52,
+    "text": "One is the professional edition, which is commercial."
+  },
+  {
+    "start": 150.52,
+    "end": 154.2,
+    "text": "And we also have this community edition, which is free and open source."
+  },
+  {
+    "start": 154.2,
+    "end": 156.68,
+    "text": "So we're going to download the community edition."
+  },
+  {
+    "start": 156.68,
+    "end": 162.64,
+    "text": "Now in your downloads folder, you should have this package."
+  },
+  {
+    "start": 162.64,
+    "end": 165.64,
+    "text": "Let's double-click it."
+  },
+  {
+    "start": 165.64,
+    "end": 168.64,
+    "text": "If you're on Windows, you're going to see an installation wizard."
+  },
+  {
+    "start": 168.64,
+    "end": 172.28,
+    "text": "So simply click on the next button until you install PyTherm."
+  },
+  {
+    "start": 172.28,
+    "end": 180.32,
+    "text": "If you're on a Mac, you need to drag this PyTherm and drop it onto the application's folder."
+  },
+  {
+    "start": 180.32,
+    "end": 183.16,
+    "text": "Now let's open it."
+  },
+  {
+    "start": 183.16,
+    "end": 186.68,
+    "text": "The first time you open PyTherm, you have to configure a few settings."
+  },
+  {
+    "start": 186.68,
+    "end": 188.4,
+    "text": "We don't want to spend time on this."
+  },
+  {
+    "start": 188.4,
+    "end": 194.44,
+    "text": "So over here, you're going to click on skip remaining and set defaults."
+  },
+  {
+    "start": 194.44,
+    "end": 196.72,
+    "text": "Now let's create a new project."
+  },
+  {
+    "start": 196.72,
+    "end": 201.12,
+    "text": "Over here, we can specify the location and the name of our Python project."
+  },
+  {
+    "start": 201.12,
+    "end": 205.32,
+    "text": "So let's append hello world to this path."
+  },
+  {
+    "start": 205.32,
+    "end": 208.28,
+    "text": "This is where our Python project is going to be saved."
+  },
+  {
+    "start": 208.28,
+    "end": 212.64,
+    "text": "So let's click on create."
+  },
+  {
+    "start": 212.64,
+    "end": 215.44,
+    "text": "In this window, you can see the content of our project."
+  },
+  {
+    "start": 215.44,
+    "end": 217.64,
+    "text": "So here's our hello world project."
+  },
+  {
+    "start": 217.64,
+    "end": 221.56,
+    "text": "Currently we have only one folder inside this project, that is vn, which is short for"
+  },
+  {
+    "start": 221.56,
+    "end": 222.56,
+    "text": "virtual environment."
+  },
+  {
+    "start": 222.56,
+    "end": 225.6,
+    "text": "We'll talk about virtual environments in the future."
+  },
+  {
+    "start": 225.6,
+    "end": 229.2,
+    "text": "So currently we don't have any Python files inside this project."
+  },
+  {
+    "start": 229.2,
+    "end": 234.48,
+    "text": "A real application can consist of tens or hundreds or even thousands of Python files."
+  },
+  {
+    "start": 234.48,
+    "end": 240.48,
+    "text": "So let's right click on the project name and go to new Python file."
+  },
+  {
+    "start": 240.48,
+    "end": 244.24,
+    "text": "We're going to call this file app."
+  },
+  {
+    "start": 244.24,
+    "end": 247.76,
+    "text": "Now we can collapse this project window by clicking on this icon."
+  },
+  {
+    "start": 247.76,
+    "end": 249.32,
+    "text": "So now we have more space."
+  },
+  {
+    "start": 249.32,
+    "end": 250.92,
+    "text": "Let's write our first Python code."
+  },
+  {
+    "start": 251.32,
+    "end": 257.32,
+    "text": "We're going to write print all in lowercase, then add parenthesis, then add quotes, either"
+  },
+  {
+    "start": 257.32,
+    "end": 260.36,
+    "text": "single quotes or double quotes."
+  },
+  {
+    "start": 260.36,
+    "end": 263.8,
+    "text": "And inside this code, we're going to write hello world."
+  },
+  {
+    "start": 263.8,
+    "end": 265.96,
+    "text": "So this is what we call a string."
+  },
+  {
+    "start": 265.96,
+    "end": 269.44,
+    "text": "A string means a string or sequence of characters."
+  },
+  {
+    "start": 269.44,
+    "end": 272.28,
+    "text": "In simple words, that means textual data."
+  },
+  {
+    "start": 272.28,
+    "end": 276.76,
+    "text": "So in Python and in many other programming languages, whenever we're dealing with textual"
+  },
+  {
+    "start": 276.76,
+    "end": 280.88,
+    "text": "data, we should always surround our text with quotes."
+  },
+  {
+    "start": 280.88,
+    "end": 284.12,
+    "text": "In Python, we can use single or double quotes."
+  },
+  {
+    "start": 284.12,
+    "end": 288.88,
+    "text": "Now this print you see here is a function built into Python and we can use it to print"
+  },
+  {
+    "start": 288.88,
+    "end": 291.36,
+    "text": "a message on our application window."
+  },
+  {
+    "start": 291.36,
+    "end": 294.36,
+    "text": "So let me show you how to run this code."
+  },
+  {
+    "start": 294.36,
+    "end": 298.6,
+    "text": "On the top, we go to the run menu and then select run."
+  },
+  {
+    "start": 298.6,
+    "end": 301.28,
+    "text": "Note that there is a shortcut associated with this command."
+  },
+  {
+    "start": 301.28,
+    "end": 305.12,
+    "text": "I always use shortcuts because they increase my productivity."
+  },
+  {
+    "start": 305.12,
+    "end": 307.32,
+    "text": "So let's click on this."
+  },
+  {
+    "start": 307.32,
+    "end": 309.4,
+    "text": "Now select app."
+  },
+  {
+    "start": 309.4,
+    "end": 312.2,
+    "text": "And over here, you can see this little window."
+  },
+  {
+    "start": 312.2,
+    "end": 317.0,
+    "text": "This is what we call the terminal window and it shows the output of our program."
+  },
+  {
+    "start": 317.0,
+    "end": 319.88,
+    "text": "So here's the hello world message printed in the terminal window."
+  },
+  {
+    "start": 319.88,
+    "end": 324.32,
+    "text": "Now as you learn more Python, you will learn how to build applications that have a graphical"
+  },
+  {
+    "start": 324.32,
+    "end": 325.64,
+    "text": "user interface."
+  },
+  {
+    "start": 325.64,
+    "end": 326.72,
+    "text": "That's an advanced topic."
+  },
+  {
+    "start": 326.72,
+    "end": 329.16,
+    "text": "So for now, let's not worry about it."
+  },
+  {
+    "start": 329.16,
+    "end": 330.16,
+    "text": "All right."
+  },
+  {
+    "start": 330.16,
+    "end": 336.92,
+    "text": "Now let's talk about variables."
+  },
+  {
+    "start": 336.92,
+    "end": 341.16,
+    "text": "We use variables to temporarily store data in a computer's memory."
+  },
+  {
+    "start": 341.16,
+    "end": 345.88,
+    "text": "For example, we can store the price of a product or someone's name, their email, their"
+  },
+  {
+    "start": 345.88,
+    "end": 347.04,
+    "text": "age, and so on."
+  },
+  {
+    "start": 347.04,
+    "end": 348.04,
+    "text": "Let me show you."
+  },
+  {
+    "start": 348.04,
+    "end": 352.6,
+    "text": "So to declare a variable, we start by typing a name for that variable."
+  },
+  {
+    "start": 352.6,
+    "end": 358.08,
+    "text": "Let's say age, then yet, and equals sign, and then we type a value."
+  },
+  {
+    "start": 358.08,
+    "end": 359.48,
+    "text": "Let's say 20."
+  },
+  {
+    "start": 359.48,
+    "end": 363.8,
+    "text": "So with this, we're storing the number 20 somewhere in our computer's memory and we"
+  },
+  {
+    "start": 363.8,
+    "end": 367.64,
+    "text": "are attaching this age as a label for that memory location."
+  },
+  {
+    "start": 367.64,
+    "end": 372.4,
+    "text": "So now we can read the value at this memory location and print it on the terminal."
+  },
+  {
+    "start": 372.4,
+    "end": 377.76,
+    "text": "So instead of printing a little world, we want to print the value of the age variable."
+  },
+  {
+    "start": 377.76,
+    "end": 383.64,
+    "text": "So I'm going to delete what we have inside parentheses and type age."
+  },
+  {
+    "start": 383.64,
+    "end": 388.8,
+    "text": "Note that I'm not adding quotes because if I run this program, we'll see the text age"
+  },
+  {
+    "start": 388.8,
+    "end": 389.8,
+    "text": "on the terminal."
+  },
+  {
+    "start": 389.8,
+    "end": 390.96,
+    "text": "We don't want that."
+  },
+  {
+    "start": 390.96,
+    "end": 393.12,
+    "text": "We want the value of the age variable."
+  },
+  {
+    "start": 393.12,
+    "end": 398.96,
+    "text": "So let's remove the quotes and print the value of the age variable."
+  },
+  {
+    "start": 398.96,
+    "end": 403.68,
+    "text": "Now here on the tool more, you can click on this play icon to run your program or you"
+  },
+  {
+    "start": 403.68,
+    "end": 406.64,
+    "text": "can use the shortcut that I showed you in the last video."
+  },
+  {
+    "start": 406.64,
+    "end": 412.36,
+    "text": "So the shortcut is over here on the Mac, that's control, shift, and R."
+  },
+  {
+    "start": 412.36,
+    "end": 415.28,
+    "text": "So there you go."
+  },
+  {
+    "start": 415.28,
+    "end": 418.48,
+    "text": "Now you can see the value of the age variable."
+  },
+  {
+    "start": 418.48,
+    "end": 420.76,
+    "text": "We can also change the value of a variable."
+  },
+  {
+    "start": 420.76,
+    "end": 425.6,
+    "text": "For example, on line 2, we can set age to 30."
+  },
+  {
+    "start": 425.6,
+    "end": 428.64,
+    "text": "Now when we run our program, we see 30."
+  },
+  {
+    "start": 428.64,
+    "end": 433.16,
+    "text": "So as you can see, our program gets executed from top to bottom."
+  },
+  {
+    "start": 433.16,
+    "end": 436.08,
+    "text": "So this is how we can declare and use a variable."
+  },
+  {
+    "start": 436.08,
+    "end": 438.08,
+    "text": "Now let's look at a few more examples."
+  },
+  {
+    "start": 438.08,
+    "end": 445.2,
+    "text": "So I'm going to declare another variable called price and set it to 19.95."
+  },
+  {
+    "start": 445.2,
+    "end": 450.28,
+    "text": "So in Python, we can use numbers with a decimal point or whole numbers."
+  },
+  {
+    "start": 450.28,
+    "end": 454.52,
+    "text": "We can also declare a variable and assign it a string value."
+  },
+  {
+    "start": 454.52,
+    "end": 458.48,
+    "text": "So let's say first, underline name."
+  },
+  {
+    "start": 458.48,
+    "end": 462.8,
+    "text": "So if you want to use multiple words in the name of a variable, we should separate them"
+  },
+  {
+    "start": 462.8,
+    "end": 464.44,
+    "text": "using an underscore."
+  },
+  {
+    "start": 464.44,
+    "end": 466.44,
+    "text": "This makes our code more readable."
+  },
+  {
+    "start": 466.44,
+    "end": 470.16,
+    "text": "See what would happen if I didn't use this underline."
+  },
+  {
+    "start": 470.16,
+    "end": 471.68,
+    "text": "This is not easily readable."
+  },
+  {
+    "start": 471.68,
+    "end": 476.32,
+    "text": "So we always separate multiple words by an underscore."
+  },
+  {
+    "start": 476.32,
+    "end": 478.24,
+    "text": "Now we set this to a string."
+  },
+  {
+    "start": 478.24,
+    "end": 481.64,
+    "text": "So we can use single quotes or double quotes."
+  },
+  {
+    "start": 481.64,
+    "end": 482.64,
+    "text": "Let's say march."
+  },
+  {
+    "start": 482.64,
+    "end": 488.32,
+    "text": "We also have a special type of value called a Boolean value, which can be true or false."
+  },
+  {
+    "start": 488.32,
+    "end": 490.64,
+    "text": "That is like yes or no in English."
+  },
+  {
+    "start": 490.64,
+    "end": 491.64,
+    "text": "Let me show you."
+  },
+  {
+    "start": 491.64,
+    "end": 498.2,
+    "text": "So I'm going to declare another variable called is online and set it to true."
+  },
+  {
+    "start": 498.2,
+    "end": 501.04,
+    "text": "We could also set it to false."
+  },
+  {
+    "start": 501.04,
+    "end": 504.12,
+    "text": "What we have here is called a Boolean value."
+  },
+  {
+    "start": 504.12,
+    "end": 506.92,
+    "text": "Now note that Python is a case sensitive language."
+  },
+  {
+    "start": 506.92,
+    "end": 510.32,
+    "text": "So it's sensitive to lowercase and uppercase letters."
+  },
+  {
+    "start": 510.32,
+    "end": 516.36,
+    "text": "In this case, if I use a lowercase f, we can see an error over here because this is not"
+  },
+  {
+    "start": 516.36,
+    "end": 518.28,
+    "text": "recognized in Python."
+  },
+  {
+    "start": 518.28,
+    "end": 524.2,
+    "text": "So false with the capital F is a special keyword in Python that represents the Boolean false"
+  },
+  {
+    "start": 524.2,
+    "end": 525.44,
+    "text": "value."
+  },
+  {
+    "start": 525.44,
+    "end": 528.52,
+    "text": "So this is how we can declare and use variables in Python."
+  },
+  {
+    "start": 529.04,
+    "end": 531.32,
+    "text": "Now here's a little exercise for you."
+  },
+  {
+    "start": 531.32,
+    "end": 533.88,
+    "text": "Imagine we want to write a program for a hospital."
+  },
+  {
+    "start": 533.88,
+    "end": 536.88,
+    "text": "So we're going to check in a patient named John Smith."
+  },
+  {
+    "start": 536.88,
+    "end": 539.52,
+    "text": "He's 20 years old and is a new patient."
+  },
+  {
+    "start": 539.52,
+    "end": 543.16,
+    "text": "I want you to declare a few variables to store these values."
+  },
+  {
+    "start": 543.16,
+    "end": 552.68,
+    "text": "Use the comment box below to share your code with others."
+  },
+  {
+    "start": 552.68,
+    "end": 556.4,
+    "text": "In this tutorial, I'm going to show you how to receive input from the user."
+  },
+  {
+    "start": 556.4,
+    "end": 560.48,
+    "text": "So in Python, we have another built-in function called input."
+  },
+  {
+    "start": 560.48,
+    "end": 563.0,
+    "text": "We use this to read a value from the terminal window."
+  },
+  {
+    "start": 563.0,
+    "end": 564.0,
+    "text": "Let me show you."
+  },
+  {
+    "start": 564.0,
+    "end": 566.36,
+    "text": "So we add parenthesis."
+  },
+  {
+    "start": 566.36,
+    "end": 567.88,
+    "text": "Then we type a string."
+  },
+  {
+    "start": 567.88,
+    "end": 571.36,
+    "text": "Here we can type a message like what is your name?"
+  },
+  {
+    "start": 571.36,
+    "end": 574.4,
+    "text": "We have a question mark followed by a space."
+  },
+  {
+    "start": 574.4,
+    "end": 576.8,
+    "text": "You will see why we need this space in a second."
+  },
+  {
+    "start": 576.8,
+    "end": 579.52,
+    "text": "So let's run this program."
+  },
+  {
+    "start": 579.52,
+    "end": 580.6,
+    "text": "We get this message."
+  },
+  {
+    "start": 580.6,
+    "end": 582.52,
+    "text": "Now we have to enter a value."
+  },
+  {
+    "start": 582.52,
+    "end": 584.48,
+    "text": "So we click over here."
+  },
+  {
+    "start": 584.48,
+    "end": 587.6,
+    "text": "We can see that the carrot is separated from the question mark."
+  },
+  {
+    "start": 587.6,
+    "end": 591.16,
+    "text": "This is because of the white space that we added over here."
+  },
+  {
+    "start": 591.16,
+    "end": 594.24,
+    "text": "So now we have to type a value, let's say John."
+  },
+  {
+    "start": 594.24,
+    "end": 600.16,
+    "text": "When we press enter, this function will return the value that we entered in the terminal"
+  },
+  {
+    "start": 600.16,
+    "end": 601.16,
+    "text": "window."
+  },
+  {
+    "start": 601.16,
+    "end": 604.2,
+    "text": "So we can get that value and store it in a variable."
+  },
+  {
+    "start": 604.2,
+    "end": 609.56,
+    "text": "So let's declare a variable called name and set it to the return value of the input"
+  },
+  {
+    "start": 609.56,
+    "end": 610.96,
+    "text": "function."
+  },
+  {
+    "start": 610.96,
+    "end": 613.56,
+    "text": "Now we can print a greeting message for this user."
+  },
+  {
+    "start": 613.56,
+    "end": 616.8,
+    "text": "So we use the print function."
+  },
+  {
+    "start": 616.8,
+    "end": 620.12,
+    "text": "We say hello, we have a space."
+  },
+  {
+    "start": 620.12,
+    "end": 624.2,
+    "text": "Now after this string, we want to add the value of the name variable."
+  },
+  {
+    "start": 624.2,
+    "end": 628.04,
+    "text": "So we use a plus sign and then type name."
+  },
+  {
+    "start": 628.04,
+    "end": 631.56,
+    "text": "What we are doing here is called string concatenation."
+  },
+  {
+    "start": 631.56,
+    "end": 635.6,
+    "text": "So we are combining this string with another string."
+  },
+  {
+    "start": 635.6,
+    "end": 637.68,
+    "text": "Now let's run a program and see what happens."
+  },
+  {
+    "start": 637.68,
+    "end": 639.44,
+    "text": "So what is your name?"
+  },
+  {
+    "start": 639.44,
+    "end": 640.44,
+    "text": "Marsh."
+  },
+  {
+    "start": 640.44,
+    "end": 642.04,
+    "text": "Now we get this message."
+  },
+  {
+    "start": 642.04,
+    "end": 643.32,
+    "text": "Hello, Marsh."
+  },
+  {
+    "start": 643.32,
+    "end": 646.32,
+    "text": "So this is how we can use the input function in Python."
+  },
+  {
+    "start": 646.32,
+    "end": 655.24,
+    "text": "We have learned about the three types of data in Python."
+  },
+  {
+    "start": 655.24,
+    "end": 659.2,
+    "text": "We have numbers, strings and bullies."
+  },
+  {
+    "start": 659.2,
+    "end": 663.48,
+    "text": "Now there are times you want to convert the value of a variable from one type to another."
+  },
+  {
+    "start": 663.48,
+    "end": 664.48,
+    "text": "Let me show you."
+  },
+  {
+    "start": 664.48,
+    "end": 669.8,
+    "text": "So we are going to use our input function to read the user's birth here."
+  },
+  {
+    "start": 669.8,
+    "end": 673.92,
+    "text": "So enter your birth here."
+  },
+  {
+    "start": 673.92,
+    "end": 676.76,
+    "text": "Now this input function is going to return a value."
+  },
+  {
+    "start": 676.76,
+    "end": 682.04,
+    "text": "So we can store it in a variable called birth on the line here."
+  },
+  {
+    "start": 682.04,
+    "end": 683.04,
+    "text": "Okay."
+  },
+  {
+    "start": 683.04,
+    "end": 686.04,
+    "text": "Now let's write code to calculate the age of this user."
+  },
+  {
+    "start": 686.04,
+    "end": 688.36,
+    "text": "So we write an expression like this."
+  },
+  {
+    "start": 688.36,
+    "end": 690.56,
+    "text": "Currently we are in the year 2020."
+  },
+  {
+    "start": 690.56,
+    "end": 694.32,
+    "text": "So 2020 minus birth year."
+  },
+  {
+    "start": 694.32,
+    "end": 697.48,
+    "text": "This expression or piece of code is going to produce a value."
+  },
+  {
+    "start": 697.48,
+    "end": 700.28,
+    "text": "So once again, we can store that value in a variable."
+  },
+  {
+    "start": 700.28,
+    "end": 703.32,
+    "text": "Let's call that variable age."
+  },
+  {
+    "start": 703.32,
+    "end": 706.84,
+    "text": "Now let's print age on the terminal."
+  },
+  {
+    "start": 706.84,
+    "end": 709.6,
+    "text": "Let's turn on a program and see what happens."
+  },
+  {
+    "start": 709.6,
+    "end": 713.04,
+    "text": "So my birth year is 1982."
+  },
+  {
+    "start": 713.04,
+    "end": 714.04,
+    "text": "Enter."
+  },
+  {
+    "start": 714.04,
+    "end": 715.76,
+    "text": "Oops, our program crashed."
+  },
+  {
+    "start": 715.76,
+    "end": 719.16,
+    "text": "So whenever you see this red message that indicates an error."
+  },
+  {
+    "start": 719.16,
+    "end": 722.2,
+    "text": "So this error occurred in this file."
+  },
+  {
+    "start": 722.2,
+    "end": 726.2,
+    "text": "That is our app.py online to right below that."
+  },
+  {
+    "start": 726.2,
+    "end": 730.0,
+    "text": "You can see the piece of code that generated this error."
+  },
+  {
+    "start": 730.0,
+    "end": 733.44,
+    "text": "So that is this expression 2020 minus birth year."
+  },
+  {
+    "start": 733.44,
+    "end": 736.08,
+    "text": "Now below that you can see the type of error."
+  },
+  {
+    "start": 736.08,
+    "end": 741.72,
+    "text": "So here we have unsupported types or subtraction."
+  },
+  {
+    "start": 741.72,
+    "end": 744.52,
+    "text": "We have int and stir."
+  },
+  {
+    "start": 744.52,
+    "end": 745.52,
+    "text": "What are these?"
+  },
+  {
+    "start": 745.52,
+    "end": 750.52,
+    "text": "But this int is short for integer and that represents a whole number in programming."
+  },
+  {
+    "start": 750.52,
+    "end": 754.88,
+    "text": "So 2020 is an example of an integer."
+  },
+  {
+    "start": 754.88,
+    "end": 758.0,
+    "text": "The birth year is an example of a string."
+  },
+  {
+    "start": 758.0,
+    "end": 763.56,
+    "text": "Because whenever we call the input function, this function will return a value as a string."
+  },
+  {
+    "start": 763.56,
+    "end": 769.84,
+    "text": "Even if we enter a number, in other words, when I entered 1982, this input function return"
+  },
+  {
+    "start": 769.84,
+    "end": 773.36,
+    "text": "a string with these characters 1982."
+  },
+  {
+    "start": 773.36,
+    "end": 777.52,
+    "text": "So this string is different from the number 1982."
+  },
+  {
+    "start": 777.52,
+    "end": 779.48,
+    "text": "There are completely different types."
+  },
+  {
+    "start": 779.48,
+    "end": 782.92,
+    "text": "So in this case, let me delete these lines."
+  },
+  {
+    "start": 782.92,
+    "end": 788.16,
+    "text": "The reason we got this error is that we tried to subtract a string from an integer."
+  },
+  {
+    "start": 788.16,
+    "end": 792.36,
+    "text": "So our code looked like this 1982."
+  },
+  {
+    "start": 792.36,
+    "end": 796.48,
+    "text": "Python doesn't know how to subtract a string from an integer."
+  },
+  {
+    "start": 796.48,
+    "end": 801.28,
+    "text": "So to solve this problem, we need to convert this string to an integer."
+  },
+  {
+    "start": 801.28,
+    "end": 806.04,
+    "text": "In Python, we have a bunch of built-in functions for converting the types of our variables."
+  },
+  {
+    "start": 806.04,
+    "end": 809.36,
+    "text": "So we have this int function."
+  },
+  {
+    "start": 809.36,
+    "end": 811.96,
+    "text": "We can pass our birth year to it."
+  },
+  {
+    "start": 811.96,
+    "end": 815.8,
+    "text": "In this will return the new make representation of the birth year."
+  },
+  {
+    "start": 815.8,
+    "end": 824.04,
+    "text": "So to solve this problem, we need to replace the string with the int function."
+  },
+  {
+    "start": 824.04,
+    "end": 825.68,
+    "text": "So let's see what's going on here."
+  },
+  {
+    "start": 825.68,
+    "end": 828.24,
+    "text": "On the first line, we call the input function."
+  },
+  {
+    "start": 828.24,
+    "end": 829.92,
+    "text": "This returns a string."
+  },
+  {
+    "start": 829.92,
+    "end": 833.84,
+    "text": "On the second line, we pass this string to our int function."
+  },
+  {
+    "start": 833.84,
+    "end": 838.36,
+    "text": "The int function will return the new make representation of the birth year."
+  },
+  {
+    "start": 839.08,
+    "end": 841.12,
+    "text": "Let's subtract it from 2020."
+  },
+  {
+    "start": 841.12,
+    "end": 844.04,
+    "text": "We get the age and store it in the age variable."
+  },
+  {
+    "start": 844.04,
+    "end": 846.52,
+    "text": "Now let's run our program."
+  },
+  {
+    "start": 846.52,
+    "end": 849.84,
+    "text": "So 1982 and there you go."
+  },
+  {
+    "start": 849.84,
+    "end": 851.56,
+    "text": "I'm 38 years old."
+  },
+  {
+    "start": 851.56,
+    "end": 854.32,
+    "text": "So this is how the int function works."
+  },
+  {
+    "start": 854.32,
+    "end": 858.04,
+    "text": "Now we also have another built-in function called float."
+  },
+  {
+    "start": 858.04,
+    "end": 861.4,
+    "text": "That is for converting a value to a floating point number."
+  },
+  {
+    "start": 861.4,
+    "end": 867.2,
+    "text": "A floating point number in Python and other programming languages is a number with a decimal point."
+  },
+  {
+    "start": 867.2,
+    "end": 871.92,
+    "text": "So 10 is an integer and 10.1 is a float."
+  },
+  {
+    "start": 871.92,
+    "end": 879.36,
+    "text": "So we have int, we have float, and we also have pool for converting a value to a boolean."
+  },
+  {
+    "start": 879.36,
+    "end": 883.96,
+    "text": "And finally, we have stir for converting a value to a string."
+  },
+  {
+    "start": 883.96,
+    "end": 888.92,
+    "text": "So these are the built-in functions for converting the type of our variables."
+  },
+  {
+    "start": 888.92,
+    "end": 890.64,
+    "text": "Now here's a little exercise for you."
+  },
+  {
+    "start": 890.64,
+    "end": 893.68,
+    "text": "I want you to write a basic calculator program."
+  },
+  {
+    "start": 893.68,
+    "end": 895.84,
+    "text": "So here we have to enter two numbers."
+  },
+  {
+    "start": 895.84,
+    "end": 900.24,
+    "text": "We can type a whole number or a number with a decimal point."
+  },
+  {
+    "start": 900.24,
+    "end": 903.76,
+    "text": "And then our program will print the sum of these two numbers."
+  },
+  {
+    "start": 903.76,
+    "end": 907.92,
+    "text": "So pause the video, spend two minutes on this exercise, and then see my solution."
+  },
+  {
+    "start": 911.12,
+    "end": 915.12,
+    "text": "All right, first we're going to call our input function to read the first number."
+  },
+  {
+    "start": 915.12,
+    "end": 919.0,
+    "text": "We get the result and store it in a variable called first."
+  },
+  {
+    "start": 919.0,
+    "end": 925.8,
+    "text": "Now let's declare another variable called second and read the second number."
+  },
+  {
+    "start": 926.36,
+    "end": 929.16,
+    "text": "Now we calculate the sum."
+  },
+  {
+    "start": 929.16,
+    "end": 932.36,
+    "text": "So that is first plus second."
+  },
+  {
+    "start": 932.36,
+    "end": 935.64,
+    "text": "Now let's see what happens when we print sum on the terminal."
+  },
+  {
+    "start": 936.76,
+    "end": 939.56,
+    "text": "So I enter 10 and 20."
+  },
+  {
+    "start": 939.56,
+    "end": 942.04,
+    "text": "But instead of 30, we get 10, 20."
+  },
+  {
+    "start": 942.04,
+    "end": 946.0,
+    "text": "This is because we're combining or concatenating two strings."
+  },
+  {
+    "start": 946.0,
+    "end": 951.12,
+    "text": "So as I told you before, the input function returns a string."
+  },
+  {
+    "start": 951.2,
+    "end": 956.72,
+    "text": "So this line will be equivalent to first equals 10."
+  },
+  {
+    "start": 956.72,
+    "end": 959.52,
+    "text": "You're dealing with a string, not an integer."
+  },
+  {
+    "start": 959.52,
+    "end": 964.08,
+    "text": "Similarly, second is going to be 20 as a string."
+  },
+  {
+    "start": 964.08,
+    "end": 970.68,
+    "text": "So when we combine two strings, 10 plus 20, we'll get 10, 20."
+  },
+  {
+    "start": 970.68,
+    "end": 973.24,
+    "text": "Because we're dealing with textual data, okay?"
+  },
+  {
+    "start": 973.24,
+    "end": 978.0,
+    "text": "So to solve this problem, we need to convert the values we read"
+  },
+  {
+    "start": 978.0,
+    "end": 980.0,
+    "text": "to their new macro presentation."
+  },
+  {
+    "start": 980.04,
+    "end": 985.88,
+    "text": "So over here, we're going to pass first to our int function."
+  },
+  {
+    "start": 987.08,
+    "end": 988.64,
+    "text": "And here as well."
+  },
+  {
+    "start": 988.64,
+    "end": 990.4,
+    "text": "Now let's run our program."
+  },
+  {
+    "start": 990.4,
+    "end": 994.28,
+    "text": "So we enter 10 and 20, we get 30."
+  },
+  {
+    "start": 994.28,
+    "end": 996.4,
+    "text": "What if we enter a floating point number?"
+  },
+  {
+    "start": 996.4,
+    "end": 999.32,
+    "text": "So 10.1 and 20."
+  },
+  {
+    "start": 1000.6,
+    "end": 1001.92,
+    "text": "You got an error."
+  },
+  {
+    "start": 1001.92,
+    "end": 1007.72,
+    "text": "So to solve this problem, we need to treat both these values as floats."
+  },
+  {
+    "start": 1007.8,
+    "end": 1011.8,
+    "text": "So instead of the int function, we're going to use the float function."
+  },
+  {
+    "start": 1012.8,
+    "end": 1015.52,
+    "text": "Now let's run our program one more time."
+  },
+  {
+    "start": 1015.52,
+    "end": 1019.2,
+    "text": "We enter a whole number and a floating point number."
+  },
+  {
+    "start": 1019.2,
+    "end": 1021.04,
+    "text": "So the result is correct."
+  },
+  {
+    "start": 1021.04,
+    "end": 1024.08,
+    "text": "Now let's add a label over here."
+  },
+  {
+    "start": 1024.08,
+    "end": 1028.48,
+    "text": "So sum is plus sum."
+  },
+  {
+    "start": 1028.48,
+    "end": 1030.76,
+    "text": "Let's run our program one more time."
+  },
+  {
+    "start": 1030.76,
+    "end": 1032.28,
+    "text": "10 and 20."
+  },
+  {
+    "start": 1032.28,
+    "end": 1034.08,
+    "text": "Once again, we got an error."
+  },
+  {
+    "start": 1034.08,
+    "end": 1039.48,
+    "text": "The error is saying that Python can only concatenate strings, not floats to strings."
+  },
+  {
+    "start": 1041.2,
+    "end": 1046.32,
+    "text": "So on line four, we have a string where concatenating this with a float,"
+  },
+  {
+    "start": 1046.32,
+    "end": 1049.88,
+    "text": "because the result of this expression is a floating point number."
+  },
+  {
+    "start": 1049.88,
+    "end": 1053.6,
+    "text": "We're adding two floats, so the result is a float as well."
+  },
+  {
+    "start": 1053.6,
+    "end": 1057.24,
+    "text": "So Python doesn't know how to evaluate code like this."
+  },
+  {
+    "start": 1058.64,
+    "end": 1063.56,
+    "text": "It doesn't know how to concatenate a float to a string."
+  },
+  {
+    "start": 1063.56,
+    "end": 1067.48,
+    "text": "To solve this problem, we need to convert sum to a string."
+  },
+  {
+    "start": 1067.48,
+    "end": 1070.08,
+    "text": "So this is where we use the stir function."
+  },
+  {
+    "start": 1071.12,
+    "end": 1073.36,
+    "text": "Now let's run the program again."
+  },
+  {
+    "start": 1073.36,
+    "end": 1078.24,
+    "text": "So 10 plus 20.1 and here's the result."
+  },
+  {
+    "start": 1078.24,
+    "end": 1079.68,
+    "text": "And one last thing."
+  },
+  {
+    "start": 1079.68,
+    "end": 1082.48,
+    "text": "In this example, I'm calling the float function."
+  },
+  {
+    "start": 1082.48,
+    "end": 1087.2,
+    "text": "At the time, we want to calculate the sum of these two numbers, but this is not a requirement."
+  },
+  {
+    "start": 1087.2,
+    "end": 1090.24,
+    "text": "We can call the float function over here."
+  },
+  {
+    "start": 1090.24,
+    "end": 1093.4,
+    "text": "So this input function returns a string."
+  },
+  {
+    "start": 1093.4,
+    "end": 1096.2,
+    "text": "We can pass that string to our float function."
+  },
+  {
+    "start": 1096.2,
+    "end": 1096.72,
+    "text": "Take a look."
+  },
+  {
+    "start": 1096.72,
+    "end": 1100.08,
+    "text": "So float parenthesis like this."
+  },
+  {
+    "start": 1100.08,
+    "end": 1107.0,
+    "text": "So the value that we're passing to the float function is the value that is returned from the input function."
+  },
+  {
+    "start": 1107.0,
+    "end": 1112.16,
+    "text": "Similarly, we call the float function over here."
+  },
+  {
+    "start": 1112.16,
+    "end": 1117.52,
+    "text": "Now, we can change this expression to first plus second."
+  },
+  {
+    "start": 1117.52,
+    "end": 1120.32,
+    "text": "That is another way to write this piece of code."
+  },
+  {
+    "start": 1120.32,
+    "end": 1124.24,
+    "text": "So type conversion is important in Python and other programming languages."
+  },
+  {
+    "start": 1124.24,
+    "end": 1127.8,
+    "text": "There are times you need to convert the type of variable to a different type."
+  },
+  {
+    "start": 1134.04,
+    "end": 1138.52,
+    "text": "In this tutorial, I'm going to show you a bunch of cool things you can do with strings in Python."
+  },
+  {
+    "start": 1138.52,
+    "end": 1145.2,
+    "text": "So let's start by declaring a variable called course and set it to Python for beginners."
+  },
+  {
+    "start": 1146.2,
+    "end": 1149.84,
+    "text": "Now, this string that we have over here is technically an object."
+  },
+  {
+    "start": 1149.84,
+    "end": 1153.0,
+    "text": "An object in Python is like an object in the real world."
+  },
+  {
+    "start": 1153.0,
+    "end": 1156.08,
+    "text": "As a metaphor, think of the remote control of your TV."
+  },
+  {
+    "start": 1156.08,
+    "end": 1159.6,
+    "text": "This remote control is an object and it has a bunch of capabilities."
+  },
+  {
+    "start": 1159.6,
+    "end": 1164.96,
+    "text": "It has a bunch of buttons for turning your TV on, turning it off, changing the volume and so on."
+  },
+  {
+    "start": 1164.96,
+    "end": 1169.12,
+    "text": "Now, in this program, this course variable is storing a string object."
+  },
+  {
+    "start": 1169.12,
+    "end": 1171.64,
+    "text": "This string object has a bunch of capabilities."
+  },
+  {
+    "start": 1171.64,
+    "end": 1178.2,
+    "text": "So if you type course dot, you can see all the capabilities available in a string object."
+  },
+  {
+    "start": 1178.24,
+    "end": 1182.72,
+    "text": "These are basically functions that you can call, just like the print or input functions."
+  },
+  {
+    "start": 1182.72,
+    "end": 1187.28,
+    "text": "The difference is that the print and input functions are general purpose functions."
+  },
+  {
+    "start": 1187.28,
+    "end": 1192.84,
+    "text": "They don't belong to a particular object, but the functions you see over here are specific to strings."
+  },
+  {
+    "start": 1192.84,
+    "end": 1196.28,
+    "text": "Now, more accurately, we refer to these as methods."
+  },
+  {
+    "start": 1196.28,
+    "end": 1201.0,
+    "text": "So when a function is part of an object, we refer to that function as a method."
+  },
+  {
+    "start": 1201.0,
+    "end": 1203.24,
+    "text": "So let's look at a few examples."
+  },
+  {
+    "start": 1203.24,
+    "end": 1207.8,
+    "text": "Here we have a function or a method called upper and we use that to convert a string"
+  },
+  {
+    "start": 1207.8,
+    "end": 1209.08,
+    "text": "to upper case."
+  },
+  {
+    "start": 1209.08,
+    "end": 1213.96,
+    "text": "So if we print course dot upper and front this program,"
+  },
+  {
+    "start": 1213.96,
+    "end": 1217.72,
+    "text": "you can see our course in upper case, pretty useful."
+  },
+  {
+    "start": 1217.72,
+    "end": 1223.28,
+    "text": "Now, what you need to understand here is that this upper method does not change our original string."
+  },
+  {
+    "start": 1223.28,
+    "end": 1225.08,
+    "text": "It will return a new string."
+  },
+  {
+    "start": 1225.08,
+    "end": 1228.72,
+    "text": "So right after this, if we print course,"
+  },
+  {
+    "start": 1228.72,
+    "end": 1232.76,
+    "text": "you can see that our course variable is not affected."
+  },
+  {
+    "start": 1232.76,
+    "end": 1236.24,
+    "text": "So the upper method returns a new string."
+  },
+  {
+    "start": 1236.24,
+    "end": 1241.88,
+    "text": "Similarly, we have another method called lower for converting a string to lower case."
+  },
+  {
+    "start": 1241.88,
+    "end": 1247.76,
+    "text": "We have a method called find to see if our string contains a character or a sequence of characters."
+  },
+  {
+    "start": 1247.76,
+    "end": 1256.0,
+    "text": "For example, here we can pass Y and this will return the index of the first occurrence of Y in our string."
+  },
+  {
+    "start": 1256.0,
+    "end": 1261.28,
+    "text": "So in Python, the index of the first character in a string is zero."
+  },
+  {
+    "start": 1261.28,
+    "end": 1264.0,
+    "text": "So here we have zero, one, two, three, four, and so on."
+  },
+  {
+    "start": 1264.04,
+    "end": 1270.08,
+    "text": "So when we run this program, you're going to see one on the terminal because the index of Y is one."
+  },
+  {
+    "start": 1270.08,
+    "end": 1271.16,
+    "text": "Take a look."
+  },
+  {
+    "start": 1271.16,
+    "end": 1272.76,
+    "text": "First, I'm going to delete this line."
+  },
+  {
+    "start": 1272.76,
+    "end": 1273.92,
+    "text": "You don't need it anymore."
+  },
+  {
+    "start": 1273.92,
+    "end": 1276.52,
+    "text": "Also, let's do this line."
+  },
+  {
+    "start": 1276.52,
+    "end": 1277.72,
+    "text": "Let's run the program."
+  },
+  {
+    "start": 1277.72,
+    "end": 1278.4,
+    "text": "There you go."
+  },
+  {
+    "start": 1280.4,
+    "end": 1284.92,
+    "text": "As I told you before, Python is sensitive to lower case and upper case letters."
+  },
+  {
+    "start": 1284.92,
+    "end": 1287.92,
+    "text": "So if I pass an uppercase Y here,"
+  },
+  {
+    "start": 1288.92,
+    "end": 1293.96,
+    "text": "this find method returns negative one because we don't have an uppercase Y in this string."
+  },
+  {
+    "start": 1294.04,
+    "end": 1297.96,
+    "text": "We can also pass its sequence of characters, for example, four."
+  },
+  {
+    "start": 1297.96,
+    "end": 1301.28,
+    "text": "So this will return the index of the word four."
+  },
+  {
+    "start": 1301.28,
+    "end": 1303.28,
+    "text": "Take a look."
+  },
+  {
+    "start": 1303.28,
+    "end": 1304.96,
+    "text": "So it's seven."
+  },
+  {
+    "start": 1304.96,
+    "end": 1308.64,
+    "text": "Now, there are times we want to replace something in a string with something else."
+  },
+  {
+    "start": 1308.64,
+    "end": 1311.4,
+    "text": "To do that, we use the replace method."
+  },
+  {
+    "start": 1311.4,
+    "end": 1312.88,
+    "text": "Replace."
+  },
+  {
+    "start": 1312.88,
+    "end": 1317.92,
+    "text": "So we can replace four with a string containing the number four."
+  },
+  {
+    "start": 1317.92,
+    "end": 1319.76,
+    "text": "Take a look."
+  },
+  {
+    "start": 1319.76,
+    "end": 1322.2,
+    "text": "So Python for beginners."
+  },
+  {
+    "start": 1322.24,
+    "end": 1327.6,
+    "text": "Obviously, if you look for a character or a sequence of characters that don't exist in our string,"
+  },
+  {
+    "start": 1327.6,
+    "end": 1328.92,
+    "text": "nothing is going to happen."
+  },
+  {
+    "start": 1328.92,
+    "end": 1334.08,
+    "text": "For example, if we try to replace X with four, obviously, we don't have X here."
+  },
+  {
+    "start": 1334.08,
+    "end": 1336.6,
+    "text": "So nothing is going to happen."
+  },
+  {
+    "start": 1336.6,
+    "end": 1342.6,
+    "text": "Also, just like the upper method, the replace method is not going to modify our original string."
+  },
+  {
+    "start": 1342.6,
+    "end": 1344.68,
+    "text": "So it's going to return a new string."
+  },
+  {
+    "start": 1344.68,
+    "end": 1349.76,
+    "text": "This is because strings in Python and many other programming languages are immutable."
+  },
+  {
+    "start": 1349.76,
+    "end": 1352.08,
+    "text": "We cannot change them once we create them."
+  },
+  {
+    "start": 1352.12,
+    "end": 1356.64,
+    "text": "Whenever we want to change your string, we'll end up with a new string object in memory."
+  },
+  {
+    "start": 1356.64,
+    "end": 1360.04,
+    "text": "Now, one last thing I want to cover in this tutorial, there are times you want to see"
+  },
+  {
+    "start": 1360.04,
+    "end": 1363.96,
+    "text": "if your string contains a character or a sequence of characters."
+  },
+  {
+    "start": 1363.96,
+    "end": 1367.6,
+    "text": "One way to do that is using the fine method that we talked about."
+  },
+  {
+    "start": 1367.6,
+    "end": 1372.6,
+    "text": "So let's see if our string contains Python."
+  },
+  {
+    "start": 1372.6,
+    "end": 1378.36,
+    "text": "Now, when we run this program, that is the index of the first occurrence of the word Python"
+  },
+  {
+    "start": 1378.36,
+    "end": 1379.36,
+    "text": "in our string."
+  },
+  {
+    "start": 1379.64,
+    "end": 1382.76,
+    "text": "Now, in Python, we can also use the in operator."
+  },
+  {
+    "start": 1382.76,
+    "end": 1385.76,
+    "text": "So we can write an expression like this."
+  },
+  {
+    "start": 1385.76,
+    "end": 1390.16,
+    "text": "We type a string, Python, then we type in."
+  },
+  {
+    "start": 1390.16,
+    "end": 1392.52,
+    "text": "This is a special keyword in Python."
+  },
+  {
+    "start": 1392.52,
+    "end": 1395.24,
+    "text": "This is what we call the in operator."
+  },
+  {
+    "start": 1395.24,
+    "end": 1398.92,
+    "text": "So after that, we type the name of our variable."
+  },
+  {
+    "start": 1398.92,
+    "end": 1403.8,
+    "text": "So with this expression, we're checking to see if we have Python in course."
+  },
+  {
+    "start": 1403.8,
+    "end": 1406.04,
+    "text": "As you can see, Python code is very readable."
+  },
+  {
+    "start": 1406.04,
+    "end": 1407.8,
+    "text": "It's like plain English."
+  },
+  {
+    "start": 1407.8,
+    "end": 1413.32,
+    "text": "So when we run this program, instead of seeing the index of the first occurrence of Python,"
+  },
+  {
+    "start": 1413.32,
+    "end": 1414.8,
+    "text": "we see a Boolean value."
+  },
+  {
+    "start": 1414.8,
+    "end": 1417.44,
+    "text": "This is more desirable in a lot of cases."
+  },
+  {
+    "start": 1417.44,
+    "end": 1419.64,
+    "text": "Next, we're going to look at arithmetic operations."
+  },
+  {
+    "start": 1426.12,
+    "end": 1430.24,
+    "text": "In this tutorial, I'm going to show you the arithmetic operators that we have in Python."
+  },
+  {
+    "start": 1430.24,
+    "end": 1433.24,
+    "text": "These are the same arithmetic operators that we have in math."
+  },
+  {
+    "start": 1433.24,
+    "end": 1437.72,
+    "text": "For example, we can add numbers, we can subtract them, multiply them, and so on."
+  },
+  {
+    "start": 1437.72,
+    "end": 1441.16,
+    "text": "So let's print 10 plus 3."
+  },
+  {
+    "start": 1441.16,
+    "end": 1443.6,
+    "text": "When we run this program, we have 13."
+  },
+  {
+    "start": 1443.6,
+    "end": 1446.04,
+    "text": "So this is the addition operator."
+  },
+  {
+    "start": 1446.04,
+    "end": 1447.88,
+    "text": "We also have subtraction."
+  },
+  {
+    "start": 1447.88,
+    "end": 1451.24,
+    "text": "We have multiplication and division."
+  },
+  {
+    "start": 1451.24,
+    "end": 1454.6,
+    "text": "Now technically, we have two different types of division operators."
+  },
+  {
+    "start": 1454.6,
+    "end": 1458.8,
+    "text": "We have a division with one slash and another with two slashes."
+  },
+  {
+    "start": 1458.8,
+    "end": 1460.32,
+    "text": "Let's look at the differences."
+  },
+  {
+    "start": 1460.32,
+    "end": 1465.68,
+    "text": "If you use a single slash, we get a floating point number that is a number with a decimal"
+  },
+  {
+    "start": 1465.68,
+    "end": 1466.68,
+    "text": "point."
+  },
+  {
+    "start": 1466.68,
+    "end": 1472.44,
+    "text": "But if you use double slashes, we get an integer, a whole number."
+  },
+  {
+    "start": 1472.44,
+    "end": 1477.04,
+    "text": "We also have the modulus operator that is indicated by a person sign."
+  },
+  {
+    "start": 1477.04,
+    "end": 1481.12,
+    "text": "And this returns the remainder of the division of 10 by 3."
+  },
+  {
+    "start": 1481.12,
+    "end": 1483.12,
+    "text": "So that is one."
+  },
+  {
+    "start": 1483.12,
+    "end": 1488.16,
+    "text": "And finally, we have the exponent operator that is indicated by two asterisks."
+  },
+  {
+    "start": 1488.16,
+    "end": 1491.0,
+    "text": "So this is 10 to the power of 3."
+  },
+  {
+    "start": 1491.0,
+    "end": 1494.2,
+    "text": "So when we run this, we get 1,000."
+  },
+  {
+    "start": 1494.92,
+    "end": 1499.32,
+    "text": "For all these operators that you saw, we have an augmented assignment operator."
+  },
+  {
+    "start": 1499.32,
+    "end": 1500.84,
+    "text": "Let me explain what it means."
+  },
+  {
+    "start": 1500.84,
+    "end": 1503.92,
+    "text": "So let's say we have a variable called x."
+  },
+  {
+    "start": 1503.92,
+    "end": 1505.76,
+    "text": "And we set it to 10."
+  },
+  {
+    "start": 1505.76,
+    "end": 1508.68,
+    "text": "Now we want to increment the value of x by 3."
+  },
+  {
+    "start": 1508.68,
+    "end": 1510.2,
+    "text": "So we have to write code like this."
+  },
+  {
+    "start": 1510.2,
+    "end": 1513.2,
+    "text": "x equals x plus 3."
+  },
+  {
+    "start": 1513.2,
+    "end": 1517.44,
+    "text": "When Python executes this code, it's going to evaluate this expression or this piece of"
+  },
+  {
+    "start": 1517.44,
+    "end": 1518.24,
+    "text": "code."
+  },
+  {
+    "start": 1518.24,
+    "end": 1521.8,
+    "text": "The result of this expression is 10 plus 3, which is 13."
+  },
+  {
+    "start": 1521.8,
+    "end": 1525.08,
+    "text": "Then it will store 13 in the x."
+  },
+  {
+    "start": 1525.08,
+    "end": 1528.84,
+    "text": "Now there is another way to achieve the same result using less code."
+  },
+  {
+    "start": 1528.84,
+    "end": 1532.68,
+    "text": "We can type x plus equal 3."
+  },
+  {
+    "start": 1532.68,
+    "end": 1537.12,
+    "text": "What we have on line 3 is exactly identical to what we have on line 2."
+  },
+  {
+    "start": 1537.12,
+    "end": 1541.56,
+    "text": "So what we have here is called the augmented assignment operator."
+  },
+  {
+    "start": 1541.56,
+    "end": 1546.48,
+    "text": "So we have this assignment operator, but we have augmented or enhanced it."
+  },
+  {
+    "start": 1546.48,
+    "end": 1551.8,
+    "text": "And here we can also use subtraction to decrease the value of x by 3."
+  },
+  {
+    "start": 1551.8,
+    "end": 1554.48,
+    "text": "We can use multiplication and so on."
+  },
+  {
+    "start": 1554.48,
+    "end": 1556.84,
+    "text": "So these are the arithmetic operators in Python."
+  },
+  {
+    "start": 1563.48,
+    "end": 1565.04,
+    "text": "All right, let me ask you a question."
+  },
+  {
+    "start": 1565.04,
+    "end": 1567.08,
+    "text": "I've got a declared variable called x."
+  },
+  {
+    "start": 1567.08,
+    "end": 1570.4,
+    "text": "And set it to 10 plus 3 times 2."
+  },
+  {
+    "start": 1570.4,
+    "end": 1572.68,
+    "text": "What do you think is the result of this expression?"
+  },
+  {
+    "start": 1572.68,
+    "end": 1577.44,
+    "text": "This is a basic math question that unfortunately a lot of people fail to answer."
+  },
+  {
+    "start": 1577.44,
+    "end": 1579.4,
+    "text": "The answer is 16."
+  },
+  {
+    "start": 1579.4,
+    "end": 1580.52,
+    "text": "Here is the reason."
+  },
+  {
+    "start": 1580.52,
+    "end": 1583.96,
+    "text": "In math, we have this concept called operator precedence."
+  },
+  {
+    "start": 1583.96,
+    "end": 1587.92,
+    "text": "And that determines the order in which these operators are applied."
+  },
+  {
+    "start": 1587.92,
+    "end": 1591.56,
+    "text": "So multiplication and division have a higher order."
+  },
+  {
+    "start": 1591.56,
+    "end": 1594.48,
+    "text": "So this part of the expression gets evaluated first."
+  },
+  {
+    "start": 1594.48,
+    "end": 1596.44,
+    "text": "So 2 times 3 is 6."
+  },
+  {
+    "start": 1596.44,
+    "end": 1599.12,
+    "text": "And then the result is added to 10."
+  },
+  {
+    "start": 1599.12,
+    "end": 1602.08,
+    "text": "That is why the result of this expression is 16."
+  },
+  {
+    "start": 1602.08,
+    "end": 1606.92,
+    "text": "Now in Python, operator precedence is exactly like math, but we can always change it using"
+  },
+  {
+    "start": 1606.92,
+    "end": 1608.12,
+    "text": "parenthesis."
+  },
+  {
+    "start": 1608.12,
+    "end": 1613.4,
+    "text": "For example, in this expression, if we want 10 plus 3 to be evaluated first, we can wrap"
+  },
+  {
+    "start": 1613.4,
+    "end": 1615.24,
+    "text": "it in parenthesis."
+  },
+  {
+    "start": 1615.24,
+    "end": 1618.04,
+    "text": "So like this."
+  },
+  {
+    "start": 1618.04,
+    "end": 1623.44,
+    "text": "Now when we execute this code, we're going to see 26 because 10 plus 3 is 13."
+  },
+  {
+    "start": 1623.44,
+    "end": 1625.4,
+    "text": "And that divided by 2 is 26."
+  },
+  {
+    "start": 1625.4,
+    "end": 1626.4,
+    "text": "Let's verify this."
+  },
+  {
+    "start": 1626.4,
+    "end": 1629.32,
+    "text": "So print x and we get 26."
+  },
+  {
+    "start": 1633.08,
+    "end": 1638.8,
+    "text": "So you learn about the arithmetic operators in Python."
+  },
+  {
+    "start": 1638.8,
+    "end": 1643.64,
+    "text": "Now in Python, we have another set of operators called comparison operators."
+  },
+  {
+    "start": 1643.64,
+    "end": 1646.0,
+    "text": "We use these operators to compare values."
+  },
+  {
+    "start": 1646.0,
+    "end": 1647.0,
+    "text": "Let me show you."
+  },
+  {
+    "start": 1647.0,
+    "end": 1651.28,
+    "text": "So I'm going to declare a variable called x and set it to an expression like this."
+  },
+  {
+    "start": 1651.28,
+    "end": 1654.6,
+    "text": "3 is greater than 2."
+  },
+  {
+    "start": 1654.6,
+    "end": 1659.32,
+    "text": "So what we have here, this piece of code, this expression is called a Boolean expression"
+  },
+  {
+    "start": 1659.32,
+    "end": 1661.92,
+    "text": "because it produces a Boolean value."
+  },
+  {
+    "start": 1661.92,
+    "end": 1666.72,
+    "text": "So in this case, because 3 is greater than 2, the result of its expression is the Boolean"
+  },
+  {
+    "start": 1666.72,
+    "end": 1667.72,
+    "text": "true."
+  },
+  {
+    "start": 1667.72,
+    "end": 1673.4,
+    "text": "So if we print x, we get true on the terminal."
+  },
+  {
+    "start": 1673.4,
+    "end": 1675.36,
+    "text": "So here is the greater than operator."
+  },
+  {
+    "start": 1675.36,
+    "end": 1678.64,
+    "text": "We also have greater than or equal to."
+  },
+  {
+    "start": 1678.64,
+    "end": 1682.72,
+    "text": "We have less than or equal to."
+  },
+  {
+    "start": 1682.72,
+    "end": 1686.76,
+    "text": "Here is the equality operator, which is indicated by two equal signs."
+  },
+  {
+    "start": 1686.76,
+    "end": 1690.08,
+    "text": "Do not confuse this with a assignment operator."
+  },
+  {
+    "start": 1690.08,
+    "end": 1693.04,
+    "text": "So here we're comparing 3 and 2 for equality."
+  },
+  {
+    "start": 1693.04,
+    "end": 1699.4,
+    "text": "So if we run our program, we see false because 3 does not equal to 2."
+  },
+  {
+    "start": 1699.4,
+    "end": 1700.92,
+    "text": "So here's the equality operator."
+  },
+  {
+    "start": 1700.92,
+    "end": 1707.48,
+    "text": "We also have the not equality operator that is indicated by an exclamation mark followed"
+  },
+  {
+    "start": 1707.48,
+    "end": 1709.12,
+    "text": "by an equal sign."
+  },
+  {
+    "start": 1709.12,
+    "end": 1711.16,
+    "text": "So let's quickly recap."
+  },
+  {
+    "start": 1711.16,
+    "end": 1714.28,
+    "text": "Here are the comparison operators we have in Python."
+  },
+  {
+    "start": 1714.28,
+    "end": 1716.84,
+    "text": "Greater than or equal to."
+  },
+  {
+    "start": 1716.84,
+    "end": 1719.52,
+    "text": "Less than or equal to."
+  },
+  {
+    "start": 1719.52,
+    "end": 1721.8,
+    "text": "Equal and not equal."
+  },
+  {
+    "start": 1721.8,
+    "end": 1726.0,
+    "text": "These operators are extremely important in real Python programs because quite often we"
+  },
+  {
+    "start": 1726.0,
+    "end": 1729.0,
+    "text": "have to compare values to evaluate certain conditions."
+  },
+  {
+    "start": 1729.0,
+    "end": 1736.48,
+    "text": "We're going to see that soon."
+  },
+  {
+    "start": 1736.48,
+    "end": 1741.0,
+    "text": "In Python, we have another set of operators called logical operators."
+  },
+  {
+    "start": 1741.0,
+    "end": 1744.0,
+    "text": "We use these operators to build complex rules and conditions."
+  },
+  {
+    "start": 1744.0,
+    "end": 1745.36,
+    "text": "Let me show you."
+  },
+  {
+    "start": 1745.36,
+    "end": 1749.52,
+    "text": "So I'm going to declare a variable called price and set it to 25."
+  },
+  {
+    "start": 1749.52,
+    "end": 1753.04,
+    "text": "Now let's print a Boolean expression like this."
+  },
+  {
+    "start": 1753.04,
+    "end": 1756.04,
+    "text": "Price is greater than 10."
+  },
+  {
+    "start": 1756.04,
+    "end": 1760.44,
+    "text": "Now let's say we want to check to see if the price is between 10 and 30."
+  },
+  {
+    "start": 1760.44,
+    "end": 1763.84,
+    "text": "This is where we use the logical and operator."
+  },
+  {
+    "start": 1763.84,
+    "end": 1768.52,
+    "text": "So we type and and right after that we type another Boolean expression."
+  },
+  {
+    "start": 1768.52,
+    "end": 1771.36,
+    "text": "So price less than 30."
+  },
+  {
+    "start": 1771.36,
+    "end": 1776.72,
+    "text": "So with this and operator, if both these Boolean expressions return true, the result of this"
+  },
+  {
+    "start": 1776.72,
+    "end": 1778.56,
+    "text": "entire expression will be true."
+  },
+  {
+    "start": 1778.56,
+    "end": 1779.56,
+    "text": "Take a look."
+  },
+  {
+    "start": 1779.56,
+    "end": 1781.4,
+    "text": "So."
+  },
+  {
+    "start": 1781.4,
+    "end": 1786.84,
+    "text": "And this case we get true because the price is between 10 and 30 dollars."
+  },
+  {
+    "start": 1786.84,
+    "end": 1791.44,
+    "text": "We also have the or operator with the or operator."
+  },
+  {
+    "start": 1791.44,
+    "end": 1796.16,
+    "text": "If at least one of these Boolean expressions returns true, then the result of this entire"
+  },
+  {
+    "start": 1796.16,
+    "end": 1797.88,
+    "text": "expression will be true."
+  },
+  {
+    "start": 1797.88,
+    "end": 1802.0,
+    "text": "To demonstrate this, I'm going to change price to 5."
+  },
+  {
+    "start": 1802.0,
+    "end": 1804.36,
+    "text": "Let's see how Python is going to execute this code."
+  },
+  {
+    "start": 1804.36,
+    "end": 1807.04,
+    "text": "So first it's going to look at this Boolean expression."
+  },
+  {
+    "start": 1807.04,
+    "end": 1808.8,
+    "text": "Is price greater than 10?"
+  },
+  {
+    "start": 1808.8,
+    "end": 1810.08,
+    "text": "No, it's not."
+  },
+  {
+    "start": 1810.08,
+    "end": 1811.92,
+    "text": "So it will keep going."
+  },
+  {
+    "start": 1811.92,
+    "end": 1814.64,
+    "text": "Then it will look at the second Boolean expression."
+  },
+  {
+    "start": 1814.64,
+    "end": 1816.32,
+    "text": "Is price less than 30?"
+  },
+  {
+    "start": 1816.32,
+    "end": 1817.32,
+    "text": "It sure is."
+  },
+  {
+    "start": 1817.32,
+    "end": 1819.84,
+    "text": "So the result of this entire expression will be true."
+  },
+  {
+    "start": 1819.84,
+    "end": 1822.36,
+    "text": "Take a look."
+  },
+  {
+    "start": 1822.36,
+    "end": 1823.36,
+    "text": "There you go."
+  },
+  {
+    "start": 1823.36,
+    "end": 1828.36,
+    "text": "We also have the not operator, which basically inverses any values that you give it."
+  },
+  {
+    "start": 1828.36,
+    "end": 1829.36,
+    "text": "Let me show you."
+  },
+  {
+    "start": 1829.36,
+    "end": 1835.04,
+    "text": "So we're going to have one Boolean expression, price greater than 10."
+  },
+  {
+    "start": 1835.04,
+    "end": 1836.92,
+    "text": "The result of this expression is false."
+  },
+  {
+    "start": 1836.92,
+    "end": 1842.72,
+    "text": "Now, if you apply the not operator, this will inverse false to true."
+  },
+  {
+    "start": 1842.72,
+    "end": 1846.32,
+    "text": "So when we run the program, we get true."
+  },
+  {
+    "start": 1846.32,
+    "end": 1847.64,
+    "text": "So let's quickly recap."
+  },
+  {
+    "start": 1847.64,
+    "end": 1850.52,
+    "text": "In Python, we have three logical operators."
+  },
+  {
+    "start": 1850.52,
+    "end": 1855.32,
+    "text": "We have logical and which returns true if both expressions return true."
+  },
+  {
+    "start": 1855.32,
+    "end": 1860.96,
+    "text": "We have logical or which returns true if at least one expression returns true."
+  },
+  {
+    "start": 1860.96,
+    "end": 1870.28,
+    "text": "And we have not which inverses any value that we give it."
+  },
+  {
+    "start": 1870.28,
+    "end": 1873.84,
+    "text": "In this tutorial, we're going to talk about if statements in Python."
+  },
+  {
+    "start": 1873.84,
+    "end": 1876.92,
+    "text": "We use if statements to make decisions in our programs."
+  },
+  {
+    "start": 1876.92,
+    "end": 1879.96,
+    "text": "For example, we can declare a variable called temperature."
+  },
+  {
+    "start": 1879.96,
+    "end": 1884.32,
+    "text": "And depending on the value of this variable, we can print different messages on the terminal."
+  },
+  {
+    "start": 1884.32,
+    "end": 1885.4,
+    "text": "Let me show you."
+  },
+  {
+    "start": 1885.4,
+    "end": 1887.88,
+    "text": "So here's our temperature variable."
+  },
+  {
+    "start": 1887.88,
+    "end": 1890.04,
+    "text": "We set it to 35."
+  },
+  {
+    "start": 1890.04,
+    "end": 1894.8,
+    "text": "Now let's say if temperature is greater than 30, we want to print a message saying it's"
+  },
+  {
+    "start": 1894.8,
+    "end": 1896.16,
+    "text": "a hot day."
+  },
+  {
+    "start": 1896.16,
+    "end": 1899.68,
+    "text": "So we type if then we type a condition."
+  },
+  {
+    "start": 1899.68,
+    "end": 1902.36,
+    "text": "And this is where we use our comparison operators."
+  },
+  {
+    "start": 1902.36,
+    "end": 1906.8,
+    "text": "So we type temperature greater than 30."
+  },
+  {
+    "start": 1906.8,
+    "end": 1911.76,
+    "text": "So we have a colon and see what happens when I press enter now."
+  },
+  {
+    "start": 1911.76,
+    "end": 1915.84,
+    "text": "The character is indented and this represents a block of code."
+  },
+  {
+    "start": 1915.84,
+    "end": 1920.28,
+    "text": "So the code that we write over here will be executed if this condition is true."
+  },
+  {
+    "start": 1920.28,
+    "end": 1922.28,
+    "text": "Otherwise, it's not going to be executed."
+  },
+  {
+    "start": 1922.28,
+    "end": 1923.28,
+    "text": "Let me show you."
+  },
+  {
+    "start": 1923.28,
+    "end": 1926.88,
+    "text": "So we're going to print."
+  },
+  {
+    "start": 1926.88,
+    "end": 1928.8,
+    "text": "It's a hot day."
+  },
+  {
+    "start": 1928.8,
+    "end": 1933.12,
+    "text": "And by the way, note that here I have surrounded the string with double codes because here"
+  },
+  {
+    "start": 1933.12,
+    "end": 1936.68,
+    "text": "we have a single code as an apostrophe."
+  },
+  {
+    "start": 1936.68,
+    "end": 1940.12,
+    "text": "So I couldn't declare a string like this with single codes."
+  },
+  {
+    "start": 1940.12,
+    "end": 1947.16,
+    "text": "If I type it's a hot day, look Python gets confused because it thinks this single code"
+  },
+  {
+    "start": 1947.16,
+    "end": 1948.8,
+    "text": "represents the end of our string."
+  },
+  {
+    "start": 1948.8,
+    "end": 1951.84,
+    "text": "So it doesn't recognize the subsequent characters."
+  },
+  {
+    "start": 1951.84,
+    "end": 1952.84,
+    "text": "Okay."
+  },
+  {
+    "start": 1952.84,
+    "end": 1956.8,
+    "text": "So that's why we use double codes here."
+  },
+  {
+    "start": 1956.8,
+    "end": 1959.32,
+    "text": "So we can have an apostrophe in our string."
+  },
+  {
+    "start": 1959.32,
+    "end": 1961.6,
+    "text": "So it's a hot day."
+  },
+  {
+    "start": 1961.6,
+    "end": 1965.28,
+    "text": "Now if I press enter again, the character is indented."
+  },
+  {
+    "start": 1965.28,
+    "end": 1970.08,
+    "text": "So the code that we write here will be part of our if block and it will get executed"
+  },
+  {
+    "start": 1970.08,
+    "end": 1971.88,
+    "text": "if this condition is true."
+  },
+  {
+    "start": 1971.88,
+    "end": 1977.84,
+    "text": "So here we can print a second message, drink plenty of water."
+  },
+  {
+    "start": 1977.84,
+    "end": 1983.12,
+    "text": "Now to terminate this block, we press enter and then press shift and tap."
+  },
+  {
+    "start": 1983.12,
+    "end": 1985.2,
+    "text": "The character is no longer indented."
+  },
+  {
+    "start": 1985.2,
+    "end": 1989.64,
+    "text": "So the code that we write here will always get executed no matter what."
+  },
+  {
+    "start": 1989.64,
+    "end": 1992.04,
+    "text": "Whether this condition is true or not."
+  },
+  {
+    "start": 1992.04,
+    "end": 1998.08,
+    "text": "Now in C-based programming languages like C++, C-sharp, Java and JavaScript, we represent"
+  },
+  {
+    "start": 1998.08,
+    "end": 2000.56,
+    "text": "a block of code using curly braces."
+  },
+  {
+    "start": 2000.56,
+    "end": 2007.32,
+    "text": "So you start a block of code using a left brace and then end it using a right brace."
+  },
+  {
+    "start": 2007.32,
+    "end": 2009.52,
+    "text": "In Python, we don't have curly braces."
+  },
+  {
+    "start": 2009.52,
+    "end": 2012.88,
+    "text": "So we use indentation to represent a block of code."
+  },
+  {
+    "start": 2012.88,
+    "end": 2013.88,
+    "text": "Okay."
+  },
+  {
+    "start": 2013.88,
+    "end": 2019.96,
+    "text": "So in this case, these two lines are indented and that means they are part of this block"
+  },
+  {
+    "start": 2019.96,
+    "end": 2020.96,
+    "text": "of code."
+  },
+  {
+    "start": 2021.04,
+    "end": 2024.52,
+    "text": "Now, let's run the program and see what happens."
+  },
+  {
+    "start": 2024.52,
+    "end": 2028.8,
+    "text": "So we see these two messages because the temperature is greater than 30."
+  },
+  {
+    "start": 2028.8,
+    "end": 2035.92,
+    "text": "Now, if I change the temperature to 25 and run the program again, we don't see anything."
+  },
+  {
+    "start": 2035.92,
+    "end": 2036.92,
+    "text": "Okay."
+  },
+  {
+    "start": 2036.92,
+    "end": 2044.0,
+    "text": "Now, after this block, let's print down because this code is not indented, it will always"
+  },
+  {
+    "start": 2044.0,
+    "end": 2045.0,
+    "text": "get executed."
+  },
+  {
+    "start": 2045.0,
+    "end": 2046.68,
+    "text": "It's not part of our if block."
+  },
+  {
+    "start": 2046.68,
+    "end": 2047.68,
+    "text": "Okay."
+  },
+  {
+    "start": 2047.68,
+    "end": 2049.48,
+    "text": "So take a look."
+  },
+  {
+    "start": 2049.48,
+    "end": 2051.2,
+    "text": "Here is the done message."
+  },
+  {
+    "start": 2051.2,
+    "end": 2054.32,
+    "text": "Now let's add a second condition."
+  },
+  {
+    "start": 2054.32,
+    "end": 2060.48,
+    "text": "So if temperature is not greater than 30, that means it's less than or equal to 30."
+  },
+  {
+    "start": 2060.48,
+    "end": 2063.56,
+    "text": "So I'm going to add a second condition."
+  },
+  {
+    "start": 2063.56,
+    "end": 2067.0,
+    "text": "So if the temperature is between 20 and 30, I want to print."
+  },
+  {
+    "start": 2067.0,
+    "end": 2068.72,
+    "text": "It's a nice day."
+  },
+  {
+    "start": 2068.72,
+    "end": 2075.76,
+    "text": "So here we type L if that is short for L's if and here we type a second condition."
+  },
+  {
+    "start": 2075.76,
+    "end": 2078.76,
+    "text": "So temperature greater than 20."
+  },
+  {
+    "start": 2078.76,
+    "end": 2083.8,
+    "text": "We add a colon, presenter, now we have a new block."
+  },
+  {
+    "start": 2083.8,
+    "end": 2086.0,
+    "text": "So here we can print."
+  },
+  {
+    "start": 2086.0,
+    "end": 2088.4,
+    "text": "It's a nice day."
+  },
+  {
+    "start": 2088.4,
+    "end": 2094.44,
+    "text": "So if this condition is true, that means the temperature is greater than 20 and less"
+  },
+  {
+    "start": 2094.44,
+    "end": 2095.72,
+    "text": "than or equal to 30."
+  },
+  {
+    "start": 2095.72,
+    "end": 2098.92,
+    "text": "Now, what we have here is called a comment."
+  },
+  {
+    "start": 2098.92,
+    "end": 2100.44,
+    "text": "That is why it's grayed out."
+  },
+  {
+    "start": 2100.44,
+    "end": 2101.44,
+    "text": "It's not real code."
+  },
+  {
+    "start": 2101.44,
+    "end": 2103.76,
+    "text": "It's just some note that we add to our program."
+  },
+  {
+    "start": 2103.76,
+    "end": 2105.72,
+    "text": "Python is not going to execute this."
+  },
+  {
+    "start": 2105.72,
+    "end": 2111.48,
+    "text": "So whenever we type a pound sign, what we have after is treated as a comment."
+  },
+  {
+    "start": 2111.48,
+    "end": 2116.4,
+    "text": "So if this condition is true, then we're going to see this message on the terminal."
+  },
+  {
+    "start": 2116.4,
+    "end": 2119.64,
+    "text": "Let's run our program and verify this."
+  },
+  {
+    "start": 2119.64,
+    "end": 2120.32,
+    "text": "There you go."
+  },
+  {
+    "start": 2120.32,
+    "end": 2121.92,
+    "text": "The temperature is 25."
+  },
+  {
+    "start": 2121.92,
+    "end": 2123.96,
+    "text": "That's why we see this message."
+  },
+  {
+    "start": 2123.96,
+    "end": 2126.2,
+    "text": "Now we can have as many conditions as we want."
+  },
+  {
+    "start": 2126.2,
+    "end": 2128.84,
+    "text": "There are no limitations."
+  },
+  {
+    "start": 2128.84,
+    "end": 2131.04,
+    "text": "So let's add another condition."
+  },
+  {
+    "start": 2131.04,
+    "end": 2134.64,
+    "text": "L if temperature is greater than 10,"
+  },
+  {
+    "start": 2134.64,
+    "end": 2137.6,
+    "text": "then we're going to print."
+  },
+  {
+    "start": 2137.6,
+    "end": 2139.6,
+    "text": "It's a bit cold."
+  },
+  {
+    "start": 2139.6,
+    "end": 2144.6,
+    "text": "Now in this case, if this condition is true, that means the temperature is greater than"
+  },
+  {
+    "start": 2144.6,
+    "end": 2148.24,
+    "text": "10 and less than or equal to 20."
+  },
+  {
+    "start": 2148.24,
+    "end": 2152.08,
+    "text": "Now finally, if the temperature is less than 10, let's print a message saying it's a"
+  },
+  {
+    "start": 2152.08,
+    "end": 2153.4,
+    "text": "cold day."
+  },
+  {
+    "start": 2153.4,
+    "end": 2159.28,
+    "text": "So here we type else, then we add a colon and now we have a new block."
+  },
+  {
+    "start": 2159.28,
+    "end": 2164.6,
+    "text": "So this code will get executed if none of the above conditions are true."
+  },
+  {
+    "start": 2164.64,
+    "end": 2168.2,
+    "text": "So here we can print."
+  },
+  {
+    "start": 2168.2,
+    "end": 2170.4,
+    "text": "It's cold."
+  },
+  {
+    "start": 2170.4,
+    "end": 2173.8,
+    "text": "So this is how we use if statements to make decisions in our programs."
+  },
+  {
+    "start": 2173.8,
+    "end": 2183.84,
+    "text": "Here's a great exercise for you to practice what you have learned so far."
+  },
+  {
+    "start": 2183.84,
+    "end": 2187.32,
+    "text": "I want you to write a weight converter program like this."
+  },
+  {
+    "start": 2187.32,
+    "end": 2189.44,
+    "text": "So this program is asking me my weight."
+  },
+  {
+    "start": 2189.44,
+    "end": 2192.24,
+    "text": "I enter 170."
+  },
+  {
+    "start": 2192.24,
+    "end": 2196.12,
+    "text": "It's asking me if the weight is in kilograms or pounds."
+  },
+  {
+    "start": 2196.12,
+    "end": 2199.68,
+    "text": "So I can type K for kilograms or L for pounds."
+  },
+  {
+    "start": 2199.68,
+    "end": 2202.48,
+    "text": "I can type a lowercase L or an uppercase L."
+  },
+  {
+    "start": 2202.48,
+    "end": 2203.96,
+    "text": "It doesn't matter."
+  },
+  {
+    "start": 2203.96,
+    "end": 2206.92,
+    "text": "So let's go with a lowercase L."
+  },
+  {
+    "start": 2206.92,
+    "end": 2211.52,
+    "text": "Now it tells me weight in kilogram is 76.5."
+  },
+  {
+    "start": 2211.52,
+    "end": 2213.96,
+    "text": "So go ahead and spend five minutes on this exercise."
+  },
+  {
+    "start": 2213.96,
+    "end": 2217.24,
+    "text": "You can use the comment box below to share your code with others."
+  },
+  {
+    "start": 2217.24,
+    "end": 2219.0,
+    "text": "And then when you're done, come back to see my solution."
+  },
+  {
+    "start": 2223.08,
+    "end": 2227.04,
+    "text": "So first we call our input function to ask the first question."
+  },
+  {
+    "start": 2227.04,
+    "end": 2228.16,
+    "text": "Weight."
+  },
+  {
+    "start": 2228.16,
+    "end": 2232.36,
+    "text": "We get the result and store it in a variable called weight."
+  },
+  {
+    "start": 2232.36,
+    "end": 2236.56,
+    "text": "Next we call the input function one more time to ask the second question."
+  },
+  {
+    "start": 2236.56,
+    "end": 2242.48,
+    "text": "Is this in kilogram or pounds?"
+  },
+  {
+    "start": 2242.48,
+    "end": 2246.08,
+    "text": "We get the result and store it in a variable called unit."
+  },
+  {
+    "start": 2246.08,
+    "end": 2248.56,
+    "text": "This is where we're going to use an if statement."
+  },
+  {
+    "start": 2248.56,
+    "end": 2254.4,
+    "text": "So we want to check to see if unit equals K."
+  },
+  {
+    "start": 2254.4,
+    "end": 2258.12,
+    "text": "Then we should convert the weight to pounds and print it on a terminal."
+  },
+  {
+    "start": 2258.12,
+    "end": 2261.92,
+    "text": "However, with this code, if I type a lowercase K,"
+  },
+  {
+    "start": 2261.92,
+    "end": 2263.96,
+    "text": "this condition is not going to be true."
+  },
+  {
+    "start": 2263.96,
+    "end": 2267.8,
+    "text": "Because earlier I told you that Python is a case sensitive language."
+  },
+  {
+    "start": 2267.8,
+    "end": 2271.52,
+    "text": "So we need to convert this string to uppercase."
+  },
+  {
+    "start": 2271.52,
+    "end": 2273.76,
+    "text": "Earlier we talked about string methods."
+  },
+  {
+    "start": 2273.76,
+    "end": 2277.76,
+    "text": "So if you type dot, we can see all the functions or methods available"
+  },
+  {
+    "start": 2277.76,
+    "end": 2279.16,
+    "text": "in a string object."
+  },
+  {
+    "start": 2279.16,
+    "end": 2281.36,
+    "text": "So we use the upper method."
+  },
+  {
+    "start": 2281.36,
+    "end": 2284.28,
+    "text": "And this returns a new string in uppercase."
+  },
+  {
+    "start": 2284.28,
+    "end": 2286.76,
+    "text": "Now, if this condition is true, first"
+  },
+  {
+    "start": 2286.76,
+    "end": 2288.96,
+    "text": "we need to convert the weight to pounds."
+  },
+  {
+    "start": 2288.96,
+    "end": 2293.32,
+    "text": "So we declare a new variable called converted, get the weight,"
+  },
+  {
+    "start": 2293.32,
+    "end": 2297.68,
+    "text": "and divide it by 0.45."
+  },
+  {
+    "start": 2297.68,
+    "end": 2299.84,
+    "text": "And then we can print this on a terminal."
+  },
+  {
+    "start": 2299.84,
+    "end": 2305.24,
+    "text": "So we say weight in pounds is then we"
+  },
+  {
+    "start": 2305.24,
+    "end": 2307.92,
+    "text": "append converter."
+  },
+  {
+    "start": 2307.92,
+    "end": 2313.44,
+    "text": "Now to terminate this block, we press shift and tap, else colon."
+  },
+  {
+    "start": 2313.44,
+    "end": 2317.76,
+    "text": "So if this condition is not true, that means the weight was entered in pounds."
+  },
+  {
+    "start": 2317.76,
+    "end": 2319.92,
+    "text": "So we need to convert it to kilograms."
+  },
+  {
+    "start": 2319.92,
+    "end": 2323.04,
+    "text": "Once again, we declare a variable converted."
+  },
+  {
+    "start": 2323.04,
+    "end": 2327.92,
+    "text": "I said it to weight times 0.45."
+  },
+  {
+    "start": 2327.92,
+    "end": 2332.52,
+    "text": "And then we print weight in kilograms."
+  },
+  {
+    "start": 2332.52,
+    "end": 2337.12,
+    "text": "And here we concatenate this string with converted."
+  },
+  {
+    "start": 2337.12,
+    "end": 2339.0,
+    "text": "All right, now we need to terminate this block."
+  },
+  {
+    "start": 2339.0,
+    "end": 2341.88,
+    "text": "So we press enter, then shift and tap."
+  },
+  {
+    "start": 2341.88,
+    "end": 2342.88,
+    "text": "Good."
+  },
+  {
+    "start": 2342.88,
+    "end": 2344.88,
+    "text": "Now if you run this program, we're going to see an error."
+  },
+  {
+    "start": 2344.88,
+    "end": 2345.8,
+    "text": "Let me show you."
+  },
+  {
+    "start": 2345.8,
+    "end": 2347.72,
+    "text": "So let's run it."
+  },
+  {
+    "start": 2347.72,
+    "end": 2350.68,
+    "text": "Here I'm going to enter 170."
+  },
+  {
+    "start": 2350.68,
+    "end": 2355.16,
+    "text": "Then I type at lowercase L. OK, here's an error."
+  },
+  {
+    "start": 2355.16,
+    "end": 2359.4,
+    "text": "Can't multiply sequence by non-antif type float."
+  },
+  {
+    "start": 2359.4,
+    "end": 2362.0,
+    "text": "So this is where we got this error."
+  },
+  {
+    "start": 2362.0,
+    "end": 2366.2,
+    "text": "And when we tried to multiply the weight by 0.45."
+  },
+  {
+    "start": 2366.2,
+    "end": 2369.52,
+    "text": "So that is line 7 in our code."
+  },
+  {
+    "start": 2369.52,
+    "end": 2375.12,
+    "text": "Now the reason this is happening is because the weight variable is storing a string object."
+  },
+  {
+    "start": 2375.12,
+    "end": 2379.24,
+    "text": "Because earlier I told you, the input function always returns a string."
+  },
+  {
+    "start": 2379.24,
+    "end": 2382.92,
+    "text": "So here we need to convert the weight to a number."
+  },
+  {
+    "start": 2382.92,
+    "end": 2386.56,
+    "text": "We can either use the int or the float function."
+  },
+  {
+    "start": 2386.56,
+    "end": 2388.76,
+    "text": "Let's run the program one more time."
+  },
+  {
+    "start": 2388.76,
+    "end": 2392.92,
+    "text": "So 170 in pounds."
+  },
+  {
+    "start": 2392.92,
+    "end": 2395.16,
+    "text": "Here's a second error."
+  },
+  {
+    "start": 2395.16,
+    "end": 2399.36,
+    "text": "Can only concatenate string, not float to string."
+  },
+  {
+    "start": 2399.36,
+    "end": 2402.76,
+    "text": "And that error occurred over here."
+  },
+  {
+    "start": 2402.76,
+    "end": 2405.56,
+    "text": "When we tried to print the weight in kilograms."
+  },
+  {
+    "start": 2405.56,
+    "end": 2408.16,
+    "text": "So look at line 7."
+  },
+  {
+    "start": 2408.16,
+    "end": 2410.44,
+    "text": "In this case, weight is an integer."
+  },
+  {
+    "start": 2410.44,
+    "end": 2412.92,
+    "text": "We're multiplying an integer by float."
+  },
+  {
+    "start": 2412.92,
+    "end": 2416.76,
+    "text": "And the result of this operation is going to be a float."
+  },
+  {
+    "start": 2416.76,
+    "end": 2421.96,
+    "text": "Now on line 8, we're trying to concatenate or combine a string with the float."
+  },
+  {
+    "start": 2421.96,
+    "end": 2424.72,
+    "text": "And Python doesn't know how to execute this code."
+  },
+  {
+    "start": 2424.72,
+    "end": 2428.2,
+    "text": "To solve this problem, we need to convert this flow to a string."
+  },
+  {
+    "start": 2428.2,
+    "end": 2432.72,
+    "text": "So here we use the built-in stir function."
+  },
+  {
+    "start": 2432.72,
+    "end": 2435.04,
+    "text": "Let's run the program and see what happens."
+  },
+  {
+    "start": 2435.04,
+    "end": 2439.36,
+    "text": "So 170 in pounds."
+  },
+  {
+    "start": 2439.36,
+    "end": 2441.36,
+    "text": "And here's my weight in kilograms."
+  },
+  {
+    "start": 2441.36,
+    "end": 2443.72,
+    "text": "Now let's try entering a weight in kilograms."
+  },
+  {
+    "start": 2443.72,
+    "end": 2445.96,
+    "text": "So running one more time."
+  },
+  {
+    "start": 2445.96,
+    "end": 2450.12,
+    "text": "Let's say 76 kilos."
+  },
+  {
+    "start": 2450.12,
+    "end": 2451.52,
+    "text": "Here we get a familiar error."
+  },
+  {
+    "start": 2451.52,
+    "end": 2455.28,
+    "text": "Can only concatenate string to string, not float."
+  },
+  {
+    "start": 2455.28,
+    "end": 2462.72,
+    "text": "So this error occurred on line 5 where we tried to concatenate a string to float."
+  },
+  {
+    "start": 2462.72,
+    "end": 2466.52,
+    "text": "So once again, we need to convert this to a string object."
+  },
+  {
+    "start": 2466.52,
+    "end": 2469.56,
+    "text": "Now let's run the program one more time."
+  },
+  {
+    "start": 2469.56,
+    "end": 2474.2,
+    "text": "76 kilos is equal to 168 pounds."
+  },
+  {
+    "start": 2474.2,
+    "end": 2479.68,
+    "text": "Hey guys, I just wanted to let you know that I have an online coding school at code"
+  },
+  {
+    "start": 2479.68,
+    "end": 2483.92,
+    "text": "with marsh.com where you can find plenty of courses on web and mobile development."
+  },
+  {
+    "start": 2483.92,
+    "end": 2487.84,
+    "text": "In fact, I have a comprehensive Python course that teaches you everything about Python"
+  },
+  {
+    "start": 2487.84,
+    "end": 2490.32,
+    "text": "from the basics to more advanced concepts."
+  },
+  {
+    "start": 2490.32,
+    "end": 2493.68,
+    "text": "So after you watch this tutorial, if you want to learn more, you may want to look at my"
+  },
+  {
+    "start": 2493.68,
+    "end": 2494.68,
+    "text": "Python course."
+  },
+  {
+    "start": 2494.68,
+    "end": 2498.48,
+    "text": "It comes with a 30-day money back guarantee and a certificate of completion you can add"
+  },
+  {
+    "start": 2498.48,
+    "end": 2499.48,
+    "text": "to your resume."
+  },
+  {
+    "start": 2499.48,
+    "end": 2506.72,
+    "text": "In case you're interested, the link is below this video."
+  },
+  {
+    "start": 2506.72,
+    "end": 2509.88,
+    "text": "In this tutorial, we're going to talk about Y loops in Python."
+  },
+  {
+    "start": 2509.88,
+    "end": 2513.56,
+    "text": "We use Y loops to repeat a block of code multiple times."
+  },
+  {
+    "start": 2513.56,
+    "end": 2516.72,
+    "text": "For example, let's say you want to print the numbers 1 to 5."
+  },
+  {
+    "start": 2516.72,
+    "end": 2519.88,
+    "text": "A poor way of doing this is writing code like this."
+  },
+  {
+    "start": 2519.88,
+    "end": 2525.48,
+    "text": "Print 1, then print 2, print 3, print 4, and print 5."
+  },
+  {
+    "start": 2525.48,
+    "end": 2526.96,
+    "text": "Now why is this a bad approach?"
+  },
+  {
+    "start": 2527.68,
+    "end": 2530.8,
+    "text": "What if we wanted to print the numbers 1 to 1 million?"
+  },
+  {
+    "start": 2530.8,
+    "end": 2535.04,
+    "text": "We don't want to write 1 million lines of code each line printing a number."
+  },
+  {
+    "start": 2535.04,
+    "end": 2536.92,
+    "text": "This is where you use Y loops."
+  },
+  {
+    "start": 2536.92,
+    "end": 2542.12,
+    "text": "So we start off by declaring a variable like I and steady to our initial number."
+  },
+  {
+    "start": 2542.12,
+    "end": 2543.36,
+    "text": "Let's say 1."
+  },
+  {
+    "start": 2543.36,
+    "end": 2546.64,
+    "text": "Then we type Y and here we type a condition."
+  },
+  {
+    "start": 2546.64,
+    "end": 2549.68,
+    "text": "So once again, we can use our comparison operators."
+  },
+  {
+    "start": 2549.68,
+    "end": 2552.44,
+    "text": "Let's say I less than 5."
+  },
+  {
+    "start": 2552.44,
+    "end": 2554.24,
+    "text": "Less than or equal to 5."
+  },
+  {
+    "start": 2554.24,
+    "end": 2558.92,
+    "text": "As long as this condition is true, then the code that we write inside of the wild block"
+  },
+  {
+    "start": 2558.92,
+    "end": 2560.4,
+    "text": "will get executed."
+  },
+  {
+    "start": 2560.4,
+    "end": 2563.56,
+    "text": "So here we type a colon and press enter."
+  },
+  {
+    "start": 2563.56,
+    "end": 2565.52,
+    "text": "Now we have a block of code."
+  },
+  {
+    "start": 2565.52,
+    "end": 2570.72,
+    "text": "In this block, we can print I and then we need to increment IY1."
+  },
+  {
+    "start": 2570.72,
+    "end": 2573.32,
+    "text": "So we said I to I plus 1."
+  },
+  {
+    "start": 2573.32,
+    "end": 2580.0,
+    "text": "If we don't do this, I will always be 1 and this block of code will get executed indefinitely."
+  },
+  {
+    "start": 2580.0,
+    "end": 2581.32,
+    "text": "It will never terminate."
+  },
+  {
+    "start": 2581.32,
+    "end": 2585.64,
+    "text": "Basically our program will continue running until it runs out of memory."
+  },
+  {
+    "start": 2585.64,
+    "end": 2589.96,
+    "text": "So in the first iteration, IY1 is less than 5."
+  },
+  {
+    "start": 2589.96,
+    "end": 2592.88,
+    "text": "So Python is going to execute this block of code."
+  },
+  {
+    "start": 2592.88,
+    "end": 2596.84,
+    "text": "It will print 1 on the terminal and then I becomes 2."
+  },
+  {
+    "start": 2596.84,
+    "end": 2598.96,
+    "text": "Then the control moves back over here."
+  },
+  {
+    "start": 2598.96,
+    "end": 2601.28,
+    "text": "So Python evaluates this condition."
+  },
+  {
+    "start": 2601.28,
+    "end": 2603.72,
+    "text": "2 is less than or equal to 5."
+  },
+  {
+    "start": 2603.72,
+    "end": 2607.8,
+    "text": "So the condition is true and once again, Python is going to execute this block one more"
+  },
+  {
+    "start": 2607.8,
+    "end": 2608.8,
+    "text": "time."
+  },
+  {
+    "start": 2608.8,
+    "end": 2613.88,
+    "text": "The second iteration, we're going to see 2 on the terminal and then I will become 3."
+  },
+  {
+    "start": 2613.88,
+    "end": 2617.44,
+    "text": "So this will continue until this condition is no longer true."
+  },
+  {
+    "start": 2617.44,
+    "end": 2618.44,
+    "text": "Let me show you."
+  },
+  {
+    "start": 2618.44,
+    "end": 2621.24,
+    "text": "So let's run this program."
+  },
+  {
+    "start": 2621.24,
+    "end": 2623.44,
+    "text": "Now we see the numbers 1 to 5."
+  },
+  {
+    "start": 2623.44,
+    "end": 2625.8,
+    "text": "So this is the beauty of wild loops."
+  },
+  {
+    "start": 2625.8,
+    "end": 2630.36,
+    "text": "I can easily change 5 to 1000."
+  },
+  {
+    "start": 2630.36,
+    "end": 2633.88,
+    "text": "By the way, I'm separating these three digits using an underscore."
+  },
+  {
+    "start": 2633.88,
+    "end": 2635.44,
+    "text": "This makes my number more readable."
+  },
+  {
+    "start": 2635.44,
+    "end": 2638.76,
+    "text": "We don't have to add this, but it just makes our code more readable."
+  },
+  {
+    "start": 2638.76,
+    "end": 2641.16,
+    "text": "So let's run the program."
+  },
+  {
+    "start": 2641.16,
+    "end": 2643.8,
+    "text": "Now we see the numbers 1 to 1000."
+  },
+  {
+    "start": 2643.8,
+    "end": 2647.76,
+    "text": "It's much easier than 1000 lines of code each printing a number."
+  },
+  {
+    "start": 2647.76,
+    "end": 2651.04,
+    "text": "Now let me show you something really cool."
+  },
+  {
+    "start": 2651.04,
+    "end": 2654.96,
+    "text": "So I'm going to change this to 10."
+  },
+  {
+    "start": 2654.96,
+    "end": 2658.84,
+    "text": "Now instead of printing I, I want to print an expression."
+  },
+  {
+    "start": 2658.84,
+    "end": 2663.88,
+    "text": "So I'm going to multiply I by a string and ask for it."
+  },
+  {
+    "start": 2663.88,
+    "end": 2668.64,
+    "text": "Now it might be confused here because earlier I told you that in Python, we cannot concatenate"
+  },
+  {
+    "start": 2668.84,
+    "end": 2670.8,
+    "text": "a number to a string."
+  },
+  {
+    "start": 2670.8,
+    "end": 2673.24,
+    "text": "But here I'm using the multiplication operator."
+  },
+  {
+    "start": 2673.24,
+    "end": 2674.92,
+    "text": "Well, this is different."
+  },
+  {
+    "start": 2674.92,
+    "end": 2679.96,
+    "text": "We can multiply a number by a string and this will repeat that string based on the value"
+  },
+  {
+    "start": 2679.96,
+    "end": 2681.28,
+    "text": "of that number."
+  },
+  {
+    "start": 2681.28,
+    "end": 2684.96,
+    "text": "So if I is 1, we're going to see 1 asterisk."
+  },
+  {
+    "start": 2684.96,
+    "end": 2687.76,
+    "text": "If I is 5, we're going to see 5 asterisk."
+  },
+  {
+    "start": 2687.76,
+    "end": 2688.76,
+    "text": "Let me show you."
+  },
+  {
+    "start": 2688.76,
+    "end": 2695.48,
+    "text": "So when we run this program, we see this triangle shape because in the first iteration, I is"
+  },
+  {
+    "start": 2695.48,
+    "end": 2696.48,
+    "text": "1."
+  },
+  {
+    "start": 2696.6,
+    "end": 2698.16,
+    "text": "So we see 1 asterisk."
+  },
+  {
+    "start": 2698.16,
+    "end": 2701.12,
+    "text": "In every iteration, I is incremented by 1."
+  },
+  {
+    "start": 2701.12,
+    "end": 2703.12,
+    "text": "So we see 1 extra asterisk."
+  },
+  {
+    "start": 2703.12,
+    "end": 2706.52,
+    "text": "And finally in the last iteration, I is 10."
+  },
+  {
+    "start": 2706.52,
+    "end": 2710.08,
+    "text": "And we see 10 asterisk on the terminal."
+  },
+  {
+    "start": 2710.08,
+    "end": 2718.2,
+    "text": "So you have learned about three types of data in Python."
+  },
+  {
+    "start": 2718.2,
+    "end": 2721.76,
+    "text": "We have numbers, which can be integers or floats."
+  },
+  {
+    "start": 2721.76,
+    "end": 2724.8,
+    "text": "We have Booleans and Strings."
+  },
+  {
+    "start": 2724.8,
+    "end": 2728.64,
+    "text": "These are what we refer to as primitive or basic types in Python."
+  },
+  {
+    "start": 2728.64,
+    "end": 2732.2,
+    "text": "Now, in Python, we have a bunch of complex types as well."
+  },
+  {
+    "start": 2732.2,
+    "end": 2736.08,
+    "text": "These complex types are very useful in building real applications."
+  },
+  {
+    "start": 2736.08,
+    "end": 2738.64,
+    "text": "In this tutorial, we're going to talk about lists."
+  },
+  {
+    "start": 2738.64,
+    "end": 2743.68,
+    "text": "We use lists whenever we want to represent a list of objects, like a list of numbers or"
+  },
+  {
+    "start": 2743.68,
+    "end": 2744.68,
+    "text": "a list of names."
+  },
+  {
+    "start": 2744.68,
+    "end": 2745.8,
+    "text": "Let me show you."
+  },
+  {
+    "start": 2745.8,
+    "end": 2751.4,
+    "text": "So I'm going to declare a variable called names and study to a list of names."
+  },
+  {
+    "start": 2751.4,
+    "end": 2754.6,
+    "text": "So here we add square brackets to represent a list."
+  },
+  {
+    "start": 2754.6,
+    "end": 2758.32,
+    "text": "I know we can add one or more objects inside this list."
+  },
+  {
+    "start": 2758.32,
+    "end": 2766.46,
+    "text": "In this list, we add a bunch of names, like John, Bob, Marsh, Sam, and Mary."
+  },
+  {
+    "start": 2766.46,
+    "end": 2769.92,
+    "text": "So we separate these elements with items using a comma."
+  },
+  {
+    "start": 2769.92,
+    "end": 2770.92,
+    "text": "OK?"
+  },
+  {
+    "start": 2770.92,
+    "end": 2774.32,
+    "text": "Now, let's print our list, so print names."
+  },
+  {
+    "start": 2774.32,
+    "end": 2776.44,
+    "text": "Take a look."
+  },
+  {
+    "start": 2776.44,
+    "end": 2779.28,
+    "text": "It comes out exactly like how we wrote it."
+  },
+  {
+    "start": 2779.28,
+    "end": 2782.84,
+    "text": "Now, we can also get individual elements in this list."
+  },
+  {
+    "start": 2782.84,
+    "end": 2787.6,
+    "text": "For example, if you want to get the first element in this list, here we type a pair of"
+  },
+  {
+    "start": 2787.6,
+    "end": 2792.16,
+    "text": "square brackets and inside the square brackets, we type an index."
+  },
+  {
+    "start": 2792.16,
+    "end": 2795.4,
+    "text": "The index of the first element in this list is zero."
+  },
+  {
+    "start": 2795.4,
+    "end": 2799.8,
+    "text": "So now, when we run this program, we're going to see John on the terminal."
+  },
+  {
+    "start": 2799.8,
+    "end": 2801.12,
+    "text": "There you go."
+  },
+  {
+    "start": 2801.12,
+    "end": 2804.56,
+    "text": "Now, in Python, we can also use a negative index."
+  },
+  {
+    "start": 2804.56,
+    "end": 2809.08,
+    "text": "This is a feature that I personally have not seen in other programming languages."
+  },
+  {
+    "start": 2809.08,
+    "end": 2816.4,
+    "text": "So if zero represents the first element in this list, what do you think negative one represents?"
+  },
+  {
+    "start": 2816.4,
+    "end": 2819.52,
+    "text": "It represents the last element in this list."
+  },
+  {
+    "start": 2819.52,
+    "end": 2820.64,
+    "text": "Let's verify it."
+  },
+  {
+    "start": 2820.64,
+    "end": 2824.0,
+    "text": "So let's run the program, and here's Mary."
+  },
+  {
+    "start": 2824.0,
+    "end": 2827.36,
+    "text": "What about negative two?"
+  },
+  {
+    "start": 2827.36,
+    "end": 2832.6,
+    "text": "Well, that represents the second element from the end of the list."
+  },
+  {
+    "start": 2832.6,
+    "end": 2836.04,
+    "text": "So let's run the program, and here's Sam."
+  },
+  {
+    "start": 2836.04,
+    "end": 2839.28,
+    "text": "So we can also change an object at a given index."
+  },
+  {
+    "start": 2839.28,
+    "end": 2843.92,
+    "text": "For example, let's say here we made a mistake, and this John should not be spelled with an"
+  },
+  {
+    "start": 2843.92,
+    "end": 2844.92,
+    "text": "H."
+  },
+  {
+    "start": 2844.92,
+    "end": 2846.68,
+    "text": "So we need to reset it."
+  },
+  {
+    "start": 2846.68,
+    "end": 2849.44,
+    "text": "We type names of zero."
+  },
+  {
+    "start": 2849.44,
+    "end": 2851.52,
+    "text": "Now we treat this like a regular variable."
+  },
+  {
+    "start": 2851.52,
+    "end": 2854.08,
+    "text": "So we set it to a new value."
+  },
+  {
+    "start": 2854.08,
+    "end": 2859.12,
+    "text": "We set it to John without an H. Now let's print our list."
+  },
+  {
+    "start": 2859.12,
+    "end": 2860.72,
+    "text": "And here's our updated list."
+  },
+  {
+    "start": 2860.72,
+    "end": 2861.96,
+    "text": "Beautiful."
+  },
+  {
+    "start": 2861.96,
+    "end": 2864.2,
+    "text": "We can also select a range of values."
+  },
+  {
+    "start": 2864.2,
+    "end": 2869.24,
+    "text": "For example, let's say we're only interested in the first three names."
+  },
+  {
+    "start": 2869.24,
+    "end": 2875.16,
+    "text": "So over here, we type square brackets, and here we need to type two indexes, a start index"
+  },
+  {
+    "start": 2875.16,
+    "end": 2876.8,
+    "text": "and an end index."
+  },
+  {
+    "start": 2876.8,
+    "end": 2880.64,
+    "text": "Our start index is zero, because we want to start from here."
+  },
+  {
+    "start": 2880.64,
+    "end": 2887.52,
+    "text": "And our end index is going to be zero, one, two, plus one, that's going to be three."
+  },
+  {
+    "start": 2887.52,
+    "end": 2890.44,
+    "text": "So we added colon, three."
+  },
+  {
+    "start": 2890.44,
+    "end": 2895.44,
+    "text": "So Python is going to return all the elements from the start index up to the end index,"
+  },
+  {
+    "start": 2895.44,
+    "end": 2897.68,
+    "text": "but excluding the end index."
+  },
+  {
+    "start": 2897.68,
+    "end": 2902.48,
+    "text": "So it's going to return the elements at index zero, one, and two."
+  },
+  {
+    "start": 2902.48,
+    "end": 2904.92,
+    "text": "Take a look."
+  },
+  {
+    "start": 2904.92,
+    "end": 2907.32,
+    "text": "Here are the first three names."
+  },
+  {
+    "start": 2907.32,
+    "end": 2912.88,
+    "text": "And by the way, this expression does not modify our original list."
+  },
+  {
+    "start": 2912.88,
+    "end": 2914.52,
+    "text": "It returns a new list."
+  },
+  {
+    "start": 2914.52,
+    "end": 2921.28,
+    "text": "So right after this print statement, if we print our original list, we can see that"
+  },
+  {
+    "start": 2921.28,
+    "end": 2922.92,
+    "text": "it's not changed."
+  },
+  {
+    "start": 2922.92,
+    "end": 2931.84,
+    "text": "So this is how we use lists in Python."
+  },
+  {
+    "start": 2931.84,
+    "end": 2935.44,
+    "text": "Earlier I told you that strengths in Python are objects."
+  },
+  {
+    "start": 2935.44,
+    "end": 2939.28,
+    "text": "Objects in programming are kind of like objects in the real world, like your mobile phone,"
+  },
+  {
+    "start": 2939.28,
+    "end": 2942.44,
+    "text": "your bicycle, the remote control of your TV, and so on."
+  },
+  {
+    "start": 2942.44,
+    "end": 2944.44,
+    "text": "They have certain capabilities."
+  },
+  {
+    "start": 2944.44,
+    "end": 2949.96,
+    "text": "But if we type a string here and then press dot, we can see all the functions or methods"
+  },
+  {
+    "start": 2949.96,
+    "end": 2952.88,
+    "text": "available in a string object in Python."
+  },
+  {
+    "start": 2952.88,
+    "end": 2954.92,
+    "text": "Now lists are also objects."
+  },
+  {
+    "start": 2954.92,
+    "end": 2958.56,
+    "text": "So they have a bunch of methods for adding items or removing them and so on."
+  },
+  {
+    "start": 2958.56,
+    "end": 2959.56,
+    "text": "Let me show you."
+  },
+  {
+    "start": 2959.56,
+    "end": 2962.84,
+    "text": "So I'm going to declare a list of numbers."
+  },
+  {
+    "start": 2962.84,
+    "end": 2966.0,
+    "text": "Let's say one, two, three, four, and five."
+  },
+  {
+    "start": 2966.0,
+    "end": 2970.52,
+    "text": "Now to add a new element at the end of this list, we can use the append method."
+  },
+  {
+    "start": 2970.52,
+    "end": 2975.68,
+    "text": "So we type numbers that append and here we type six."
+  },
+  {
+    "start": 2975.68,
+    "end": 2979.32,
+    "text": "Now let's print our list."
+  },
+  {
+    "start": 2979.32,
+    "end": 2981.08,
+    "text": "So here's our updated list."
+  },
+  {
+    "start": 2981.08,
+    "end": 2982.08,
+    "text": "Beautiful."
+  },
+  {
+    "start": 2982.08,
+    "end": 2986.68,
+    "text": "Now what if you want to insert a number somewhere in the middle or at the beginning?"
+  },
+  {
+    "start": 2986.68,
+    "end": 2989.44,
+    "text": "For that, use the insert method."
+  },
+  {
+    "start": 2989.44,
+    "end": 2992.84,
+    "text": "So we're going to call the insert method."
+  },
+  {
+    "start": 2992.84,
+    "end": 2998.48,
+    "text": "Now on the top, go to the view menu and look at parameter info."
+  },
+  {
+    "start": 2998.48,
+    "end": 3001.24,
+    "text": "Look at the shortcut on a Mac computer."
+  },
+  {
+    "start": 3001.24,
+    "end": 3003.36,
+    "text": "It's command and P on Windows."
+  },
+  {
+    "start": 3003.36,
+    "end": 3005.52,
+    "text": "It's probably control and P."
+  },
+  {
+    "start": 3005.52,
+    "end": 3010.48,
+    "text": "If we use this shortcut, we can see the values that this method expects."
+  },
+  {
+    "start": 3010.48,
+    "end": 3015.64,
+    "text": "So the first value that this method expects is an index value and the type of this value"
+  },
+  {
+    "start": 3015.64,
+    "end": 3017.12,
+    "text": "is an integer."
+  },
+  {
+    "start": 3017.12,
+    "end": 3022.24,
+    "text": "So if I want to insert a value at the beginning of this list, I should pass zero as the index"
+  },
+  {
+    "start": 3022.24,
+    "end": 3024.2,
+    "text": "of the first element, right?"
+  },
+  {
+    "start": 3024.2,
+    "end": 3025.92,
+    "text": "So let's pass zero."
+  },
+  {
+    "start": 3025.92,
+    "end": 3029.0,
+    "text": "Now the second value is highlighted."
+  },
+  {
+    "start": 3029.0,
+    "end": 3034.28,
+    "text": "So the second value is an object and the type of this is T. That basically means this"
+  },
+  {
+    "start": 3034.28,
+    "end": 3035.56,
+    "text": "can be any type."
+  },
+  {
+    "start": 3035.56,
+    "end": 3039.88,
+    "text": "We can pass a number, we can pass a Boolean, we can pass a string, we can pass a list"
+  },
+  {
+    "start": 3039.88,
+    "end": 3042.48,
+    "text": "or any type of objects in Python."
+  },
+  {
+    "start": 3042.48,
+    "end": 3045.24,
+    "text": "So I'm going to pass negative one."
+  },
+  {
+    "start": 3045.24,
+    "end": 3046.64,
+    "text": "Now let's run our program."
+  },
+  {
+    "start": 3046.64,
+    "end": 3051.2,
+    "text": "You can see negative one appeared at the beginning of our list."
+  },
+  {
+    "start": 3051.2,
+    "end": 3053.2,
+    "text": "We also have a method for removing items."
+  },
+  {
+    "start": 3053.2,
+    "end": 3058.16,
+    "text": "So let's call remove three."
+  },
+  {
+    "start": 3058.16,
+    "end": 3059.68,
+    "text": "Let's run the program."
+  },
+  {
+    "start": 3059.68,
+    "end": 3060.68,
+    "text": "Three is gone."
+  },
+  {
+    "start": 3060.68,
+    "end": 3062.64,
+    "text": "We only have one, two, four and five."
+  },
+  {
+    "start": 3062.64,
+    "end": 3067.0,
+    "text": "Now if you want to remove all the items in the list, we call the clear method."
+  },
+  {
+    "start": 3067.0,
+    "end": 3069.24,
+    "text": "So clear."
+  },
+  {
+    "start": 3069.24,
+    "end": 3071.76,
+    "text": "This method doesn't expect any values."
+  },
+  {
+    "start": 3071.76,
+    "end": 3073.24,
+    "text": "So let's run our program."
+  },
+  {
+    "start": 3073.24,
+    "end": 3074.88,
+    "text": "Our list is empty."
+  },
+  {
+    "start": 3074.88,
+    "end": 3078.8,
+    "text": "Now sometimes you want to know if a given item exists in our list or not."
+  },
+  {
+    "start": 3078.8,
+    "end": 3081.16,
+    "text": "To do that, we use the in operator."
+  },
+  {
+    "start": 3081.16,
+    "end": 3084.2,
+    "text": "So let's remove this line."
+  },
+  {
+    "start": 3084.2,
+    "end": 3088.48,
+    "text": "Instead of printing our numbers list, I'm going to print an expression."
+  },
+  {
+    "start": 3088.48,
+    "end": 3091.4,
+    "text": "One in numbers."
+  },
+  {
+    "start": 3091.4,
+    "end": 3093.32,
+    "text": "So here we're using the in operator."
+  },
+  {
+    "start": 3093.32,
+    "end": 3096.84,
+    "text": "We're checking to see if one is in the numbers list."
+  },
+  {
+    "start": 3096.84,
+    "end": 3098.44,
+    "text": "So this is a Boolean expression."
+  },
+  {
+    "start": 3098.44,
+    "end": 3100.68,
+    "text": "It returns a Boolean value."
+  },
+  {
+    "start": 3100.68,
+    "end": 3102.0,
+    "text": "Take a look."
+  },
+  {
+    "start": 3102.0,
+    "end": 3103.4,
+    "text": "So we get true."
+  },
+  {
+    "start": 3103.4,
+    "end": 3109.08,
+    "text": "Obviously, if you search for a value that doesn't exist in this list, like 10, we get"
+  },
+  {
+    "start": 3109.08,
+    "end": 3110.08,
+    "text": "false."
+  },
+  {
+    "start": 3111.08,
+    "end": 3114.68,
+    "text": "Now finally, there are times you want to know how many items you have in the list."
+  },
+  {
+    "start": 3114.68,
+    "end": 3118.2,
+    "text": "To do that, you can use the built-in LAN function."
+  },
+  {
+    "start": 3118.2,
+    "end": 3122.72,
+    "text": "So let's print LAN of numbers."
+  },
+  {
+    "start": 3122.72,
+    "end": 3126.48,
+    "text": "So LAN is a built-in function just like the print function."
+  },
+  {
+    "start": 3126.48,
+    "end": 3129.0,
+    "text": "That is why it's highlighted as purple."
+  },
+  {
+    "start": 3129.0,
+    "end": 3130.96,
+    "text": "It returns the number of elements in the list."
+  },
+  {
+    "start": 3130.96,
+    "end": 3133.2,
+    "text": "Take a look."
+  },
+  {
+    "start": 3133.2,
+    "end": 3134.76,
+    "text": "So we have five elements in this list."
+  },
+  {
+    "start": 3141.08,
+    "end": 3145.92,
+    "text": "When writing Python programs, there are times you want to iterate over a list and access"
+  },
+  {
+    "start": 3145.92,
+    "end": 3147.52,
+    "text": "each item individually."
+  },
+  {
+    "start": 3147.52,
+    "end": 3148.52,
+    "text": "Let me show you."
+  },
+  {
+    "start": 3148.52,
+    "end": 3151.72,
+    "text": "So I'm going to declare a list of numbers."
+  },
+  {
+    "start": 3151.72,
+    "end": 3154.08,
+    "text": "One, two, three, four, five."
+  },
+  {
+    "start": 3154.08,
+    "end": 3159.96,
+    "text": "Now if we print this list, it comes out exactly like how we wrote it using the square bracket"
+  },
+  {
+    "start": 3159.96,
+    "end": 3161.16,
+    "text": "notation."
+  },
+  {
+    "start": 3161.16,
+    "end": 3164.24,
+    "text": "But what if we wanted to print each item on a separate line?"
+  },
+  {
+    "start": 3164.24,
+    "end": 3166.24,
+    "text": "That is where we use the for loop."
+  },
+  {
+    "start": 3166.24,
+    "end": 3167.24,
+    "text": "Let me show you."
+  },
+  {
+    "start": 3167.24,
+    "end": 3170.4,
+    "text": "So we're not going to print the entire list."
+  },
+  {
+    "start": 3170.4,
+    "end": 3172.32,
+    "text": "Instead we're going to type four."
+  },
+  {
+    "start": 3172.32,
+    "end": 3176.28,
+    "text": "Now we declare a variable, which is called a loop variable."
+  },
+  {
+    "start": 3176.28,
+    "end": 3177.76,
+    "text": "Let's call it item."
+  },
+  {
+    "start": 3177.76,
+    "end": 3180.92,
+    "text": "Then we type in numbers."
+  },
+  {
+    "start": 3180.92,
+    "end": 3184.16,
+    "text": "Next we add a colon to start a block of code."
+  },
+  {
+    "start": 3184.16,
+    "end": 3186.6,
+    "text": "So this is what we call a for loop."
+  },
+  {
+    "start": 3186.6,
+    "end": 3190.76,
+    "text": "With this for loop, we can iterate over all the items in this list."
+  },
+  {
+    "start": 3190.76,
+    "end": 3195.4,
+    "text": "In each iteration, this item variable is going to hold one value."
+  },
+  {
+    "start": 3195.4,
+    "end": 3198.4,
+    "text": "So in the first iteration, item is going to be equal to one."
+  },
+  {
+    "start": 3198.4,
+    "end": 3201.52,
+    "text": "And the second iteration is going to be equal to two and so on."
+  },
+  {
+    "start": 3201.52,
+    "end": 3208.84,
+    "text": "So now if we print item and run our program, we see each item on a new line."
+  },
+  {
+    "start": 3208.84,
+    "end": 3211.12,
+    "text": "So this is how we use a for loop."
+  },
+  {
+    "start": 3211.12,
+    "end": 3215.04,
+    "text": "Now we could also achieve the same thing using a while loop, but our code would be a"
+  },
+  {
+    "start": 3215.04,
+    "end": 3216.04,
+    "text": "little bit longer."
+  },
+  {
+    "start": 3216.04,
+    "end": 3217.2,
+    "text": "Let me show you."
+  },
+  {
+    "start": 3217.2,
+    "end": 3222.4,
+    "text": "So we would have to start by declaring a loop variable outside of our while loop."
+  },
+  {
+    "start": 3222.4,
+    "end": 3225.16,
+    "text": "Let's say I, we set it to zero."
+  },
+  {
+    "start": 3225.16,
+    "end": 3230.12,
+    "text": "Now we say while I is less than, okay, we need to find out how many items we have in"
+  },
+  {
+    "start": 3230.12,
+    "end": 3231.36,
+    "text": "this list."
+  },
+  {
+    "start": 3231.36,
+    "end": 3236.04,
+    "text": "So we use the length function, length of numbers."
+  },
+  {
+    "start": 3236.04,
+    "end": 3242.24,
+    "text": "So as long as I is less than the length of the list print, now we can use the square bracket"
+  },
+  {
+    "start": 3242.24,
+    "end": 3245.8,
+    "text": "notation to get the element at this index."
+  },
+  {
+    "start": 3245.8,
+    "end": 3250.24,
+    "text": "So numbers of I."
+  },
+  {
+    "start": 3250.24,
+    "end": 3252.96,
+    "text": "Now we need to increment I by one."
+  },
+  {
+    "start": 3252.96,
+    "end": 3255.88,
+    "text": "So I equals I plus one."
+  },
+  {
+    "start": 3255.88,
+    "end": 3259.64,
+    "text": "Let's run the program and see what we get."
+  },
+  {
+    "start": 3259.64,
+    "end": 3261.8,
+    "text": "So we get the numbers 1 to 5."
+  },
+  {
+    "start": 3261.8,
+    "end": 3263.92,
+    "text": "These are coming out from our for loop."
+  },
+  {
+    "start": 3263.92,
+    "end": 3266.56,
+    "text": "And then we get the numbers 1 to 5 one more time."
+  },
+  {
+    "start": 3266.56,
+    "end": 3268.32,
+    "text": "These are coming out from our while loop."
+  },
+  {
+    "start": 3268.32,
+    "end": 3272.52,
+    "text": "Now if you compare these two approaches, we can definitely see that the implementation"
+  },
+  {
+    "start": 3272.52,
+    "end": 3275.96,
+    "text": "using the for loop is shorter and easier to understand."
+  },
+  {
+    "start": 3275.96,
+    "end": 3278.48,
+    "text": "We don't have to use the square bracket notation."
+  },
+  {
+    "start": 3278.48,
+    "end": 3280.64,
+    "text": "We don't have to call the length function."
+  },
+  {
+    "start": 3280.64,
+    "end": 3286.0,
+    "text": "We don't have to declare a variable, a loop variable, and then incremented explicitly."
+  },
+  {
+    "start": 3286.0,
+    "end": 3290.92,
+    "text": "So with the for loop in each iteration, the item variable will automatically hold one"
+  },
+  {
+    "start": 3290.92,
+    "end": 3299.04,
+    "text": "value in this list."
+  },
+  {
+    "start": 3299.04,
+    "end": 3302.24,
+    "text": "In this tutorial, we're going to talk about the range function in Python."
+  },
+  {
+    "start": 3302.24,
+    "end": 3306.0,
+    "text": "We use the range function to generate a sequence of numbers."
+  },
+  {
+    "start": 3306.0,
+    "end": 3307.0,
+    "text": "Let me show you."
+  },
+  {
+    "start": 3307.0,
+    "end": 3309.04,
+    "text": "So we type range."
+  },
+  {
+    "start": 3309.04,
+    "end": 3312.72,
+    "text": "This is a built-in function, just like the print and input functions."
+  },
+  {
+    "start": 3312.72,
+    "end": 3314.84,
+    "text": "Here we can pass a value like 5."
+  },
+  {
+    "start": 3314.84,
+    "end": 3317.6,
+    "text": "And this will return a range object."
+  },
+  {
+    "start": 3317.6,
+    "end": 3321.44,
+    "text": "A range object is an object that can store a sequence of numbers."
+  },
+  {
+    "start": 3321.44,
+    "end": 3322.44,
+    "text": "Let me show you."
+  },
+  {
+    "start": 3322.44,
+    "end": 3325.4,
+    "text": "So let's call that numbers."
+  },
+  {
+    "start": 3325.4,
+    "end": 3327.28,
+    "text": "So this is a range object."
+  },
+  {
+    "start": 3327.28,
+    "end": 3332.52,
+    "text": "In this object, we're going to have the numbers 0 to 5, but excluding 5."
+  },
+  {
+    "start": 3332.52,
+    "end": 3340.52,
+    "text": "Now if we print numbers, we're going to see this message range of 0 to 5, not the"
+  },
+  {
+    "start": 3340.52,
+    "end": 3345.48,
+    "text": "actual numbers, because this is the default representation of a range object."
+  },
+  {
+    "start": 3345.48,
+    "end": 3350.2,
+    "text": "To see the actual numbers, we need to iterate over this range object using a for loop."
+  },
+  {
+    "start": 3350.2,
+    "end": 3354.24,
+    "text": "In the last video, you learned how to iterate over a list using a for loop, but we can"
+  },
+  {
+    "start": 3354.24,
+    "end": 3357.44,
+    "text": "also iterate over a range object using a for loop."
+  },
+  {
+    "start": 3357.44,
+    "end": 3363.12,
+    "text": "Basically, we can use the for loop with any object that represents a sequence of objects."
+  },
+  {
+    "start": 3363.12,
+    "end": 3370.64,
+    "text": "So instead of printing numbers, we're going to use a for loop for number in numbers,"
+  },
+  {
+    "start": 3370.64,
+    "end": 3375.32,
+    "text": "colon, we're going to print number."
+  },
+  {
+    "start": 3375.32,
+    "end": 3377.28,
+    "text": "Take a look."
+  },
+  {
+    "start": 3377.28,
+    "end": 3380.24,
+    "text": "Now we see the numbers 0 to 4."
+  },
+  {
+    "start": 3380.24,
+    "end": 3387.0,
+    "text": "So range of 5 generates a sequence of numbers starting from 0 up to the number with"
+  },
+  {
+    "start": 3387.0,
+    "end": 3388.0,
+    "text": "this specified here."
+  },
+  {
+    "start": 3388.0,
+    "end": 3394.72,
+    "text": "Now if we supply two values, the first value is going to be considered the starting value,"
+  },
+  {
+    "start": 3394.72,
+    "end": 3399.28,
+    "text": "and the second value is going to be considered the ending value, and it's going to be excluded."
+  },
+  {
+    "start": 3399.28,
+    "end": 3403.44,
+    "text": "So range of 5 to 10 is going to generate the numbers 5 to 9."
+  },
+  {
+    "start": 3403.44,
+    "end": 3405.48,
+    "text": "Take a look."
+  },
+  {
+    "start": 3405.48,
+    "end": 3406.48,
+    "text": "There you go."
+  },
+  {
+    "start": 3406.48,
+    "end": 3411.52,
+    "text": "Now we can also supply a third value, and that will be used as a step."
+  },
+  {
+    "start": 3411.52,
+    "end": 3416.2,
+    "text": "So let's say instead of having a sequence of numbers like 5, 6, 7, 8, 9, we want to"
+  },
+  {
+    "start": 3416.2,
+    "end": 3420.68,
+    "text": "jump two numbers at a time, so 5, 7, 9, and so on."
+  },
+  {
+    "start": 3420.68,
+    "end": 3423.4,
+    "text": "So here we pass two as the step."
+  },
+  {
+    "start": 3423.4,
+    "end": 3425.32,
+    "text": "Take a look."
+  },
+  {
+    "start": 3425.32,
+    "end": 3430.36,
+    "text": "So we get these odd numbers, 5, 7, and 9."
+  },
+  {
+    "start": 3430.36,
+    "end": 3432.4,
+    "text": "So this is the range function in Python."
+  },
+  {
+    "start": 3432.4,
+    "end": 3436.96,
+    "text": "Like quite often, you see the range function used as part of a for loop, because we don't"
+  },
+  {
+    "start": 3436.96,
+    "end": 3440.04,
+    "text": "really need to store the result in a separate variable."
+  },
+  {
+    "start": 3440.04,
+    "end": 3444.8,
+    "text": "We can call the range function right here, where we are using the numbers variable."
+  },
+  {
+    "start": 3444.8,
+    "end": 3450.8,
+    "text": "So we can type range of 5, and this will return a range object holding the numbers 0 to"
+  },
+  {
+    "start": 3450.8,
+    "end": 3451.8,
+    "text": "4."
+  },
+  {
+    "start": 3451.8,
+    "end": 3453.12,
+    "text": "Take a look."
+  },
+  {
+    "start": 3453.12,
+    "end": 3454.12,
+    "text": "There you go."
+  },
+  {
+    "start": 3454.12,
+    "end": 3458.64,
+    "text": "So we don't really need to store the result in a separate variable like numbers."
+  },
+  {
+    "start": 3458.64,
+    "end": 3467.64,
+    "text": "There you go."
+  },
+  {
+    "start": 3467.64,
+    "end": 3470.96,
+    "text": "In this tutorial, we're going to talk about topples in Python."
+  },
+  {
+    "start": 3470.96,
+    "end": 3472.56,
+    "text": "Tops are kind of like lists."
+  },
+  {
+    "start": 3472.56,
+    "end": 3477.32,
+    "text": "Use them to store a sequence of objects, but topples are immutable, which means we cannot"
+  },
+  {
+    "start": 3477.32,
+    "end": 3479.36,
+    "text": "change them once we create them."
+  },
+  {
+    "start": 3479.36,
+    "end": 3480.44,
+    "text": "Let me show you."
+  },
+  {
+    "start": 3480.44,
+    "end": 3485.04,
+    "text": "So I'm going to start by defining a list of numbers, 1, 2, 3."
+  },
+  {
+    "start": 3485.04,
+    "end": 3490.32,
+    "text": "Now we use square brackets to define a list and parenthesis to define a topple."
+  },
+  {
+    "start": 3490.32,
+    "end": 3493.68,
+    "text": "So now this number is variable is storing a topple."
+  },
+  {
+    "start": 3493.68,
+    "end": 3500.6,
+    "text": "If we try to re-assign, let's say the first element, we're going to get an error."
+  },
+  {
+    "start": 3500.6,
+    "end": 3503.92,
+    "text": "The first object does not support item assignment."
+  },
+  {
+    "start": 3503.92,
+    "end": 3506.72,
+    "text": "So this is what I meant by topples are immutable."
+  },
+  {
+    "start": 3506.72,
+    "end": 3508.56,
+    "text": "They're unchangeable."
+  },
+  {
+    "start": 3508.56,
+    "end": 3515.96,
+    "text": "Also, if we type numbers dot, you don't see any methods like a pen, insert, remove,"
+  },
+  {
+    "start": 3515.96,
+    "end": 3516.96,
+    "text": "and so on."
+  },
+  {
+    "start": 3516.96,
+    "end": 3519.56,
+    "text": "We only have count and index."
+  },
+  {
+    "start": 3519.56,
+    "end": 3522.36,
+    "text": "Count returns the number of occurrences of an element."
+  },
+  {
+    "start": 3522.36,
+    "end": 3529.6,
+    "text": "For example, if we have, let's say, two, three in this topple and call count of three,"
+  },
+  {
+    "start": 3529.6,
+    "end": 3531.4,
+    "text": "this will return two."
+  },
+  {
+    "start": 3531.4,
+    "end": 3536.72,
+    "text": "The other method we have here is index, and this returns the index of the first occurrence"
+  },
+  {
+    "start": 3536.72,
+    "end": 3538.56,
+    "text": "of the given element."
+  },
+  {
+    "start": 3538.56,
+    "end": 3543.44,
+    "text": "Now, these other methods you see here that start with an underscore, they're called magic"
+  },
+  {
+    "start": 3543.44,
+    "end": 3544.44,
+    "text": "methods."
+  },
+  {
+    "start": 3544.44,
+    "end": 3548.52,
+    "text": "It's an advanced topic and I've covered it in detail in my complete Python programming"
+  },
+  {
+    "start": 3548.52,
+    "end": 3549.52,
+    "text": "course."
+  },
+  {
+    "start": 3549.52,
+    "end": 3552.6,
+    "text": "If you're interested, the link is down below this video."
+  },
+  {
+    "start": 3552.6,
+    "end": 3554.36,
+    "text": "So topples are immutable."
+  },
+  {
+    "start": 3554.36,
+    "end": 3556.76,
+    "text": "We cannot change them once we create them."
+  },
+  {
+    "start": 3556.76,
+    "end": 3560.68,
+    "text": "But practically speaking, most of the time you would be using lists, but there are times"
+  },
+  {
+    "start": 3560.68,
+    "end": 3564.08,
+    "text": "that once you create a list of objects, you want to make sure that somewhere in your"
+  },
+  {
+    "start": 3564.08,
+    "end": 3569.08,
+    "text": "program, you or someone else is not going to accidentally modify that list."
+  },
+  {
+    "start": 3569.08,
+    "end": 3571.64,
+    "text": "If that's the case, then you should use a topple."
+  },
+  {
+    "start": 3571.64,
+    "end": 3577.08,
+    "text": "Hey, guys, I just wanted to let you know that I have an online coding school at code"
+  },
+  {
+    "start": 3577.08,
+    "end": 3581.08,
+    "text": "with marsh.com where you can find plenty of courses on web and mobile development."
+  },
+  {
+    "start": 3581.08,
+    "end": 3585.24,
+    "text": "In fact, I have a comprehensive Python course that teaches you everything about Python"
+  },
+  {
+    "start": 3585.24,
+    "end": 3587.72,
+    "text": "from the basics to more advanced concepts."
+  },
+  {
+    "start": 3587.72,
+    "end": 3591.08,
+    "text": "So after you watch this tutorial, if you want to learn more, you may want to look at my"
+  },
+  {
+    "start": 3591.08,
+    "end": 3592.08,
+    "text": "Python course."
+  },
+  {
+    "start": 3592.08,
+    "end": 3595.84,
+    "text": "It comes with a 30-day money back guarantee and a certificate of completion you can add"
+  },
+  {
+    "start": 3595.84,
+    "end": 3596.84,
+    "text": "to your resume."
+  },
+  {
+    "start": 3596.84,
+    "end": 3599.16,
+    "text": "In case you're interested, the link is below this video."
+  }
+]
