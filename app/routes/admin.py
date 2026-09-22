@@ -196,28 +196,6 @@ async def delete_course(request: Request, course_id: int):
         return RedirectResponse("/admin/courses", status_code=303)
 
 
-@router.api_route("/courses/{course_id}/assign", methods=["GET", "POST"], name="admin.assign_trainer")
-async def assign_trainer(request: Request, course_id: int):
-    from app import render, flash
-
-    with SessionLocal() as db:
-        if not _guard(request, db):
-            return RedirectResponse("/auth/login", status_code=303)
-        course = db.get(Course, course_id)
-        trainers = db.query(User).filter_by(role="trainer", is_approved=True, is_active=True).all()
-        if request.method == "POST":
-            form = await request.form()
-            tid = form.get("assigned_trainer_id")
-            trainer = db.get(User, int(tid)) if tid else None
-            if trainer and trainer.role == "trainer" and trainer.is_approved:
-                course.trainer_id = trainer.id
-                db.commit()
-                flash(request, "Trainer assigned successfully.", "success")
-                return RedirectResponse("/admin/courses", status_code=303)
-            flash(request, "Selected trainer is not valid.", "danger")
-        return render(request, db, "admin/assign_trainer.html", course=course, trainer_list=trainers)
-
-
 # ──────────────────────────────────────────────────────────────────────────────
 # Trainer management
 # ──────────────────────────────────────────────────────────────────────────────
@@ -299,31 +277,6 @@ async def toggle_active(request: Request, account_id: int):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Bookings / Enrollments list
-# ──────────────────────────────────────────────────────────────────────────────
-
-@router.get("/bookings", name="admin.bookings_list")
-async def bookings_list(request: Request):
-    from app import render
-
-    with SessionLocal() as db:
-        if not _guard(request, db):
-            return RedirectResponse("/auth/login", status_code=303)
-        q = request.query_params.get("q", "").strip()
-        query = (
-            db.query(Enrollment)
-            .join(User, Enrollment.learner_id == User.id)
-            .join(Course, Enrollment.course_id == Course.id)
-        )
-        if q:
-            filters = [User.name.ilike(f"%{q}%"), Course.name.ilike(f"%{q}%")]
-            if q.isdigit():
-                filters.append(Enrollment.id == int(q))
-            query = query.filter(or_(*filters))
-        rows = query.order_by(Enrollment.enrolled_at.desc()).all()
-        return render(request, db, "admin/bookings.html", bookings=rows, q=q)
-
-
 # ──────────────────────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────────────────────

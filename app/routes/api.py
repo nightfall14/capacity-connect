@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse
 
 from app.extensions import SessionLocal
 from app.models import LectureVideo, TelemetryLog, User
+from app.services import lecture_qa_service
 from app.services.transcription_service import transcription_progress
 import json
 
@@ -76,6 +77,49 @@ def _current_user(request: Request, db) -> User | None:
 
     user = current_account(request, db)
     return user if user and user.is_active else None
+
+
+@router.post("/api/lectures/{lecture_id}/qa")
+async def lecture_qa(request: Request, lecture_id: int):
+    """Answer a learner's question from the lecture transcript."""
+    try:
+        question = str((await request.json())["question"]).strip()
+    except (KeyError, TypeError, ValueError):
+        return JSONResponse({"error": "A question is required."}, status_code=422)
+    if not question:
+        return JSONResponse({"error": "A question is required."}, status_code=422)
+
+    with SessionLocal() as db:
+        user = _current_user(request, db)
+        lecture = db.get(LectureVideo, lecture_id)
+        if not user:
+            return JSONResponse({"error": "Authentication required."}, status_code=401)
+        if not lecture:
+            return JSONResponse({"error": "Lecture not found."}, status_code=404)
+
+        transcript_source = (
+            lecture.public_transcript
+            if lecture.public_transcript
+            else lecture.module.course.public_transcript
+        )
+        try:
+            transcript_chunks = json.loads(transcript_source or "[]")
+            if not isinstance(transcript_chunks, list):
+                transcript_chunks = []
+        except (TypeError, ValueError, json.JSONDecodeError):
+            transcript_chunks = []
+
+        answer = lecture_qa_service.transcript_answer(question, transcript_chunks)
+        if not answer:
+            return {
+                "matched": False,
+                "message": "No matching answer found in this lecture transcript.",
+            }
+        return {
+            "matched": True,
+            "text": answer["text"],
+            "start_seconds": answer["start_seconds"],
+        }
 
 
 @router.post("/api/telemetry")

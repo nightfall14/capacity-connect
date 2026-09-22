@@ -45,13 +45,11 @@ def _url_for(endpoint: str, **values) -> str:
         "admin.create_course": "/admin/courses/create",
         "admin.edit_course": "/admin/courses/{course_id}/edit",
         "admin.delete_course": "/admin/courses/{course_id}/delete",
-        "admin.assign_trainer": "/admin/courses/{course_id}/assign",
         "admin.trainers_list": "/admin/trainers",
         "admin.approve_trainer": "/admin/trainers/{trainer_id}/approve",
         "admin.reject_trainer": "/admin/trainers/{trainer_id}/reject",
         "admin.trainees_list": "/admin/trainees",
         "admin.toggle_active": "/admin/accounts/{account_id}/toggle-active",
-        "admin.bookings_list": "/admin/bookings",
         # Trainer
         "trainer.dashboard": "/trainer/dashboard",
         "trainer.readiness": "/trainer/readiness",
@@ -65,34 +63,28 @@ def _url_for(endpoint: str, **values) -> str:
         "trainer.transcribe_module_item": "/trainer/modules/{item_id}/transcribe",
         "trainer.update_status": "/trainer/courses/{course_id}/update-status",
         "trainer.participants": "/trainer/courses/{course_id}/participants",
+        "trainer.create_quiz": "/trainer/courses/{course_id}/quizzes/create",
+        "trainer.quiz_questions": "/trainer/quizzes/{quiz_id}/questions",
         "trainer.create_module": "/trainer/courses/{course_id}/modules/create",
         "trainer.edit_module": "/trainer/courses/{course_id}/modules/{module_id}/edit",
         "trainer.delete_module": "/trainer/courses/{course_id}/modules/{module_id}/delete",
-        # Learner (trainee)
-        "trainee.dashboard": "/learner/dashboard",
+        # Learner
         "learner.dashboard": "/learner/dashboard",
         "learner.my_courses": "/learner/my-courses",
         "learner.profile": "/learner/profile",
+        "learner.profile_view": "/profiles/{trainee_id}",
+        "learner.take_quiz": "/courses/{course_id}/quizzes/{quiz_id}",
+        "learner.course_feedback": "/courses/{course_id}/feedback",
         "readiness.profile": "/readiness",
-        "trainee.browse_courses": "/courses",
         "courses.catalog": "/courses",
-        "trainee.course_detail": "/courses/{course_id}",
         "courses.summary": "/courses/{course_id}",
         "courses.learn": "/courses/{course_id}/learn",
         "courses.join": "/courses/{course_id}/join",
         "courses.enroll": "/courses/{course_id}/enroll",
-        "trainee.book_course": "/trainee/courses/{course_id}/book",
-        "trainee.my_bookings": "/trainee/bookings",
-        "trainee.cancel_booking": "/trainee/bookings/{booking_id}/cancel",
-        "trainee.complete_booking": "/trainee/bookings/{booking_id}/complete",
-        "trainee.history": "/trainee/history",
-        "trainee.profile": "/trainee/profile",
-        "trainee.lecture": "/trainee/lecture/{lecture_id}",
         "video.heatmap": "/api/telemetry/heatmap/{video_id}",
         "video.ask": "/api/lecture/{video_id}/ask",
         "trainer.confusion": "/trainer/confusion/{video_id}",
         "trainer.telemetry": "/trainer/courses/{course_id}/telemetry",
-        "trainee.peer_rescue": "/trainee/peer-rescue",
         "learner.doubts": "/learner/doubts",
         # Chat
         "chat.chat_page": "/chat",
@@ -285,6 +277,12 @@ def _migrate_database() -> None:
                 "AND transcript_status='completed'"
             ))
 
+        if "competency_profiles" in tables:
+            cols = {c["name"] for c in inspect(engine).get_columns("competency_profiles")}
+            for col in ("work_experience", "interests"):
+                if col not in cols:
+                    conn.exec_driver_sql(f'ALTER TABLE "competency_profiles" ADD COLUMN "{col}" TEXT')
+
         if "courses" in tables:
             cols = {c["name"] for c in inspect(engine).get_columns("courses")}
             for col, defn in [
@@ -406,7 +404,6 @@ def create_app() -> FastAPI:
     from app.routes.auth import router as auth_router
     from app.routes.admin import router as admin_router
     from app.routes.trainer import router as trainer_router
-    from app.routes.trainee import router as trainee_router
     from app.routes.chat import router as chat_router
     from app.routes.chat import chat_ws as chat_websocket
     from app.routes.video import router as video_router
@@ -418,7 +415,6 @@ def create_app() -> FastAPI:
     application.include_router(auth_router, prefix="/auth")
     application.include_router(admin_router, prefix="/admin")
     application.include_router(trainer_router, prefix="/trainer")
-    application.include_router(trainee_router, prefix="/trainee")
     application.include_router(chat_router, prefix="/chat")
     application.add_api_websocket_route("/ws/chat", chat_websocket, name="global_chat")
     application.include_router(video_router)

@@ -12,8 +12,9 @@
 <body>
 <nav class="sticky top-0 z-50 bg-slate-900 text-white shadow-lg">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-    <a href="{{ url_for('main.index') }}" class="text-xl font-bold tracking-tight text-white transition hover:text-blue-300">
-      Capacity Connect
+    <a href="{{ url_for('main.index') }}" class="leading-tight text-white transition hover:text-teal-200">
+      <span class="block font-serif text-xl font-bold tracking-tight">Capacity Connect</span>
+      <span class="block text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-300">MoES Learning Portal</span>
     </a>
 
     {% if current_user and current_user.is_authenticated %}
@@ -26,18 +27,14 @@
         <a href="{{ url_for('trainer.dashboard') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white sm:inline-block">My Courses</a>
       {% else %}
         <a href="{{ url_for('learner.dashboard') }}" class="rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white">Dashboard</a>
-        <a href="{{ url_for('learner.my_courses') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white sm:inline-block">My Courses</a>
+        <a href="{{ url_for('courses.catalog') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white sm:inline-block">Explore Courses</a>
+        <a href="{{ url_for('learner.my_courses') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white md:inline-block">My Courses</a>
       {% endif %}
       {% if current_user.role == 'trainee' %}
         <a href="{{ url_for('learner.doubts') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white md:inline-block">Doubts / Q&amp;A</a>
-        <a href="{{ url_for('chat.chat_page') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white md:inline-block">Community Chat</a>
-      {% elif current_user.role == 'trainer' %}
-        <a href="{{ url_for('chat.chat_page') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white md:inline-block">Community Chat</a>
-      {% elif current_user.role == 'admin' %}
-        <a href="{{ url_for('chat.chat_page') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white md:inline-block">Community Chat</a>
       {% endif %}
       <button type="button" id="global-chat-open" class="rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white" aria-controls="global-chat-drawer" aria-expanded="false">
-        <span aria-hidden="true">💬</span> Community Chat
+        <span aria-hidden="true">💬</span><span class="hidden lg:inline"> Community</span>
       </button>
       {% if current_user.role == 'trainer' %}
         <a href="{{ url_for('trainer.profile') }}" class="hidden rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:bg-slate-800 hover:text-white sm:inline-block">Profile</a>
@@ -69,7 +66,7 @@
 <aside id="global-chat-drawer" class="fixed inset-y-0 right-0 z-[60] flex w-full max-w-md translate-x-full flex-col bg-white shadow-2xl transition-transform duration-300" aria-hidden="true">
   <div class="flex items-center justify-between bg-slate-900 px-5 py-4 text-white">
     <div><h2 class="font-bold">Community Lounge <span class="text-blue-300">(Live)</span></h2><span id="online-count" class="mt-1 inline-block rounded-full bg-green-500 px-2 py-1 text-xs text-white">Online: 0</span></div>
-    <button type="button" id="global-chat-close" class="rounded p-2 text-xl hover:bg-slate-700" aria-label="Close chat">&times;</button>
+    <div class="flex items-center gap-2"><a href="{{ url_for('chat.chat_page') }}" class="rounded-lg border border-slate-600 px-3 py-1.5 text-xs font-semibold text-slate-100 transition hover:bg-slate-700">Open full chat <i class="bi bi-arrows-fullscreen"></i></a><button type="button" id="global-chat-close" class="rounded p-2 text-xl hover:bg-slate-700" aria-label="Close chat">&times;</button></div>
   </div>
   <div class="flex items-center justify-between border-b border-slate-200 px-5 py-3">
     <label class="flex items-center gap-2 text-sm font-medium text-slate-700"><input id="global-chat-anonymous" type="checkbox" class="h-4 w-4 rounded border-slate-300 text-blue-600"> Chat Anonymously</label>

@@ -13,7 +13,7 @@ from fastapi import APIRouter, BackgroundTasks, File, HTTPException, Request, Up
 from fastapi.responses import JSONResponse, RedirectResponse
 
 from app.extensions import SessionLocal
-from app.models import Course, Doubt, Enrollment, LectureVideo, Module, ModuleItem, User, CompetencyProfile
+from app.models import Course, CourseFeedback, Doubt, Enrollment, LectureVideo, Module, ModuleItem, Question, Quiz, User, CompetencyProfile
 from app.services.curriculum_service import build_curriculum_insights
 from app.services.video_service import heatmap_for_video
 from app.services.transcription_service import (
@@ -486,7 +486,42 @@ async def course_detail(request: Request, course_id: int):
                       course=course, valid_statuses=VALID_STATUSES,
                       enrolled_count=len(enrollments),
                       completion_rate=round(completed / len(enrollments) * 100) if enrollments else 0,
-                      confusion_alerts=confusion_alerts)
+                      confusion_alerts=confusion_alerts, quizzes=course.quizzes,
+                      feedback_entries=db.query(CourseFeedback).filter_by(course_id=course.id).order_by(CourseFeedback.created_at.desc()).all())
+
+
+@router.api_route("/courses/{course_id}/quizzes/create", methods=["GET", "POST"], name="trainer.create_quiz")
+async def create_quiz(request: Request, course_id: int):
+    from app import flash, render
+    with SessionLocal() as db:
+        trainer = _guard(request, db)
+        if not trainer: return RedirectResponse("/auth/login", status_code=303)
+        course = _own_course(db, trainer.id, course_id)
+        if request.method == "GET": return render(request, db, "trainer/quiz_form.html", course=course, quiz=None)
+        form = await request.form()
+        quiz = Quiz(course_id=course.id, title=str(form.get("title", "")).strip(), subject_tag=str(form.get("subject_tag", "")).strip() or None)
+        if not quiz.title: flash(request, "Quiz title is required.", "danger"); return render(request, db, "trainer/quiz_form.html", course=course, quiz=None)
+        db.add(quiz); db.commit(); return RedirectResponse(f"/trainer/quizzes/{quiz.id}/questions", status_code=303)
+
+
+@router.api_route("/quizzes/{quiz_id}/questions", methods=["GET", "POST"], name="trainer.quiz_questions")
+async def quiz_questions(request: Request, quiz_id: int):
+    from app import flash, render
+    with SessionLocal() as db:
+        trainer = _guard(request, db)
+        if not trainer: return RedirectResponse("/auth/login", status_code=303)
+        quiz = db.get(Quiz, quiz_id)
+        if not quiz: raise HTTPException(404)
+        _own_course(db, trainer.id, quiz.course_id)
+        if request.method == "POST":
+            form = await request.form(); correct = str(form.get("correct_option", "")).upper()
+            values = [str(form.get(f"option_{c}", "")).strip() for c in "abcd"]
+            if not str(form.get("text", "")).strip() or correct not in "ABCD" or not all(values):
+                flash(request, "Enter a question, all four choices, and the correct option.", "danger")
+            else:
+                db.add(Question(quiz_id=quiz.id, text=str(form["text"]).strip(), option_a=values[0], option_b=values[1], option_c=values[2], option_d=values[3], correct_option=correct)); db.commit(); flash(request, "Question added.", "success")
+            return RedirectResponse(f"/trainer/quizzes/{quiz.id}/questions", status_code=303)
+        return render(request, db, "trainer/quiz_questions.html", quiz=quiz, course=quiz.course)
 
 
 @router.post("/courses/{course_id}/publish-changes", name="trainer.publish_changes")

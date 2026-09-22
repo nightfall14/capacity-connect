@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block title %}Assign Trainer{% endblock %}
-{% block content %}
-<h3 class="section-title">Assign Trainer to "{{ course.name }}"</h3>
-<div class="table-responsive-card" style="max-width: 600px;"><p><strong>Current Trainer:</strong> {{ course.assigned_trainer.name if course.assigned_trainer else 'Not Assigned' }}</p>
-<form method="POST" class="needs-validation" novalidate><div class="mb-3"><label class="form-label">Select Trainer</label><select name="assigned_trainer_id" class="form-select" required><option value="" disabled selected>-- Choose Trainer --</option>{% for trainer in trainer_list %}<option value="{{ trainer.id }}" {% if course.assigned_trainer_id == trainer.id %}selected{% endif %}>{{ trainer.name }} ({{ trainer.email }})</option>{% endfor %}</select><div class="invalid-feedback">Please select a trainer.</div>{% if not trainer_list %}<div class="text-danger small mt-1">No approved and active trainers available.</div>{% endif %}</div><button type="submit" class="btn btn-primary" {{ 'disabled' if not trainer_list }}>Assign</button> <a href="{{ url_for('admin.courses') }}" class="btn btn-outline-secondary">Cancel</a></form></div>
-{% endblock %}

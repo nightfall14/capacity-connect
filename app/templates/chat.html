@@ -1,45 +1,81 @@
 {% extends "base.html" %}
 {% block title %}Chat{% endblock %}
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h3 class="section-title mb-0">Community Chat</h3>
-  <span class="small text-muted"><i class="bi bi-shield-check"></i> Registered trainees and trainers</span>
-</div>
-<div id="chatApp" class="row g-3" data-account-id="{{ account.id }}">
-  <div class="col-md-4 col-lg-3">
-    <div class="table-responsive-card chat-sidebar">
-      <button type="button" class="btn btn-primary w-100 mb-2 chat-room-button active" data-room-type="global">
-        <i class="bi bi-globe2"></i> Global Room <span id="globalUnread" class="badge bg-danger float-end{% if not unread.global %} d-none{% endif %}">{{ unread.global }}</span>
-      </button>
-      <h6 class="text-muted mt-3">Private chats</h6>
-      <div id="participantList">
-        {% for participant in participants %}
-        <button type="button" class="btn btn-light w-100 text-start mb-1 chat-room-button" data-room-type="private" data-recipient-id="{{ participant.id }}" data-recipient-name="{{ participant.name }}">
-          <span class="presence-dot {% if participant.id in online_ids %}online{% endif %}"></span>
-          {{ participant.name }}
-          <span class="badge bg-danger float-end d-none" data-unread-for="{{ participant.id }}"></span>
-        </button>
-        {% else %}
-        <p class="small text-muted">No other approved participants are available.</p>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  <div class="col-md-8 col-lg-9">
-    <div class="table-responsive-card chat-panel">
-      <div class="chat-header d-flex justify-content-between align-items-center">
-        <div><h5 id="chatTitle" class="mb-0">Global Room</h5><span id="chatPresence" class="small text-muted">Everyone can participate</span></div>
-        <span id="socketStatus" class="small text-muted">Connecting…</span>
-      </div>
-      <div id="messageList" class="chat-messages" aria-live="polite"></div>
-      <div id="chatError" class="alert alert-danger d-none mt-2 mb-2"></div>
-      <label class="small text-muted mt-2"><input id="anonymousToggle" type="checkbox" class="form-check-input me-1"> Post global message anonymously</label>
-      <form id="chatForm" class="d-flex gap-2 mt-2">
-        <input id="chatInput" class="form-control" maxlength="2000" autocomplete="off" placeholder="Write a message…" required>
-        <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i><span class="visually-hidden">Send</span></button>
-      </form>
-    </div>
-  </div>
+<style>
+  body > main.container { max-width:100% !important; padding:0 !important; margin:0 !important; }
+  .chat-shell { display:flex; height:calc(100vh - 72px); min-height:520px; overflow:hidden; background:#172438; color:#d7e6f5; }
+  .chat-sidebar { width:270px; flex:0 0 270px; padding:18px 12px; overflow-y:auto; background:#102039; border-right:1px solid rgba(255,255,255,.08); }
+  .chat-sidebar h1 { margin:0 8px 18px; color:#f2f8ff; font-size:1rem; }
+  .chat-section-label { margin:18px 8px 7px; color:#7190ad; font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+  .chat-room-button { display:flex; align-items:center; gap:9px; width:100%; margin:2px 0; padding:10px 11px; border:0; border-radius:7px; background:transparent; color:#99b0c8; text-align:left; cursor:pointer; }
+  .chat-room-button:hover,.chat-room-button.active { background:#1c3b55; color:#effaff; }
+  .chat-room-button .room-name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .presence-dot { width:9px; height:9px; flex:0 0 9px; border-radius:50%; background:#64778a; box-shadow:0 0 0 2px #102039; }
+  .presence-dot.online { background:#20c878; }
+  .chat-unread { min-width:19px; padding:2px 6px; border-radius:999px; background:#d95368; color:#fff; font-size:.68rem; font-weight:700; text-align:center; }
+  .chat-unread.d-none { display:none; }
+  .chat-main { display:flex; min-width:0; flex:1; flex-direction:column; background:#1b2b40; }
+  .chat-header { display:flex; align-items:center; justify-content:space-between; min-height:66px; padding:14px 24px; border-bottom:1px solid rgba(255,255,255,.08); background:#1a2a3e; }
+  .chat-header h2 { margin:0; color:#f2f8ff; font-size:1rem; }
+  .chat-header small { color:#7893ad; }
+  .chat-messages { display:flex; flex:1; flex-direction:column; gap:10px; overflow-y:auto; padding:24px clamp(16px, 5vw, 80px); }
+  .chat-message { display:flex; max-width:min(72%, 650px); flex-direction:column; align-items:flex-start; }
+  .chat-message.own { align-self:flex-end; align-items:flex-end; }
+  .chat-message .small { margin:0 7px 4px; color:#7893ad !important; font-size:.7rem; }
+  .chat-message-body { padding:10px 14px; border-radius:15px 15px 15px 4px; background:#2a4059; color:#dceaf6; line-height:1.45; white-space:pre-wrap; overflow-wrap:anywhere; }
+  .chat-message.own .chat-message-body { border-radius:15px 15px 4px 15px; background:linear-gradient(135deg,#087c89,#1167a1); color:#fff; }
+  .chat-composer { flex-shrink:0; padding:12px clamp(16px, 5vw, 80px) 16px; border-top:1px solid rgba(255,255,255,.08); background:#16263a; }
+  .chat-composer label { color:#7893ad; font-size:.75rem; }
+  .chat-composer form { display:flex; gap:9px; margin-top:8px; }
+  .chat-composer input[type=text] { min-width:0; flex:1; border:1px solid #38526b; border-radius:22px; background:#22374e; color:#e8f3fc; padding:10px 16px; outline:0; }
+  .chat-composer button { border:0; border-radius:22px; background:#087c89; color:#fff; padding:0 20px; font-weight:700; }
+  .chat-error { color:#ff9aa8; font-size:.8rem; }
+  .chat-error.d-none { display:none; }
+  @media(max-width:700px){.chat-shell{height:calc(100vh - 60px)}.chat-sidebar{width:210px;flex-basis:210px}.chat-message{max-width:88%}}
+</style>
+<style>
+  /* Refined full-page workspace */
+  html:has(#chatApp), body:has(#chatApp) { height:100%; overflow:hidden; }
+  body:has(#chatApp) > main.container { margin:0 !important; max-width:none !important; }
+  body:has(#chatApp) .app-footer { display:none; }
+  .chat-shell { height:calc(100vh - 72px); min-height:0; background:#101b2d; }
+  .chat-sidebar { width:292px; flex-basis:292px; padding:0; background:#0d192b; border-right:1px solid #26384d; }
+  .chat-sidebar h1 { margin:0; padding:22px 22px 18px; border-bottom:1px solid #26384d; font-size:1.05rem; letter-spacing:.01em; }
+  .chat-section-label { margin:22px 14px 8px; color:#6e89a5; font-size:.67rem; }
+  #participantList { padding:0 9px; }
+  .chat-room-button { min-height:44px; margin:3px 0; padding:9px 12px; border-radius:8px; color:#91a8bf; font-size:.9rem; transition:background .15s,color .15s; }
+  .chat-room-button:hover { background:#172d46; color:#dceaf6; }
+  .chat-room-button.active { background:#184456; color:#f1ffff; box-shadow:inset 3px 0 #24c5b8; }
+  .chat-room-button > i { width:20px; color:#5e88a7; text-align:center; }
+  .chat-room-button.active > i { color:#49d9cc; }
+  .chat-room-button .room-name { font-weight:600; }
+  .presence-dot { width:10px; height:10px; flex-basis:10px; border:2px solid #0d192b; box-sizing:content-box; }
+  .chat-unread { background:#e0566b; box-shadow:0 0 0 2px #0d192b; }
+  .chat-main { background:#17263b; }
+  .chat-header { min-height:74px; padding:0 30px; background:#15243a; border-bottom:1px solid #2a4056; box-shadow:0 2px 8px #0a1422aa; }
+  .chat-header h2 { font-size:1.05rem; letter-spacing:.01em; }
+  .chat-header h2::before { content:'#'; margin-right:9px; color:#3bcabd; font-weight:400; }
+  #chatPresence::before { content:'•'; margin-right:6px; color:#2bd08b; }
+  #socketStatus { border:1px solid #2e5268; border-radius:999px; padding:5px 10px; }
+  .chat-messages { gap:3px; padding:28px clamp(22px, 8vw, 150px); }
+  .chat-message { max-width:min(680px,78%); padding:7px 0; }
+  .chat-message .small { margin:0 10px 5px; color:#7692ae !important; font-size:.7rem; }
+  .chat-message-body { padding:11px 15px; border:1px solid #38516a; border-radius:5px 15px 15px 15px; background:#253b53; box-shadow:0 3px 10px #09152533; }
+  .chat-message.own .chat-message-body { border-color:#087f88; border-radius:15px 5px 15px 15px; background:linear-gradient(135deg,#087c89,#12649a); }
+  .chat-composer { padding:14px clamp(22px, 8vw, 150px) 20px; background:#132238; border-top:1px solid #2a4056; }
+  .chat-composer form { padding:4px; border:1px solid #38516a; border-radius:27px; background:#1e334b; }
+  .chat-composer input[type=text] { border:0; background:transparent; padding:10px 14px; }
+  .chat-composer input[type=text]:focus { box-shadow:none; }
+  .chat-composer button { width:42px; height:38px; padding:0; background:#10a9a2; }
+  .chat-composer button:hover { background:#18c3ba; }
+  @media (max-width:760px) { .chat-sidebar { width:220px; flex-basis:220px; } .chat-header { padding:0 16px; } .chat-messages,.chat-composer { padding-left:16px; padding-right:16px; } }
+</style>
+<div id="chatApp" class="chat-shell" data-account-id="{{ account.id }}">
+  <aside class="chat-sidebar"><h1><i class="bi bi-chat-dots-fill"></i> Community</h1><div class="chat-section-label">Conversations</div>
+    <button type="button" class="chat-room-button active" data-room-type="global"><i class="bi bi-globe2"></i><span class="room-name">Global</span><span id="globalUnread" class="chat-unread{% if not unread.global %} d-none{% endif %}">{{ unread.global }}</span></button>
+    <div class="chat-section-label">Private messages</div><div id="participantList">{% for participant in participants %}<button type="button" class="chat-room-button" data-room-type="private" data-recipient-id="{{ participant.id }}" data-recipient-name="{{ participant.name }}"><span class="presence-dot {% if participant.id in online_ids %}online{% endif %}"></span><span class="room-name">{{ participant.name }}</span><span class="chat-unread{% if not unread.private.get(participant.id|string, 0) and not unread.private.get(participant.id, 0) %} d-none{% endif %}" data-unread-for="{{ participant.id }}">{{ unread.private.get(participant.id|string, 0) or unread.private.get(participant.id, 0) or '' }}</span></button>{% else %}<p class="small text-muted">No other approved participants are available.</p>{% endfor %}</div>
+  </aside>
+  <main class="chat-main"><header class="chat-header"><div><h2 id="chatTitle">Global</h2><small id="chatPresence">Everyone can participate</small></div><small id="socketStatus">Connecting…</small></header><div id="messageList" class="chat-messages" aria-live="polite"></div><div class="chat-composer"><div id="chatError" class="chat-error d-none"></div><label><input id="anonymousToggle" type="checkbox"> Post global message anonymously</label><form id="chatForm"><input id="chatInput" type="text" maxlength="2000" autocomplete="off" placeholder="Message Global" required><button type="submit"><i class="bi bi-send"></i><span class="visually-hidden">Send</span></button></form></div></main>
 </div>
 {% endblock %}
 {% block scripts %}

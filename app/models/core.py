@@ -118,6 +118,8 @@ class User(Base):
     telemetry_logs: Mapped[list["TelemetryLog"]] = relationship(
         back_populates="user", cascade="all, delete-orphan",
     )
+    certificates: Mapped[list["Certificate"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    course_feedback: Mapped[list["CourseFeedback"]] = relationship(back_populates="learner", cascade="all, delete-orphan")
 
     # Password management
     def set_password(self, password: str) -> None:
@@ -203,6 +205,8 @@ class Course(Base):
     doubts: Mapped[list["Doubt"]] = relationship(
         back_populates="course", cascade="all, delete-orphan",
     )
+    quizzes: Mapped[list["Quiz"]] = relationship(back_populates="course", cascade="all, delete-orphan")
+    feedback_entries: Mapped[list["CourseFeedback"]] = relationship(back_populates="course", cascade="all, delete-orphan")
 
     def active_enrollments_count(self) -> int:
         return sum(
@@ -492,6 +496,8 @@ class CompetencyProfile(Base):
     skills: Mapped[Optional[str]] = mapped_column(Text, nullable=True)       # comma-separated
     qualifications: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     certifications: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    work_experience: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    interests: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     linkedin_url: Mapped[Optional[str]] = mapped_column(String(300), nullable=True)
     github_url: Mapped[Optional[str]] = mapped_column(String(300), nullable=True)
     portfolio_url: Mapped[Optional[str]] = mapped_column(String(300), nullable=True)
@@ -508,6 +514,52 @@ class CompetencyProfile(Base):
         if not self.certifications:
             return []
         return [c.strip() for c in self.certifications.split(",") if c.strip()]
+
+
+class Certificate(Base):
+    __tablename__ = "certificates"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("accounts.id"), index=True)
+    title: Mapped[str] = mapped_column(String(200))
+    issuer: Mapped[Optional[str]] = mapped_column(String(200), nullable=True)
+    file_path: Mapped[str] = mapped_column(String(500))
+    issued_at: Mapped[Optional[date]] = mapped_column(Date, nullable=True)
+    user: Mapped["User"] = relationship(back_populates="certificates")
+
+
+class Quiz(Base):
+    __tablename__ = "quizzes"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    course_id: Mapped[int] = mapped_column(ForeignKey("courses.id"), index=True)
+    subject_tag: Mapped[Optional[str]] = mapped_column(String(120), nullable=True)
+    title: Mapped[str] = mapped_column(String(200))
+    course: Mapped["Course"] = relationship(back_populates="quizzes")
+    questions: Mapped[list["Question"]] = relationship(back_populates="quiz", cascade="all, delete-orphan")
+
+
+class Question(Base):
+    __tablename__ = "questions"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    quiz_id: Mapped[int] = mapped_column(ForeignKey("quizzes.id"), index=True)
+    text: Mapped[str] = mapped_column(Text)
+    option_a: Mapped[str] = mapped_column(Text)
+    option_b: Mapped[str] = mapped_column(Text)
+    option_c: Mapped[str] = mapped_column(Text)
+    option_d: Mapped[str] = mapped_column(Text)
+    correct_option: Mapped[str] = mapped_column(String(1))
+    quiz: Mapped["Quiz"] = relationship(back_populates="questions")
+
+
+class CourseFeedback(Base):
+    __tablename__ = "course_feedback"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    course_id: Mapped[int] = mapped_column(ForeignKey("courses.id"), index=True)
+    learner_id: Mapped[int] = mapped_column(ForeignKey("accounts.id"), index=True)
+    rating: Mapped[int] = mapped_column(Integer)
+    comment: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    course: Mapped["Course"] = relationship(back_populates="feedback_entries")
+    learner: Mapped["User"] = relationship(back_populates="course_feedback")
 
 
 # ──────────────────────────────────────────────────────────────────────────────

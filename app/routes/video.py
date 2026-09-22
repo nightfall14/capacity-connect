@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import select
 
 from app.extensions import SessionLocal
-from app.models import Doubt, Enrollment, LectureVideo, TelemetryLog, User, VideoEvent
+from app.models import Doubt, LectureVideo, TelemetryLog, User, VideoEvent
 from app.services.lecture_qa_service import transcript_answer
 from app.services.video_service import (
     EVENT_TYPES,
@@ -32,7 +32,9 @@ def _current_user(request: Request, db) -> User | None:
 
 @router.post("/api/lectures/{lecture_id}/qa")
 async def lecture_qa(request: Request, lecture_id: int):
-    """Find a matching trainer-authored transcript chunk without network calls."""
+    """Answer a learner's question from the lecture transcript."""
+    from app.routes.courses import _group_transcript_segments
+
     try:
         question = str((await request.json())["question"]).strip()
     except (KeyError, TypeError, ValueError):
@@ -43,25 +45,35 @@ async def lecture_qa(request: Request, lecture_id: int):
     with SessionLocal() as db:
         user = _current_user(request, db)
         lecture = db.get(LectureVideo, lecture_id)
-        if not user or user.role != "trainee":
-            return JSONResponse({"error": "Trainee access required."}, status_code=403)
+        if not user:
+            return JSONResponse({"error": "Authentication required."}, status_code=401)
         if not lecture:
             return JSONResponse({"error": "Lecture not found."}, status_code=404)
-        enrolled = db.query(Enrollment).filter(
-            Enrollment.user_id == user.id,
-            Enrollment.course_id == lecture.module.course_id,
-            Enrollment.status.in_(("active", "Enrolled")),
-        ).first()
-        if not enrolled:
-            return JSONResponse({"error": "Enrollment required."}, status_code=403)
+
+        transcript_source = (
+            lecture.public_transcript
+            if lecture.public_transcript
+            else lecture.module.course.public_transcript
+        )
         try:
-            chunks = json.loads(lecture.transcript_json or "[]")
+            transcript_chunks = json.loads(transcript_source or "[]")
+            if not isinstance(transcript_chunks, list):
+                transcript_chunks = []
         except (TypeError, ValueError, json.JSONDecodeError):
-            chunks = []
-        answer = transcript_answer(question, chunks if isinstance(chunks, list) else [])
+            transcript_chunks = []
+
+        chunks = _group_transcript_segments(transcript_chunks)
+        answer = transcript_answer(question, chunks)
         if not answer:
-            return {"matched": False, "message": "No matching answer found in this lecture transcript."}
-        return {"matched": True, **answer}
+            return {
+                "matched": False,
+                "message": "No matching answer found in this lecture transcript.",
+            }
+        return {
+            "matched": True,
+            "text": answer["text"],
+            "start_seconds": answer["start_seconds"],
+        }
 
 
 @router.post("/api/lectures/{lecture_id}/duration")

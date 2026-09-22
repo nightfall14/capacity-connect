@@ -4,6 +4,8 @@
   --primary-blue: #0066D6;
   --bright-blue: #0B78E3;
   --cyan: #00B8D4;
+  --teal: #007f7a;
+  --coral: #d96c5f;
   --white: #FFFFFF;
   --bg-soft: #F4F8FC;
   --panel: #FFFFFF;
@@ -30,7 +32,7 @@ html {
 
 body {
   background: linear-gradient(180deg, var(--bg-soft) 0%, #edf4fb 100%);
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: Calibri, Candara, 'Segoe UI', Arial, sans-serif;
   color: var(--text);
   line-height: 1.55;
   min-height: 100vh;
@@ -52,10 +54,16 @@ img {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: Cambria, Georgia, serif;
   color: var(--navy);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
+
+/* Small semantic utilities shared by the institutional learning views. */
+.bg-navy { background-color: var(--navy) !important; }
+.text-navy { color: var(--navy) !important; }
+.bg-coral-600 { background-color: var(--coral) !important; }
 
 p {
   margin-bottom: 0.75rem;
@@ -112,10 +120,7 @@ p {
 }
 
 .hero {
-  background: linear-gradient(135deg, rgba(11, 31, 58, 0.92), rgba(0, 102, 214, 0.74)),
-              url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&w=1400&q=60');
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(135deg, var(--navy-deep), #16486d 62%, var(--teal));
   color: var(--white);
   border-radius: 1.25rem;
   padding: 4rem 2rem;

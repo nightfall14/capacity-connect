@@ -1,24 +1,42 @@
 {% extends "base.html" %}
-{% block title %}Course Catalog{% endblock %}
+{% block title %}Explore Courses{% endblock %}
 {% block content %}
-<div class="min-h-screen bg-gray-50 -mx-3 px-3 py-10 md:-mx-5 md:px-5">
+<div class="-mx-3 min-h-screen bg-slate-50 px-3 py-10 md:-mx-5 md:px-5">
   <div class="mx-auto max-w-7xl">
-    <p class="text-sm font-semibold uppercase tracking-widest text-blue-600">MoES Technical Training</p>
-    <h1 class="mt-2 text-3xl font-bold text-slate-900">Course Catalog</h1>
-    <p class="mt-2 max-w-2xl text-slate-600">Choose a structured programme and build practical capability with trainer-led learning.</p>
-    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div class="border-b border-slate-200 pb-8">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">MoES technical learning catalogue</p>
+      <div class="mt-3 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div><h1 class="text-4xl font-bold text-slate-900">Explore courses</h1><p class="mt-2 max-w-2xl text-slate-600">Find structured programmes, course materials, and assessments for your role.</p></div>
+        <label class="relative block md:w-80"><span class="sr-only">Search courses</span><input id="catalog-search" type="search" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 pl-10 text-sm" placeholder="Search title, trainer, or topic"><span class="absolute left-3 top-3 text-slate-400" aria-hidden="true">⌕</span></label>
+      </div>
+    </div>
+    <section class="mt-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm" aria-label="Course filters">
+      <div class="grid gap-5 lg:grid-cols-[1fr_1fr]">
+        <div><p class="text-xs font-bold uppercase tracking-wider text-slate-500">Subject area</p><div id="category-filters" class="mt-3 flex flex-wrap gap-2"></div></div>
+        <div><p class="text-xs font-bold uppercase tracking-wider text-slate-500">Learning duration</p><div id="duration-filters" class="mt-3 flex flex-wrap gap-2"></div></div>
+      </div>
+    </section>
+    <div class="mt-8 flex items-center justify-between"><h2 class="text-2xl font-bold text-slate-900">Available programmes</h2><p id="catalog-count" class="text-sm text-slate-500"></p></div>
+    <div id="catalog-grid" class="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
       {% for course in courses %}
-      <a href="{{ url_for('courses.summary', course_id=course.id) }}" class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-        <div class="flex h-44 items-center justify-center bg-slate-900 text-5xl text-blue-300"><span aria-hidden="true">▦</span></div>
-        <div class="p-6">
-          <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">{{ course.category or 'MoES Technical Training' }}</span>
-          <h2 class="mt-4 text-xl font-bold text-slate-900 group-hover:text-blue-600">{{ course.title }}</h2>
-          <p class="mt-2 text-sm text-slate-600">Trainer: {{ course.trainer.name }}</p>
-          <p class="mt-5 border-t border-slate-100 pt-4 text-sm font-semibold text-slate-500">{{ course.duration }}</p>
+      {% set state = namespace(enrollment=None) %}{% for enrollment in course.enrollments if enrollment.user_id == session.account_id %}{% set state.enrollment = enrollment %}{% endfor %}
+      <a href="{{ url_for('courses.summary', course_id=course.id) }}" class="catalog-card group flex min-h-72 flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-teal-600 hover:shadow-md" data-category="{{ course.category or 'General' }}" data-duration="{{ course.duration or 'Self-paced' }}" data-search="{{ course.title }} {{ course.description or '' }} {{ course.trainer.name if course.trainer else '' }} {{ course.category or '' }}">
+        <div class="flex items-start justify-between gap-4"><span class="rounded-full bg-teal-50 px-3 py-1 text-xs font-bold text-teal-800">{{ course.category or 'General' }}</span><span class="text-xs font-semibold text-slate-500">{{ course.duration or 'Self-paced' }}</span></div>
+        <h3 class="mt-5 text-xl font-bold text-slate-900 group-hover:text-teal-800">{{ course.title }}</h3>
+        <p class="mt-2 text-sm font-semibold text-slate-600">Trainer: {{ course.trainer.name if course.trainer else 'Capacity Connect Faculty' }}</p>
+        <p class="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{{ course.description or 'A structured capacity-building programme with lectures, learning resources, and knowledge checks.' }}</p>
+        <div class="mt-auto pt-5">
+          {% if state.enrollment %}
+          <div class="border-t border-slate-100 pt-4"><div class="flex justify-between text-xs font-bold text-teal-800"><span>Enrolled</span><span>{{ state.enrollment.progress_percentage|default(0) }}% complete</span></div><div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-200"><div class="h-full rounded-full bg-teal-700" style="width: {{ state.enrollment.progress_percentage|default(0) }}%"></div></div></div>
+          {% else %}<p class="border-t border-slate-100 pt-4 text-sm font-bold text-navy">View course details <span aria-hidden="true">→</span></p>{% endif %}
         </div>
       </a>
-      {% endfor %}
+      {% else %}<p class="col-span-full rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500">No published courses are available yet.</p>{% endfor %}
     </div>
+    <p id="catalog-empty" class="mt-6 hidden rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">No courses match these filters.</p>
   </div>
 </div>
 {% endblock %}
+{% block scripts %}<script>
+(function(){const cards=[...document.querySelectorAll('.catalog-card')],search=document.getElementById('catalog-search'),count=document.getElementById('catalog-count'),empty=document.getElementById('catalog-empty');let category='All',duration='All';const values=(key)=>['All',...new Set(cards.map(c=>c.dataset[key]).filter(Boolean))];function buttons(target,key,select){values(key).forEach(value=>{const button=document.createElement('button');button.type='button';button.textContent=value;button.className='rounded-full border px-3 py-1.5 text-sm font-semibold transition '+(value==='All'?'border-teal-700 bg-teal-700 text-white':'border-slate-300 bg-white text-slate-700 hover:border-teal-600');button.addEventListener('click',()=>{select(value);[...target.children].forEach(item=>item.className='rounded-full border border-slate-300 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-teal-600');button.className='rounded-full border border-teal-700 bg-teal-700 px-3 py-1.5 text-sm font-semibold text-white transition';render();});target.append(button);});}function render(){const term=search.value.toLowerCase();let shown=0;cards.forEach(card=>{const visible=(category==='All'||card.dataset.category===category)&&(duration==='All'||card.dataset.duration===duration)&&card.dataset.search.toLowerCase().includes(term);card.classList.toggle('hidden',!visible);if(visible)shown++;});count.textContent=shown+' course'+(shown===1?'':'s')+' shown';empty.classList.toggle('hidden',shown!==0);}buttons(document.getElementById('category-filters'),'category',v=>category=v);buttons(document.getElementById('duration-filters'),'duration',v=>duration=v);search.addEventListener('input',render);render();})();
+</script>{% endblock %}

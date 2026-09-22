@@ -34,8 +34,12 @@
         jump.className = "mt-2 text-sm font-semibold text-blue-700 underline";
         jump.textContent = "Jump to " + formatTime(answer.start_seconds);
         jump.addEventListener("click", function () {
-          video.currentTime = Number(answer.start_seconds);
-          video.play().catch(function () {});
+          if (typeof window.seekToTimestamp === "function") {
+            window.seekToTimestamp(Number(answer.start_seconds));
+          } else {
+            video.currentTime = Number(answer.start_seconds);
+            video.play().catch(function () {});
+          }
         });
         result.append(text, jump);
       })
