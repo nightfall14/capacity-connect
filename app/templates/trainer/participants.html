@@ -2,6 +2,6 @@
 {% block title %}Participants - {{ course.name }}{% endblock %}
 {% block content %}
 <h3 class="section-title">Participants - {{ course.name }}</h3><div class="table-responsive-card"><div class="table-responsive"><table class="table table-hover align-middle"><thead><tr><th>Booking ID</th><th>Trainee</th><th>Email</th><th>Phone</th><th>Booking Date</th><th>Status</th></tr></thead><tbody>
-{% for booking in bookings %}<tr><td>#{{ booking.id }}</td><td>{{ booking.trainee.name }}</td><td>{{ booking.trainee.email }}</td><td>{{ booking.trainee.phone or '—' }}</td><td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M') }}</td><td><span class="badge badge-booking-{{ booking.status }}">{{ booking.status }}</span></td></tr>{% else %}<tr><td colspan="6" class="text-center text-muted">No participants yet.</td></tr>{% endfor %}
+{% for booking in bookings %}<tr><td>#{{ booking.id }}</td><td><a href="{{ url_for('learner.profile_view', trainee_id=booking.trainee.id) }}" class="text-teal-700 underline">{{ booking.trainee.name }}</a></td><td>{{ booking.trainee.email }}</td><td>{{ booking.trainee.phone or '—' }}</td><td>{{ booking.booking_date.strftime('%Y-%m-%d %H:%M') }}</td><td><span class="badge badge-booking-{{ booking.status }}">{{ booking.status }}</span></td></tr>{% else %}<tr><td colspan="6" class="text-center text-muted">No participants yet.</td></tr>{% endfor %}
 </tbody></table></div></div><a href="{{ url_for('trainer.course_detail', course_id=course.id) }}" class="btn btn-outline-secondary mt-3">Back to Course</a>
 {% endblock %}

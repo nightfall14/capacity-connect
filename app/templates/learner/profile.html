@@ -1,6 +1,89 @@
 {% extends "base.html" %}
 {% block title %}My Profile{% endblock %}
 {% block content %}
-<div class="min-h-screen bg-gray-50 -mx-3 px-3 py-10 md:-mx-5 md:px-5"><div class="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[280px_1fr]"><aside class="h-fit rounded-xl bg-slate-900 p-7 text-white"><div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-blue-500 text-3xl font-bold">{{ user.name[0] }}</div><h1 class="mt-5 text-center text-xl font-bold">{{ user.name }}</h1><p class="mt-1 text-center text-sm text-slate-300">{{ user.email }}</p><div class="mt-6 space-y-3 border-t border-slate-700 pt-5 text-sm"><p><span class="text-slate-400">Role</span><br>{{ user.role|capitalize }}</p><p><span class="text-slate-400">Joined Date</span><br>{{ user.created_at.strftime('%d %b %Y') if user.created_at else '—' }}</p></div></aside><main><h2 class="text-3xl font-bold text-slate-900">Learning Profile</h2><div class="mt-6 grid gap-4 sm:grid-cols-3"><div class="rounded-xl bg-white p-5 shadow-sm"><p class="text-sm text-slate-500">Enrolled</p><p class="mt-2 text-3xl font-bold text-blue-600">{{ enrolled_count }}</p></div><div class="rounded-xl bg-white p-5 shadow-sm"><p class="text-sm text-slate-500">Completed</p><p class="mt-2 text-3xl font-bold text-emerald-600">{{ completed_count }}</p></div><div class="rounded-xl bg-white p-5 shadow-sm"><p class="text-sm text-slate-500">Overall Progress</p><p class="mt-2 text-3xl font-bold text-slate-900">{{ average_progress }}%</p></div></div><section class="mt-8 rounded-xl bg-white p-6 shadow-sm"><h3 class="text-xl font-bold text-slate-900">Recently Active Courses</h3><div class="mt-5 space-y-5">{% for enrollment in enrollments[:5] %}<div><div class="flex justify-between gap-4"><h4 class="font-semibold text-slate-800">{{ enrollment.course.title }}</h4><span class="text-sm text-slate-500">{{ enrollment.progress_percentage|default(0) }}%</span></div><div class="mt-2 h-2 rounded-full bg-slate-200"><div class="h-2 rounded-full bg-blue-600" style="width: {{ enrollment.progress_percentage|default(0) }}%"></div></div></div>{% else %}<p class="text-slate-500">No enrolment activity yet.</p>{% endfor %}</div></section></main></div></div>
-<section class="mt-8 rounded-xl bg-white p-6 shadow-sm"><h3 class="text-xl font-bold">Professional profile</h3><form method="post" enctype="multipart/form-data" class="mt-4 space-y-3"><textarea name="qualifications" placeholder="Qualifications" class="w-full rounded border p-2">{{ cp.qualifications or '' }}</textarea><textarea name="work_experience" placeholder="Work experience" class="w-full rounded border p-2">{{ cp.work_experience or '' }}</textarea><input name="interests" value="{{ cp.interests or '' }}" placeholder="Interests" class="w-full rounded border p-2"><input name="skills" value="{{ cp.skills or '' }}" placeholder="Skills" class="w-full rounded border p-2"><input name="certificate_title" placeholder="Certificate title" class="w-full rounded border p-2"><input name="certificate_issuer" placeholder="Issuer" class="w-full rounded border p-2"><input type="date" name="certificate_issued_at" class="rounded border p-2"><input type="file" name="certificate_file" accept=".pdf,.png,.jpg,.jpeg"><button class="rounded bg-teal-700 px-4 py-2 font-bold text-white">Save profile</button></form>{% for certificate in certificates %}<p class="mt-3"><a class="text-teal-700 underline" href="{{ certificate.file_path }}" target="_blank">{{ certificate.title }}</a> {{ certificate.issuer or '' }}</p>{% endfor %}</section>
+<div class="-mx-3 min-h-screen bg-slate-50 px-3 py-8 md:-mx-5 md:px-5">
+  <div class="mx-auto max-w-6xl">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wider text-teal-700">Trainee profile</p>
+        <h1 class="mt-1 text-3xl font-bold text-slate-900">My professional profile</h1>
+        <p class="mt-2 text-slate-600">Keep your qualifications, experience, interests, skills, and certificates up to date.</p>
+      </div>
+      <a href="{{ url_for('learner.dashboard') }}" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Back to dashboard</a>
+    </div>
+
+    <div class="mt-8 grid gap-8 lg:grid-cols-[280px_1fr]">
+      <aside class="h-fit rounded-2xl bg-slate-900 p-7 text-white shadow-sm">
+        <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-teal-600 text-3xl font-bold">{{ (user.name or 'U')[0]|upper }}</div>
+        <h2 class="mt-5 text-center text-xl font-bold">{{ user.name }}</h2>
+        <p class="mt-1 break-all text-center text-sm text-slate-300">{{ user.email }}</p>
+        <div class="mt-6 space-y-3 border-t border-slate-700 pt-5 text-sm">
+          <p><span class="text-slate-400">Role</span><br>{{ user.role|capitalize }}</p>
+          <p><span class="text-slate-400">Joined</span><br>{{ user.created_at.strftime('%d %b %Y') if user.created_at else '—' }}</p>
+          <p><span class="text-slate-400">Courses</span><br>{{ enrolled_count }} enrolled · {{ completed_count }} completed</p>
+        </div>
+      </aside>
+
+      <main class="space-y-6">
+        <form method="post" enctype="multipart/form-data" class="rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="text-xl font-bold text-slate-900">Professional details</h2>
+          <div class="mt-5 grid gap-5">
+            <div>
+              <label for="qualifications" class="text-sm font-semibold text-slate-700">Qualifications</label>
+              <textarea id="qualifications" name="qualifications" rows="4" class="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-teal-600 focus:outline-none" placeholder="Degrees, diplomas, or other qualifications">{{ cp.qualifications or '' }}</textarea>
+            </div>
+            <div>
+              <label for="work_experience" class="text-sm font-semibold text-slate-700">Work experience</label>
+              <textarea id="work_experience" name="work_experience" rows="5" class="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-teal-600 focus:outline-none" placeholder="Add roles, employers, dates, and responsibilities">{{ cp.work_experience or '' }}</textarea>
+            </div>
+            <div class="grid gap-5 md:grid-cols-2">
+              <div>
+                <label for="interests" class="text-sm font-semibold text-slate-700">Interests</label>
+                <textarea id="interests" name="interests" rows="3" class="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-teal-600 focus:outline-none" placeholder="Comma-separated interests">{{ cp.interests or '' }}</textarea>
+              </div>
+              <div>
+                <label for="skills" class="text-sm font-semibold text-slate-700">Skills</label>
+                <textarea id="skills" name="skills" rows="3" class="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-teal-600 focus:outline-none" placeholder="Comma-separated skills">{{ cp.skills or '' }}</textarea>
+              </div>
+            </div>
+            <div>
+              <label for="certifications" class="text-sm font-semibold text-slate-700">Certifications description</label>
+              <input id="certifications" name="certifications" value="{{ cp.certifications or '' }}" class="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-teal-600 focus:outline-none" placeholder="Existing text field, comma-separated if useful">
+              <p class="mt-1 text-xs text-slate-500">Use the upload section below for certificate files.</p>
+            </div>
+          </div>
+
+          <div class="mt-8 border-t border-slate-200 pt-6">
+            <h2 class="text-xl font-bold text-slate-900">Upload a certificate</h2>
+            <p class="mt-1 text-sm text-slate-600">Accepted files: PDF, PNG, JPG, or JPEG.</p>
+            <div class="mt-4 grid gap-4 md:grid-cols-2">
+              <input name="certificate_title" class="rounded-lg border border-slate-300 p-3 text-sm" placeholder="Certificate title">
+              <input name="certificate_issuer" class="rounded-lg border border-slate-300 p-3 text-sm" placeholder="Issuer">
+              <label class="text-sm text-slate-600">Issued date<input type="date" name="certificate_issued_at" class="mt-1 block w-full rounded-lg border border-slate-300 p-3 text-sm text-slate-900"></label>
+              <label class="text-sm text-slate-600">Certificate file<input type="file" name="certificate_file" accept=".pdf,.png,.jpg,.jpeg" class="mt-1 block w-full rounded-lg border border-slate-300 p-2.5 text-sm text-slate-700"></label>
+            </div>
+          </div>
+          <button type="submit" class="mt-6 rounded-lg bg-teal-700 px-5 py-2.5 text-sm font-bold text-white hover:bg-teal-800">Save profile</button>
+        </form>
+
+        <section class="rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="text-xl font-bold text-slate-900">Uploaded certificates</h2>
+          <div class="mt-4 divide-y divide-slate-200">
+            {% for certificate in certificates %}
+            <article class="flex flex-wrap items-center justify-between gap-3 py-4 first:pt-0 last:pb-0">
+              <div>
+                <h3 class="font-semibold text-slate-900">{{ certificate.title }}</h3>
+                <p class="text-sm text-slate-500">{{ certificate.issuer or 'Issuer not provided' }}{% if certificate.issued_at %} · {{ certificate.issued_at.strftime('%d %b %Y') }}{% endif %}</p>
+              </div>
+              <a href="{{ certificate.file_path }}" target="_blank" rel="noopener" class="rounded-lg border border-teal-700 px-3 py-2 text-sm font-semibold text-teal-700 hover:bg-teal-50">View / download</a>
+            </article>
+            {% else %}
+            <p class="text-sm text-slate-500">No certificate files uploaded yet.</p>
+            {% endfor %}
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
 {% endblock %}

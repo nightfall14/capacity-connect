@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse
 
 from app.extensions import SessionLocal
 from app.models import LectureVideo, TelemetryLog, User
+from app.routes.courses import _group_transcript_segments
 from app.services import lecture_qa_service
 from app.services.transcription_service import transcription_progress
 import json
@@ -109,7 +110,8 @@ async def lecture_qa(request: Request, lecture_id: int):
         except (TypeError, ValueError, json.JSONDecodeError):
             transcript_chunks = []
 
-        answer = lecture_qa_service.transcript_answer(question, transcript_chunks)
+        grouped_transcript = _group_transcript_segments(transcript_chunks)
+        answer = lecture_qa_service.transcript_answer(question, grouped_transcript)
         if not answer:
             return {
                 "matched": False,

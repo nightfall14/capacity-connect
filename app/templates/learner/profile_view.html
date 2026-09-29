@@ -1,1 +1,57 @@
-{% extends "base.html" %}{% block content %}<div class="mx-auto max-w-3xl"><h1 class="text-3xl font-bold">{{ trainee.name }}</h1><section class="mt-6 rounded-xl bg-white p-6 shadow"><h2 class="font-bold">Qualifications</h2><p class="whitespace-pre-wrap">{{ cp.qualifications if cp else '—' }}</p><h2 class="mt-4 font-bold">Work experience</h2><p class="whitespace-pre-wrap">{{ cp.work_experience if cp else '—' }}</p><h2 class="mt-4 font-bold">Interests & skills</h2><p>{{ cp.interests if cp else '—' }} · {{ cp.skills if cp else '—' }}</p>{% for certificate in certificates %}<p class="mt-3"><a class="text-teal-700 underline" href="{{ certificate.file_path }}">{{ certificate.title }}</a></p>{% endfor %}</section></div>{% endblock %}
+{% extends "base.html" %}
+{% block title %}{{ trainee.name }} — Profile{% endblock %}
+{% block content %}
+<div class="-mx-3 min-h-screen bg-slate-50 px-3 py-8 md:-mx-5 md:px-5">
+  <div class="mx-auto max-w-5xl">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wider text-teal-700">Trainee profile</p>
+        <h1 class="mt-1 text-3xl font-bold text-slate-900">{{ trainee.name }}</h1>
+        <p class="mt-2 text-slate-600">Read-only professional profile</p>
+      </div>
+      <a href="javascript:history.back()" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Back</a>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      <section class="rounded-2xl bg-white p-6 shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900">Contact</h2>
+        <dl class="mt-4 space-y-3 text-sm">
+          <div><dt class="text-slate-500">Name</dt><dd class="font-semibold text-slate-900">{{ trainee.name }}</dd></div>
+          <div><dt class="text-slate-500">Email</dt><dd class="font-semibold text-slate-900">{{ trainee.email }}</dd></div>
+          {% if trainee.phone %}<div><dt class="text-slate-500">Phone</dt><dd class="font-semibold text-slate-900">{{ trainee.phone }}</dd></div>{% endif %}
+        </dl>
+      </section>
+      <section class="rounded-2xl bg-white p-6 shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900">Skills</h2>
+        <p class="mt-4 whitespace-pre-wrap text-sm leading-6 text-slate-700">{{ cp.skills if cp and cp.skills else 'No skills provided.' }}</p>
+      </section>
+      <section class="rounded-2xl bg-white p-6 shadow-sm md:col-span-2">
+        <h2 class="text-lg font-bold text-slate-900">Qualifications</h2>
+        <p class="mt-4 whitespace-pre-wrap text-sm leading-6 text-slate-700">{{ cp.qualifications if cp and cp.qualifications else 'No qualifications provided.' }}</p>
+        <h2 class="mt-6 text-lg font-bold text-slate-900">Work experience</h2>
+        <p class="mt-4 whitespace-pre-wrap text-sm leading-6 text-slate-700">{{ cp.work_experience if cp and cp.work_experience else 'No work experience provided.' }}</p>
+        <h2 class="mt-6 text-lg font-bold text-slate-900">Interests</h2>
+        <p class="mt-4 whitespace-pre-wrap text-sm leading-6 text-slate-700">{{ cp.interests if cp and cp.interests else 'No interests provided.' }}</p>
+        <h2 class="mt-6 text-lg font-bold text-slate-900">Certifications</h2>
+        <p class="mt-4 whitespace-pre-wrap text-sm leading-6 text-slate-700">{{ cp.certifications if cp and cp.certifications else 'No certification description provided.' }}</p>
+      </section>
+      <section class="rounded-2xl bg-white p-6 shadow-sm md:col-span-2">
+        <h2 class="text-lg font-bold text-slate-900">Certificate files</h2>
+        <div class="mt-4 divide-y divide-slate-200">
+          {% for certificate in certificates %}
+          <article class="flex flex-wrap items-center justify-between gap-3 py-4 first:pt-0 last:pb-0">
+            <div>
+              <h3 class="font-semibold text-slate-900">{{ certificate.title }}</h3>
+              <p class="text-sm text-slate-500">{{ certificate.issuer or 'Issuer not provided' }}{% if certificate.issued_at %} · {{ certificate.issued_at.strftime('%d %b %Y') }}{% endif %}</p>
+            </div>
+            <a href="{{ certificate.file_path }}" target="_blank" rel="noopener" class="rounded-lg border border-teal-700 px-3 py-2 text-sm font-semibold text-teal-700 hover:bg-teal-50">View / download</a>
+          </article>
+          {% else %}
+          <p class="text-sm text-slate-500">No certificate files uploaded.</p>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import json
 import math
-from pathlib import Path
 
 from fastapi import APIRouter, Request
 from fastapi.responses import JSONResponse
@@ -12,7 +10,6 @@ from sqlalchemy import select
 
 from app.extensions import SessionLocal
 from app.models import Doubt, LectureVideo, TelemetryLog, User, VideoEvent
-from app.services.lecture_qa_service import transcript_answer
 from app.services.video_service import (
     EVENT_TYPES,
     confusion_heatmap_for_lecture,
@@ -28,52 +25,6 @@ def _current_user(request: Request, db) -> User | None:
     from app.decorators import current_account
     user = current_account(request, db)
     return user if user and user.is_active else None
-
-
-@router.post("/api/lectures/{lecture_id}/qa")
-async def lecture_qa(request: Request, lecture_id: int):
-    """Answer a learner's question from the lecture transcript."""
-    from app.routes.courses import _group_transcript_segments
-
-    try:
-        question = str((await request.json())["question"]).strip()
-    except (KeyError, TypeError, ValueError):
-        return JSONResponse({"error": "A question is required."}, status_code=422)
-    if not question:
-        return JSONResponse({"error": "A question is required."}, status_code=422)
-
-    with SessionLocal() as db:
-        user = _current_user(request, db)
-        lecture = db.get(LectureVideo, lecture_id)
-        if not user:
-            return JSONResponse({"error": "Authentication required."}, status_code=401)
-        if not lecture:
-            return JSONResponse({"error": "Lecture not found."}, status_code=404)
-
-        transcript_source = (
-            lecture.public_transcript
-            if lecture.public_transcript
-            else lecture.module.course.public_transcript
-        )
-        try:
-            transcript_chunks = json.loads(transcript_source or "[]")
-            if not isinstance(transcript_chunks, list):
-                transcript_chunks = []
-        except (TypeError, ValueError, json.JSONDecodeError):
-            transcript_chunks = []
-
-        chunks = _group_transcript_segments(transcript_chunks)
-        answer = transcript_answer(question, chunks)
-        if not answer:
-            return {
-                "matched": False,
-                "message": "No matching answer found in this lecture transcript.",
-            }
-        return {
-            "matched": True,
-            "text": answer["text"],
-            "start_seconds": answer["start_seconds"],
-        }
 
 
 @router.post("/api/lectures/{lecture_id}/duration")

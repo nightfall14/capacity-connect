@@ -107,6 +107,7 @@ async def profile(request: Request):
         if request.method == "POST":
             form = await request.form()
             cp.qualifications = str(form.get("qualifications", "")).strip() or None
+            cp.certifications = str(form.get("certifications", "")).strip() or None
             cp.work_experience = str(form.get("work_experience", "")).strip() or None
             cp.interests = str(form.get("interests", "")).strip() or None
             cp.skills = str(form.get("skills", "")).strip() or None
@@ -137,6 +138,11 @@ async def profile(request: Request):
             float(enrollment.progress_percentage or 0)
             for enrollment in enrollments
         ]
+        certificates = sorted(
+            user.certificates,
+            key=lambda certificate: certificate.issued_at or date.min,
+            reverse=True,
+        )
         return render(
             request,
             db,
@@ -152,7 +158,7 @@ async def profile(request: Request):
                 round(sum(progress_values) / len(progress_values), 1)
                 if progress_values else 0
             ),
-            cp=cp, certificates=list(user.certificates),
+            cp=cp, certificates=certificates,
         )
 
 
@@ -163,9 +169,27 @@ async def profile_view(request: Request, trainee_id: int):
     with SessionLocal() as db:
         viewer = current_account(request, db)
         trainee = db.get(User, trainee_id)
-        if not viewer or viewer.role not in {"trainer", "admin"} or not trainee or trainee.role != "trainee":
+        if (
+            not viewer
+            or not viewer.is_active
+            or viewer.role not in {"trainer", "admin"}
+            or not trainee
+            or trainee.role != "trainee"
+        ):
             raise HTTPException(403)
-        return render(request, db, "learner/profile_view.html", trainee=trainee, cp=trainee.competency_profile, certificates=trainee.certificates)
+        certificates = sorted(
+            trainee.certificates,
+            key=lambda certificate: certificate.issued_at or date.min,
+            reverse=True,
+        )
+        return render(
+            request,
+            db,
+            "learner/profile_view.html",
+            trainee=trainee,
+            cp=trainee.competency_profile,
+            certificates=certificates,
+        )
 
 
 @router.api_route("/courses/{course_id}/quizzes/{quiz_id}", methods=["GET", "POST"], name="learner.take_quiz")
